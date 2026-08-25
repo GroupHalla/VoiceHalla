@@ -19,6 +19,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Eq } from "@/components/site/effects";
+import { ShotDrop } from "@/components/site/shot-drop";
 
 const SERVER_ADDRESS = "163.176.35.133";
 const SERVER_PORT = "9987";
@@ -232,12 +233,13 @@ export function Hero() {
               className="relative"
             >
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#080D1C] shadow-2xl transition-shadow duration-500 hover:shadow-[0_30px_90px_-30px_rgba(139,49,232,0.5)]">
-                <img
-                  src="/shots/demo.png"
+                <ShotDrop
+                  id="demo"
+                  fallback="/shots/demo.png"
                   alt="Janela principal do Halla no tema escuro atual: árvore de canais com indicadores de fala, painel de informações com banner roxo e chat em abas"
-                  className="w-full"
                   width={1180}
                   height={760}
+                  className="rounded-2xl"
                 />
               </div>
 

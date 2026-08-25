@@ -4,44 +4,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { SectionHeader } from "@/components/site/effects";
+import { SHOTS } from "@/lib/shots-store";
+import { ShotDrop } from "@/components/site/shot-drop";
 
-const tabs = [
-  {
-    id: "demo",
-    label: "Servidor conectado",
-    src: "/shots/demo.png",
-    caption:
-      "Tema escuro atual: toolbar com grupos arredondados, árvore de canais com indicador de fala, painel do servidor com banner roxo e chat em abas com bolhas.",
-  },
-  {
-    id: "channel",
-    label: "Criar canal",
-    src: "/shots/channel.png",
-    caption:
-      "Editor de canal: nome, tópico, senha, tipo, codec, qualidade, bitrate e limite de clientes.",
-  },
-  {
-    id: "connect",
-    label: "Conectar",
-    src: "/shots/connect.png",
-    caption:
-      "Diálogo de conexão: endereço, porta, apelido, senha e identidade Ed25519 verificada — com pinagem TOFU do certificado.",
-  },
-  {
-    id: "options",
-    label: "Opções",
-    src: "/shots/options.png",
-    caption:
-      "Opções com navegação lateral por categoria e tema claro/escuro trocável em tempo real, sem reiniciar.",
-  },
-  {
-    id: "main",
-    label: "Boas-vindas",
-    src: "/shots/main.png",
-    caption:
-      "Tela inicial do cliente: estado não conectado com atalhos de conexão e gerenciamento de favoritos.",
-  },
-];
+const tabs = SHOTS.map((s) => ({ id: s.id, label: s.label, src: s.fallback, caption: s.caption }));
 
 export function Screenshots() {
   const [active, setActive] = useState(tabs[0].id);
@@ -130,10 +96,13 @@ export function Screenshots() {
                   exit={{ opacity: 0, scale: 0.99, x: -12 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <img
-                    src={current.src}
+                  <ShotDrop
+                    id={current.id}
+                    fallback={current.src}
                     alt={`Captura de tela do Halla: ${current.caption}`}
-                    className="w-full transition-transform duration-700 hover:scale-[1.015]"
+                    width={1180}
+                    height={760}
+                    className="rounded-2xl"
                   />
                 </motion.figure>
               </AnimatePresence>

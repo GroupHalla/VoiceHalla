@@ -76,3 +76,36 @@ Stage Summary:
 - Screenshots agora representam a UI ATUAL do Halla (tema escuro navy + roxo) em 5 telas
 - Licença atualizada em todo o site para uso não comercial
 - Mockup fonte reutilizável em scripts/mockups/halla-ui.html para futuras telas
+
+---
+Task ID: 4
+Agent: main-agent (Super Z)
+Task: Facilitar para o usuário colocar as prints reais do app no site
+
+Work Log:
+- Criado sistema de screenshots personalizáveis sem backend, com 3 formas de uso:
+  1) Arrastar-e-soltar imagens direto sobre qualquer print do site (hero + galeria)
+  2) Painel "Prints do app" (botão fixo bottom-right, Ctrl+Shift+P, ou ?prints=1) com upload/restaurar por slot
+  3) Substituir arquivos em public/shots/ (mantido o workflow de filesystem)
+- Arquitetura: IndexedDB (banco "halla-shots", store "shots") + pub-sub interno + hook useShotSrc + componente ShotDrop que envolve cada <img>
+- Novos arquivos:
+  - src/lib/shots-store.ts — store IDB + pub-sub + lista canônica SHOTS (id, label, fallback, caption)
+  - src/components/site/use-shot-src.ts — hook useShotSrc (useSyncExternalStore-style) + useFileDrop
+  - src/components/site/shot-drop.tsx — wrapper drag-drop com overlay "Solte para substituir" e hint no hover
+  - src/components/site/shot-manager.tsx — modal admin: lista 5 shots com thumbnail/preview/botões Enviar+Restaurar, "Restaurar todas", preview em tela cheia, toast feedback (shadcn useToast)
+- Hero e galeria refatorados para usar ShotDrop; galeria agora lê tabs da constante SHOTS centralizada
+- Mockups originais backed up em public/shots/originals/ (5 prints) + README em public/shots/ explicando as 3 formas de trocar prints
+- Verificação no navegador:
+  - Botão "Prints do app" visível bottom-right em desktop e mobile (390px)
+  - Modal abre, lista 5 slots com thumbnails reais
+  - Upload via file input funciona: blob URL substitui /shots/X.png imediatamente
+  - Persiste em IndexedDB: sobrevive a reload (blob URL regenerado on-load)
+  - Botão Restaurar remove do IDB e volta para fallback
+  - "Restaurar todas" limpa tudo
+  - 0 erros de console, sem hscroll mobile, lint limpo
+
+Stage Summary:
+- Usuário agora pode trocar as prints de 3 formas, sendo a mais fácil o drag-drop direto no site (sem código nem arquivos)
+- Sistema é client-side puro (IndexedDB), não depende de backend nem de build
+- Estado "personalizada" indicado no modal com badge verde
+- Documentação em public/shots/README.md

@@ -10,6 +10,7 @@ import { Protocol } from "@/components/site/protocol";
 import { Downloads } from "@/components/site/downloads";
 import { Cta } from "@/components/site/cta";
 import { Footer } from "@/components/site/footer";
+import { ShotManager } from "@/components/site/shot-manager";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
         <Cta />
       </main>
       <Footer />
+      <ShotManager />
     </div>
   );
 }

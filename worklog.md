@@ -23,3 +23,34 @@ Stage Summary:
 - 10 seções: hero, stats, ecossistema, recursos, galeria, segurança, protocolo, downloads, CTA, footer
 - Todo conteúdo é factual, extraído dos READMEs dos repositórios
 - Artefatos: src/app/page.tsx, src/app/layout.tsx (metadata Halla), src/components/site/*.tsx, public/halla-logo.png, public/shots/*
+
+---
+Task ID: 2
+Agent: main-agent (Super Z)
+Task: Redesign visual completo do site do Halla (mais bonito, menos centralizado, mais animações) + verificar mudanças de licença
+
+Work Log:
+- Repos atualizados: licença agora é texto próprio em português do Unlicense (domínio público) nos 3 projetos — substância inalterada; footer atualizado para "Dedicado ao domínio público (Unlicense)"
+- globals.css: adicionados keyframes e utilitários (eq bars, float, marquee, aurora, shimmer, beam border com @property, grid-drift, noise SVG, terminal cursor, flow-line, speaking-ring, prefers-reduced-motion)
+- Novos componentes de efeito (effects.tsx): Eq (equalizador animado), CountUp (contador on-view), Typewriter (terminal digitando), SpotlightCard (glow segue o mouse), SectionHeader (cabeçalhos editoriais à esquerda), Aurora (blobs animados)
+- navbar.tsx: barra de progresso de scroll com gradiente (useScroll+useSpring), underline animado nos links, menu mobile com stagger
+- hero.tsx: reescrito — layout assimétrico (texto à esquerda), palavra rotativa com blur/slide ("seu servidor/sua regra/sua comunidade/sua liberdade"), mockup 3D com parallax do mouse (rotateX/rotateY springs), 4 chips flutuantes glassmorphism (Admin falando com eq+ring, Live 1080p60, Ed25519, ChaCha20), banner do servidor oficial com beam border rotativa, aurora + grid animado + noise de fundo
+- stats.tsx: contadores animados (3, 20ms, 2160p, v5, 0 telemetria) em strip full-width com divisores
+- marquee.tsx: dois tickers infinitos em direções opostas (tecnologias + plataformas), pausa no hover
+- ecosystem.tsx: bento grid assimétrico 7/5 + 5/7 — card Desktop com árvore de canais viva (user "player_two" entra/sai em loop, Admin com eq + ring + coroa), card Mobile com PTT flutuante pulsante + card de notificação, card Server com terminal typewriter, card Protocolo com transportes
+- features.tsx: 2 cards destacados (voz com equalizador gigante ao vivo; tela 4K com pills de qualidade) + 8 cards com SpotlightCard; reveals com stagger
+- screenshots.tsx: layout editorial com abas verticais numeradas à esquerda + imagem à direita com slide/x animations
+- security.tsx: split layout com painel sticky à esquerda (diagrama de fluxo do áudio + flow-line animada) e timeline de 6 itens à direita com linha de fluxo vertical animada
+- protocol.tsx: tabela de transportes com reveal sequencial + stepper de login Ed25519 com delays encadeados e setas pulsantes
+- downloads.tsx: tabs com layoutId glow animado, painel com SpotlightCard, code block com chrome de janela + botão copiar com feedback, shine nos CTAs
+- cta.tsx: card com beam border + aurora + noise, à esquerda, com copiar endereço
+- footer.tsx: hairline gradiente no topo, Eq junto ao logo
+- Correções: imports errados no footer (Eq de effects vs ícones lucide), ícones verificados
+- Verificação Agent Browser: 0 erros de console; palavra rotativa trocando; tabs da galeria e downloads funcionando; menu mobile abre; sem hscroll em 390px; âncoras pousam a 80px (smooth scroll confirmado com wait maior)
+- VLM aprovou: hero assimétrico com chips flutuantes, bento renderizado (árvore de canais + terminal nos cards), features alinhadas, mobile empilhado sem cortes
+- Lint final limpo
+
+Stage Summary:
+- Site do Halla totalmente redesenhado: hero assimétrico com parallax 3D e palavra rotativa, marquee duplo, stats com contadores, bento grid com mockups animados (árvore de canais viva, PTT flutuante, terminal digitando), spotlight cards, segurança split sticky, stepper de protocolo animado, beam borders e auroras
+- Licença verificada: continua domínio público/Unlicense (texto em português); footer ajustado
+- Todos os artefatos em src/components/site/*, effects.tsx centraliza os componentes de animação reutilizáveis

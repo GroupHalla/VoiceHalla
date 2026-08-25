@@ -1,20 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   Apple,
   ArrowUpRight,
-  Copy,
   Check,
   Container,
+  Copy,
   Download,
   Github,
   Monitor,
   Smartphone,
   Terminal,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { SectionHeader, SpotlightCard } from "@/components/site/effects";
 
 const platforms = [
   {
@@ -34,9 +34,10 @@ const platforms = [
 # Windows / manual — qualquer plataforma
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build`,
+    filename: "bash — linux / windows",
     deps: [
       "CMake ≥ 3.21",
-      "Qt 6.2+ (Widgets, Network, Multimedia, TextToSpeech)",
+      "Qt 6.2+",
       "OpenSSL",
       "libopus",
       "QtKeychain",
@@ -51,17 +52,20 @@ cmake --build build`,
     description:
       "App Android nativo com serviço em primeiro plano, PTT flutuante e transmissão de tela via MediaProjection. O APK assinado é publicado nas releases; atualizações também podem ser instaladas de dentro do próprio app.",
     repo: "https://github.com/GroupHalla/Halla-Mobile",
-    releaseNote: "APK assinado com verificação apksigner e SHA-256 publicado junto.",
+    releaseNote:
+      "APK assinado com verificação apksigner e SHA-256 publicado junto.",
     code: `# Compilar do código-fonte
 ./gradlew assembleDebug      # desenvolvimento
 
 # Release oficial (CI em tags v*)
 ./gradlew assembleRelease`,
+    filename: "bash — android",
     deps: [
-      "Android Studio ou Gradle + JDK 17",
+      "Android Studio",
+      "JDK 17",
       "Android SDK 34",
       "NDK 25.2.9519653",
-      "Acesso à internet no primeiro build (Opus via FetchContent)",
+      "Internet no 1º build",
     ],
   },
   {
@@ -73,23 +77,25 @@ cmake --build build`,
     description:
       "Rode seu próprio servidor: binário único com configuração em INI, certificado autoassinado gerado na primeira execução (ou Let's Encrypt), Docker, systemd e egg pronto para Pterodactyl.",
     repo: "https://github.com/GroupHalla/HallaServer",
-    releaseNote: "Dockerfile, serviço systemd e egg Pterodactyl inclusos no repo.",
+    releaseNote:
+      "Dockerfile, serviço systemd e egg Pterodactyl inclusos no repo.",
     code: `# Executar
 ./halla-server --config halla-server.ini
 
 # Portas padrão
 # TCP+UDP 9987 (controle TLS + voz Opus AEAD)`,
+    filename: "bash — servidor",
     deps: [
-      "CMake + compilador C++17",
+      "CMake + C++17",
       "Qt 6 (Network, Sql)",
       "OpenSSL",
       "SQLite ou MySQL",
-      "Opcional: TURN para NATs restritivos",
+      "TURN opcional",
     ],
   },
 ];
 
-function CodeBlock({ code }: { code: string }) {
+function CodeBlock({ code, filename }: { code: string; filename: string }) {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
     try {
@@ -106,18 +112,32 @@ function CodeBlock({ code }: { code: string }) {
     setTimeout(() => setCopied(false), 2000);
   };
   return (
-    <div className="relative overflow-hidden rounded-xl border border-white/[0.08] bg-black/50">
-      <button
-        onClick={copy}
-        className="absolute right-3 top-3 rounded-md border border-white/10 bg-white/[0.06] p-2 text-zinc-400 transition-colors hover:text-white"
-        aria-label="Copiar comandos"
-      >
-        {copied ? (
-          <Check className="h-3.5 w-3.5 text-emerald-400" aria-hidden="true" />
-        ) : (
-          <Copy className="h-3.5 w-3.5" aria-hidden="true" />
-        )}
-      </button>
+    <div className="relative overflow-hidden rounded-xl border border-white/[0.08] bg-black/55">
+      <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-2.5">
+        <div className="flex items-center gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" aria-hidden="true" />
+        </div>
+        <span className="font-mono text-[11px] text-zinc-500">{filename}</span>
+        <button
+          onClick={copy}
+          className="flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.05] px-2.5 py-1 text-[11px] font-medium text-zinc-400 transition-colors hover:text-white"
+          aria-label="Copiar comandos"
+        >
+          {copied ? (
+            <>
+              <Check className="h-3 w-3 text-emerald-400" aria-hidden="true" />
+              copiado
+            </>
+          ) : (
+            <>
+              <Copy className="h-3 w-3" aria-hidden="true" />
+              copiar
+            </>
+          )}
+        </button>
+      </div>
       <pre className="overflow-x-auto p-4 font-mono text-[12.5px] leading-relaxed text-zinc-300">
         <code>{code}</code>
       </pre>
@@ -130,30 +150,24 @@ export function Downloads() {
   const current = platforms.find((p) => p.id === active) ?? platforms[0];
 
   return (
-    <section id="download" className="relative scroll-mt-20 overflow-hidden py-20 sm:py-28">
+    <section
+      id="download"
+      className="relative scroll-mt-20 overflow-hidden py-20 sm:py-28"
+    >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-24 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[#7c2ae8]/[0.09] blur-[140px]"
+        className="pointer-events-none absolute left-1/2 top-24 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[#7c2ae8]/[0.08] blur-[140px]"
       />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <Badge
-            variant="outline"
-            className="mb-4 rounded-full border-[#b26bf0]/25 bg-[#b26bf0]/[0.07] px-3.5 py-1 text-xs font-medium text-[#d8bcf7]"
-          >
-            Download
-          </Badge>
-          <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Comece a falar em minutos
-          </h2>
-          <p className="mt-4 text-pretty text-base leading-relaxed text-zinc-400">
-            Tudo é gratuito e de domínio público. Use, copie, modifique,
-            venda — a licença Unlicense não pede nem crédito.
-          </p>
-        </div>
+        <SectionHeader
+          kicker="Download"
+          accent="purple"
+          title="Comece a falar em minutos"
+          description="Tudo é gratuito e de domínio público. Use, copie, modifique, venda — a licença Unlicense não pede nem crédito."
+        />
 
         <div
-          className="mt-10 flex flex-wrap items-center justify-center gap-2"
+          className="mt-10 flex flex-wrap items-center gap-2"
           role="tablist"
           aria-label="Plataformas do Halla"
         >
@@ -163,7 +177,7 @@ export function Downloads() {
               role="tab"
               aria-selected={active === p.id}
               onClick={() => setActive(p.id)}
-              className={`flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all ${
+              className={`relative flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-300 ${
                 active === p.id
                   ? "border-[#b57bee]/50 bg-[#b57bee]/[0.14] text-white"
                   : "border-white/[0.08] bg-white/[0.02] text-zinc-400 hover:border-white/[0.16] hover:text-zinc-200"
@@ -171,76 +185,93 @@ export function Downloads() {
             >
               <p.icon className="h-4 w-4" aria-hidden="true" />
               {p.label}
+              {active === p.id && (
+                <motion.span
+                  layoutId="tab-glow"
+                  className="absolute inset-0 -z-10 rounded-full bg-[#b57bee]/[0.14]"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
             </button>
           ))}
         </div>
 
-        <motion.div
-          key={current.id}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35 }}
-          className="mx-auto mt-8 max-w-4xl"
-        >
-          <div className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] p-6 sm:p-8">
-            <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
-              <div className="max-w-xl">
-                <h3 className="text-2xl font-bold text-white">
-                  {current.title}
-                </h3>
-                <p className="mt-1 font-mono text-[13px] text-[#c99bf5]">
-                  {current.subtitle}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current.id}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.32 }}
+            className="mt-8"
+          >
+            <SpotlightCard className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] p-6 sm:p-8">
+              <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+                <div className="max-w-xl">
+                  <h3 className="text-2xl font-bold text-white">
+                    {current.title}
+                  </h3>
+                  <p className="mt-1 font-mono text-[13px] text-[#c99bf5]">
+                    {current.subtitle}
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-zinc-400">
+                    {current.description}
+                  </p>
+                </div>
+                <a
+                  href={`${current.repo}/releases`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[#8b31e8] to-[#6d28d9] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_-8px_rgba(139,49,232,0.6)] transition-shadow hover:shadow-[0_0_44px_-6px_rgba(139,49,232,0.85)]"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full"
+                  />
+                  <Download className="h-4 w-4" aria-hidden="true" />
+                  Baixar release
+                </a>
+              </div>
+
+              <div className="mt-7">
+                <p className="mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-500">
+                  <Terminal className="h-3.5 w-3.5" aria-hidden="true" />
+                  Compilar do código-fonte
                 </p>
-                <p className="mt-4 text-sm leading-relaxed text-zinc-400">
-                  {current.description}
+                <CodeBlock code={current.code} filename={current.filename} />
+                <p className="mt-3 flex items-center gap-1.5 text-[13px] text-zinc-500">
+                  <Apple className="h-3.5 w-3.5" aria-hidden="true" />
+                  {current.releaseNote}
                 </p>
               </div>
+
+              <div className="mt-6 flex flex-wrap gap-2">
+                {current.deps.map((d) => (
+                  <span
+                    key={d}
+                    className="rounded-md border border-white/[0.08] bg-black/25 px-2.5 py-1 font-mono text-[11px] text-zinc-400"
+                  >
+                    {d}
+                  </span>
+                ))}
+              </div>
+
               <a
-                href={`${current.repo}/releases`}
+                href={current.repo}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#8b31e8] to-[#6d28d9] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_-8px_rgba(139,49,232,0.6)] transition-all hover:from-[#9b46f0] hover:to-[#7c3aed]"
+                className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#c99bf5] transition-colors hover:text-[#e3cdfa]"
               >
-                <Download className="h-4 w-4" aria-hidden="true" />
-                Baixar release
+                <Github className="h-4 w-4" aria-hidden="true" />
+                Código-fonte no GitHub
+                <ArrowUpRight
+                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden="true"
+                />
               </a>
-            </div>
-
-            <div className="mt-7">
-              <p className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                <Terminal className="h-3.5 w-3.5" aria-hidden="true" />
-                Compilar do código-fonte
-              </p>
-              <CodeBlock code={current.code} />
-              <p className="mt-3 flex items-center gap-1.5 text-[13px] text-zinc-500">
-                <Apple className="h-3.5 w-3.5" aria-hidden="true" />
-                {current.releaseNote}
-              </p>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {current.deps.map((d) => (
-                <span
-                  key={d}
-                  className="rounded-md border border-white/[0.08] bg-black/25 px-2.5 py-1 font-mono text-[11px] text-zinc-400"
-                >
-                  {d}
-                </span>
-              ))}
-            </div>
-
-            <a
-              href={current.repo}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#c99bf5] transition-colors hover:text-[#e3cdfa]"
-            >
-              <Github className="h-4 w-4" aria-hidden="true" />
-              Código-fonte no GitHub
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-          </div>
-        </motion.div>
+            </SpotlightCard>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

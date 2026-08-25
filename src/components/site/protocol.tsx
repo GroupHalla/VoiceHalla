@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowRight, FileText, Terminal } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ArrowDown, ArrowUpRight, FileText, Terminal } from "lucide-react";
+import { SectionHeader } from "@/components/site/effects";
 
 const transports = [
   {
@@ -37,47 +37,65 @@ const transports = [
   },
 ];
 
+const loginSteps = [
+  { dir: "C→S", msg: "hello", payload: "{ proto, uid, nick, idPub }", color: "purple" },
+  { dir: "S→C", msg: "identity_challenge", payload: "{ nonce }", color: "emerald" },
+  { dir: "C→S", msg: "identity_proof", payload: "{ sig }", color: "purple" },
+  { dir: "S→C", msg: "welcome", payload: "UID = hash(idPub) ✓", color: "emerald" },
+];
+
+const stepStyles = {
+  purple: {
+    chip: "bg-[#b57bee]/15 text-[#c99bf5]",
+    msg: "text-zinc-200",
+  },
+  emerald: {
+    chip: "bg-emerald-400/15 text-emerald-300",
+    msg: "text-zinc-200",
+  },
+};
+
 export function Protocol() {
   return (
-    <section id="protocolo" className="relative scroll-mt-20 py-20 sm:py-28">
+    <section
+      id="protocolo"
+      className="relative scroll-mt-20 py-20 sm:py-28"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <Badge
-            variant="outline"
-            className="mb-4 rounded-full border-[#22d3ee]/25 bg-[#22d3ee]/[0.07] px-3.5 py-1 text-xs font-medium text-[#7de8f7]"
-          >
-            Protocolo aberto v5
-          </Badge>
-          <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Documentado para todos.
-            <br className="hidden sm:block" /> Fechado para ninguém.
-          </h2>
-          <p className="mt-4 text-pretty text-base leading-relaxed text-zinc-400">
-            A especificação completa do protocolo Halla é pública: qualquer
-            pessoa pode implementar clientes, bots e ferramentas compatíveis. A
-            camada de segurança — TLS, identidade Ed25519 e voz AEAD — é
-            obrigatória para todas as versões.
-          </p>
-        </div>
+        <SectionHeader
+          kicker="Protocolo aberto v5"
+          accent="cyan"
+          title={
+            <>
+              Documentado para todos.
+              <br className="hidden sm:block" /> Fechado para ninguém.
+            </>
+          }
+          description="A especificação completa é pública: qualquer pessoa pode implementar clientes, bots e ferramentas compatíveis. A camada de segurança — TLS, Ed25519 e voz AEAD — é obrigatória para todas as versões."
+        />
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-5">
+        <div className="mt-14 grid gap-6 lg:grid-cols-12">
           {/* Transports table */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.55 }}
-            className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] lg:col-span-3"
+            className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] lg:col-span-7"
           >
-            <div className="hidden grid-cols-[1.1fr_1.4fr_0.8fr] gap-4 border-b border-white/[0.07] bg-white/[0.03] px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-zinc-500 md:grid">
+            <div className="hidden grid-cols-[1.1fr_1.4fr_0.8fr] gap-4 border-b border-white/[0.07] bg-white/[0.03] px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-500 md:grid">
               <span>Canal</span>
               <span>Transporte</span>
               <span>Porta</span>
             </div>
             <div className="divide-y divide-white/[0.05]">
-              {transports.map((t) => (
-                <div
+              {transports.map((t, i) => (
+                <motion.div
                   key={t.channel}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.07 }}
                   className="grid gap-2 px-6 py-5 transition-colors hover:bg-white/[0.025] md:grid-cols-[1.1fr_1.4fr_0.8fr] md:items-start md:gap-4"
                 >
                   <div className="text-sm font-semibold text-white">
@@ -95,81 +113,95 @@ export function Protocol() {
                   <p className="hidden text-[13px] leading-relaxed text-zinc-400 md:col-span-3 md:block">
                     {t.use}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Identity flow */}
+          {/* Animated login flow */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.55, delay: 0.12 }}
-            className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] p-6 lg:col-span-2"
+            className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.015] p-6 lg:col-span-5"
           >
             <div className="flex items-center gap-2.5">
-              <Terminal className="h-4.5 w-4.5 text-[#c99bf5]" aria-hidden="true" />
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-300">
+              <Terminal className="h-4 w-4 text-[#c99bf5]" aria-hidden="true" />
+              <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-300">
                 Login com prova de posse
               </h3>
             </div>
-            <div className="mt-5 space-y-3 rounded-xl bg-black/40 p-4 font-mono text-[12.5px] leading-relaxed">
-              <div className="flex items-start gap-2.5">
-                <span className="mt-0.5 shrink-0 rounded bg-[#b57bee]/15 px-1.5 py-0.5 text-[10px] font-semibold text-[#c99bf5]">
-                  C→S
-                </span>
-                <span className="text-zinc-300">
-                  hello{" "}
-                  <span className="text-zinc-500">
-                    {"{ proto, uid, nick, idPub }"}
-                  </span>
-                </span>
-              </div>
-              <ArrowDown className="h-3.5 w-3.5 text-zinc-600" aria-hidden="true" />
-              <div className="flex items-start gap-2.5">
-                <span className="mt-0.5 shrink-0 rounded bg-emerald-400/15 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-300">
-                  S→C
-                </span>
-                <span className="text-zinc-300">
-                  identity_challenge{" "}
-                  <span className="text-zinc-500">{"{ nonce }"}</span>
-                </span>
-              </div>
-              <ArrowDown className="h-3.5 w-3.5 text-zinc-600" aria-hidden="true" />
-              <div className="flex items-start gap-2.5">
-                <span className="mt-0.5 shrink-0 rounded bg-[#b57bee]/15 px-1.5 py-0.5 text-[10px] font-semibold text-[#c99bf5]">
-                  C→S
-                </span>
-                <span className="text-zinc-300">
-                  identity_proof{" "}
-                  <span className="text-zinc-500">{"{ sig }"}</span>
-                </span>
-              </div>
-              <ArrowDown className="h-3.5 w-3.5 text-zinc-600" aria-hidden="true" />
-              <div className="flex items-start gap-2.5">
-                <span className="mt-0.5 shrink-0 rounded bg-emerald-400/15 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-300">
-                  S→C
-                </span>
-                <span className="text-zinc-300">
-                  welcome <span className="text-emerald-400">✓</span>{" "}
-                  <span className="text-zinc-500">UID = hash(idPub)</span>
-                </span>
-              </div>
+
+            <div className="relative mt-6 space-y-0">
+              {loginSteps.map((step, i) => {
+                const styles = stepStyles[step.color as keyof typeof stepStyles];
+                return (
+                  <div key={step.msg}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 14 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.45, delay: 0.2 + i * 0.35 }}
+                      className="flex items-start gap-3"
+                    >
+                      <span
+                        className={`mt-0.5 shrink-0 rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold ${styles.chip}`}
+                      >
+                        {step.dir}
+                      </span>
+                      <div className="min-w-0">
+                        <p className={`font-mono text-[13px] font-semibold ${styles.msg}`}>
+                          {step.msg}
+                        </p>
+                        <p className="mt-0.5 truncate font-mono text-[11.5px] text-zinc-500">
+                          {step.payload}
+                        </p>
+                      </div>
+                    </motion.div>
+                    {i < loginSteps.length - 1 && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.45 + i * 0.35 }}
+                        className="py-1 pl-[26px]"
+                      >
+                        <ArrowDown
+                          className="h-3.5 w-3.5 animate-pulse text-zinc-600"
+                          style={{ animationDelay: `${i * 0.3}s` }}
+                          aria-hidden="true"
+                        />
+                      </motion.div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-            <p className="mt-4 text-[13px] leading-relaxed text-zinc-400">
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1.7 }}
+              className="mt-5 rounded-lg border border-emerald-400/15 bg-emerald-400/[0.05] p-3 text-[13px] leading-relaxed text-zinc-400"
+            >
               O servidor ignora o UID enviado pelo cliente e recalcula a partir
               da chave pública. Spoofing de identidade torna-se impraticável.
-            </p>
+            </motion.p>
+
             <a
               href="https://github.com/GroupHalla/HallaServer/blob/main/PROTOCOL.md"
               target="_blank"
               rel="noreferrer"
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[#7de8f7] transition-colors hover:text-[#a5f0fb]"
+              className="group mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[#7de8f7] transition-colors hover:text-[#a5f0fb]"
             >
               <FileText className="h-4 w-4" aria-hidden="true" />
               Ler a especificação completa
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <ArrowUpRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
             </a>
           </motion.div>
         </div>

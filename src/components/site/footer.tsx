@@ -1,4 +1,5 @@
 import { ArrowUp, FileText, Github, Scale } from "lucide-react";
+import { Eq } from "@/components/site/effects";
 
 const projects = [
   {
@@ -45,6 +46,10 @@ const resources = [
 export function Footer() {
   return (
     <footer className="relative border-t border-white/[0.07] bg-black/40">
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#a855f7]/50 to-transparent"
+      />
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
@@ -59,6 +64,7 @@ export function Footer() {
               <span className="text-lg font-semibold tracking-tight text-white">
                 Halla
               </span>
+              <Eq bars={4} className="ml-1 opacity-60" />
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-zinc-400">
               Ecossistema de comunicação por voz de código aberto: desktop,
@@ -69,7 +75,7 @@ export function Footer() {
               href="https://github.com/GroupHalla"
               target="_blank"
               rel="noreferrer"
-              className="mt-5 inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm font-medium text-zinc-200 transition-colors hover:bg-white/[0.09] hover:text-white"
+              className="group mt-5 inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm font-medium text-zinc-200 transition-all hover:border-[#b57bee]/40 hover:bg-white/[0.09] hover:text-white"
             >
               <Github className="h-4 w-4" aria-hidden="true" />
               GroupHalla no GitHub
@@ -77,10 +83,10 @@ export function Footer() {
           </div>
 
           <nav aria-label="Projetos do Halla">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
               Projetos
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 space-y-3.5">
               {projects.map((p) => (
                 <li key={p.name}>
                   <a
@@ -100,10 +106,10 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Recursos e documentação">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
               Recursos
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 space-y-3.5">
               {resources.map((r) => (
                 <li key={r.name}>
                   <a
@@ -123,12 +129,12 @@ export function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/[0.07] pt-8 sm:flex-row">
           <p className="flex items-center gap-2 text-xs text-zinc-500">
             <Scale className="h-3.5 w-3.5" aria-hidden="true" />
-            Domínio público via Unlicense — usar, copiar, modificar e
-            redistribuir livremente, com ou sem crédito.
+            Dedicado ao domínio público (Unlicense) — usar, copiar, modificar,
+            vender e redistribuir livremente, com ou sem crédito.
           </p>
           <a
             href="#"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-zinc-400 transition-colors hover:text-white"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-zinc-400 transition-all hover:border-[#b57bee]/40 hover:text-white"
             aria-label="Voltar ao topo"
           >
             <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />

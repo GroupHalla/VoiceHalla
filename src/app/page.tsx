@@ -10,26 +10,28 @@ import { Protocol } from "@/components/site/protocol";
 import { Downloads } from "@/components/site/downloads";
 import { Cta } from "@/components/site/cta";
 import { Footer } from "@/components/site/footer";
-import { ShotManager } from "@/components/site/shot-manager";
+import { getHeroShot, getScreenshots } from "@/data/screenshots";
 
 export default function Home() {
+  const heroShot = getHeroShot();
+  const shots = getScreenshots();
+
   return (
     <div className="flex min-h-screen flex-col overflow-x-clip bg-[#0a0712] text-zinc-100">
       <Navbar />
       <main className="flex-1">
-        <Hero />
+        <Hero heroShot={heroShot} />
         <Marquee />
         <Stats />
         <Ecosystem />
         <Features />
-        <Screenshots />
+        <Screenshots shots={shots} />
         <Security />
         <Protocol />
         <Downloads />
         <Cta />
       </main>
       <Footer />
-      <ShotManager />
     </div>
   );
 }

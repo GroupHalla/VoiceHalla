@@ -19,10 +19,20 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Eq } from "@/components/site/effects";
-import { ShotDrop } from "@/components/site/shot-drop";
+import type { Shot } from "@/data/screenshots";
 
 const SERVER_ADDRESS = "163.176.35.133";
 const SERVER_PORT = "9987";
+
+type HeroProps = {
+  heroShot?: Shot | null;
+};
+
+const DEFAULT_HERO = {
+  src: "/screenshots/01-janela-principal.png",
+  alt: "Janela principal do Halla no tema escuro atual: árvore de canais com indicadores de fala, painel de informações com banner roxo e chat em abas",
+  label: "Janela principal",
+};
 
 const ROTATING = [
   "seu servidor.",
@@ -41,7 +51,8 @@ const wordReveal = {
   }),
 };
 
-export function Hero() {
+export function Hero({ heroShot }: HeroProps) {
+  const hero = heroShot ?? DEFAULT_HERO;
   const [copied, setCopied] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
 
@@ -233,13 +244,14 @@ export function Hero() {
               className="relative"
             >
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#080D1C] shadow-2xl transition-shadow duration-500 hover:shadow-[0_30px_90px_-30px_rgba(139,49,232,0.5)]">
-                <ShotDrop
-                  id="demo"
-                  fallback="/shots/demo.png"
-                  alt="Janela principal do Halla no tema escuro atual: árvore de canais com indicadores de fala, painel de informações com banner roxo e chat em abas"
+                <img
+                  src={hero.src}
+                  alt={hero.alt}
                   width={1180}
                   height={760}
-                  className="rounded-2xl"
+                  className="block h-auto w-full rounded-2xl"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
 

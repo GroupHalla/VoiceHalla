@@ -163,7 +163,7 @@ export function Downloads() {
           kicker="Download"
           accent="purple"
           title="Comece a falar em minutos"
-          description="Tudo é gratuito e de domínio público. Use, copie, modifique, venda — a licença Unlicense não pede nem crédito."
+          description="Gratuito para uso pessoal, educacional e comunitário: use, estude, modifique e redistribua sem pedir permissão. Vender ou embutir em produto comercial exige autorização escrita dos mantenedores."
         />
 
         <div

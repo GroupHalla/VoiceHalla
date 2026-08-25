@@ -28,7 +28,7 @@ const rowPlatforms = [
   "systemd",
   "Pterodactyl",
   "TURN opcional",
-  "Domínio público",
+  "Uso não comercial",
   "pt-BR · en · es",
 ];
 

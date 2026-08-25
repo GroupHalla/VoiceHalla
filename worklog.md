@@ -54,3 +54,25 @@ Stage Summary:
 - Site do Halla totalmente redesenhado: hero assimétrico com parallax 3D e palavra rotativa, marquee duplo, stats com contadores, bento grid com mockups animados (árvore de canais viva, PTT flutuante, terminal digitando), spotlight cards, segurança split sticky, stepper de protocolo animado, beam borders e auroras
 - Licença verificada: continua domínio público/Unlicense (texto em português); footer ajustado
 - Todos os artefatos em src/components/site/*, effects.tsx centraliza os componentes de animação reutilizáveis
+
+---
+Task ID: 3
+Agent: main-agent (Super Z)
+Task: Corrigir seção "horrorosa" (marquee quebrado) + substituir screenshots velhos pela UI atual + atualizar licença
+
+Work Log:
+- Diagnóstico do print do usuário: marquee renderizado como lista vertical duplicada, sem CSS
+- CAUSA RAIZ descoberta por bissecção: o bloco `@layer base { * { @apply border-border... } }` no globals.css quebrava o pipeline CSS do Tailwind v4/@tailwindcss/postcss — TODAS as regras após ele eram silenciosamente descartadas (marquee, eq, aurora, beam, flow-line, noise etc. nunca chegavam ao CSS servido). Testes: regra antes do @layer base aparecia (1 ocorrência), depois dele era descartada (0); removendo o bloco, todas as classes customizadas apareciam
+- CORREÇÃO: reescrito @layer base em CSS puro (border-color/outline-color/background-color/color com var()) mantendo o mesmo efeito visual; verificado no CSS servido: marquee-track, eq-bar, aurora, beam, flow-line, noise, terminal-cursor, speaking-ring, text-shimmer, grid-drift todas presentes; no navegador: .marquee-track = display:flex + animation marquee 38s
+- Repos atualizados (pull): LICENÇA MUDOU de Unlicense/domínio público para "livre para uso não comercial" (vender/alugar/serviço pago exige autorização escrita) nos 3 projetos — textos atualizados no hero badge, downloads, footer, marquee e OG description
+- Screenshots: shots/ do repo mostram UI antiga (tema claro, demo.png exibia "versão 3.13.7"); imgur bloqueado no sandbox; sem issues no GitHub; compilar o app inviável (sem sudo para Qt6, 1GB RAM, sem swap)
+- SOLUÇÃO: recriada a UI ATUAL em alta fidelidade (scripts/mockups/halla-ui.html) usando as cores EXATAS do Theme.cpp atual (window #080D1C, surface #0D1223, accent #7C3AED/#8B5CF6, green #22C55E etc.) e a estrutura real do MainWindow/ServerTab (menubar 40px, toolbar com 2 grupos arredondados 15px, treeCard+infoCard flutuantes, chatCard full-width, statusbar 38px, tree items 44px, tabs 10px)
+- 5 telas capturadas via agent-browser em 1180×760: principal conectada (com Admin falando + eq, chat com bolhas e tags), boas-vindas, diálogo conectar (servidor oficial 163.176.35.133), opções (nav lateral 9 categorias), criar canal — substituídas em public/shots/ (demo, main, connect, options, channel); opt-* antigos removidos
+- Hero e galeria: removida a moldura fake de janela (os mockups já são a janela completa); galeria agora 5 abas com legendas atualizadas
+- Verificação: marquee flex+animação OK, galeria troca imagens OK, mobile 390px sem hscroll, 0 erros de console, lint limpo, VLM aprovou hero, marquee (2 tickers horizontais) e página completa
+
+Stage Summary:
+- Bug CSS crítico corrigido (pipeline Tailwind v4 quebrava após @layer base com @apply)
+- Screenshots agora representam a UI ATUAL do Halla (tema escuro navy + roxo) em 5 telas
+- Licença atualizada em todo o site para uso não comercial
+- Mockup fonte reutilizável em scripts/mockups/halla-ui.html para futuras telas

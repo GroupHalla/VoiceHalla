@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Halla UI Mockups — tema atual (v1.1.0)</title>
+<style>
+  /* ==== Tema EXATO do Halla atual (src/app/Theme.cpp, ramo escuro) ==== */
+  :root {
+    --window: #080D1C;
+    --surface: #0D1223;
+    --surface-alt: #11182B;
+    --input: #10172A;
+    --border: #202A45;
+    --border-strong: #2A3555;
+    --text: #F5F4FF;
+    --muted: #A8AABD;
+    --accent: #7C3AED;
+    --accent-bright: #8B5CF6;
+    --accent-soft: #24165B;
+    --hover: #17203A;
+    --selected: #281B68;
+    --green: #22C55E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Noto Sans', Ubuntu, sans-serif; }
+  body { background: #000; }
+  .screen { width: 1180px; height: 760px; background: var(--window); color: var(--text); position: relative; overflow: hidden; margin: 0 auto 40px; display: none; }
+  .screen.active { display: block; }
+
+  /* ===== Janela principal ===== */
+  .menubar { display: flex; align-items: center; height: 40px; padding: 0 16px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); gap: 1px; }
+  .menubar .item { padding: 11px 14px 9px; cursor: default; }
+  .menubar .item.sel { color: var(--accent-bright); border-bottom: 2px solid var(--accent-bright); }
+
+  .toolbar { display: flex; align-items: center; height: 54px; padding: 8px 16px; gap: 12px; }
+  .toolbar .group { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 15px; padding: 4px 5px; gap: 1px; }
+  .toolbar .tbtn { width: 38px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 11px; color: var(--muted); }
+  .toolbar .tbtn.on { background: var(--accent-soft); color: var(--accent-bright); }
+  .toolbar .tbtn.danger { color: #F87171; }
+  .toolbar .sep { width: 1px; height: 22px; background: var(--border); margin: 0 2px; }
+  .toolbar .spacer { flex: 1; }
+  .toolbar svg { width: 22px; height: 22px; }
+
+  .serverbar { display: flex; align-items: center; gap: 10px; padding: 0 16px 8px; }
+  .server-pill { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 11px; padding: 5px 11px; font-size: 13px; color: var(--text); }
+  .server-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+
+  .body { display: flex; flex-direction: column; gap: 12px; padding: 0 16px; height: 588px; }
+  .top-row { display: flex; gap: 12px; height: 318px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
+
+  /* tree card */
+  .tree-card { width: 380px; display: flex; flex-direction: column; }
+  .tree-header { display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px; }
+  .tree-header .name { font-weight: 600; font-size: 15px; color: var(--text); }
+  .tree-header .dot { color: var(--green); font-size: 15px; }
+  .tree-header .hbtns { margin-left: auto; display: flex; gap: 4px; }
+  .tree-header .hbtn { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 10px; color: var(--muted); font-size: 15px; }
+  .tree { padding: 2px 0 8px; font-size: 15px; }
+  .trow { display: flex; align-items: center; gap: 9px; height: 44px; padding: 4px 5px 4px 14px; border-radius: 10px; color: var(--text); }
+  .trow:hover { background: var(--hover); }
+  .trow.sel { background: var(--selected); }
+  .trow .arrow { color: var(--muted); width: 16px; display: flex; justify-content: center; }
+  .trow svg { width: 17px; height: 17px; color: var(--muted); flex-shrink: 0; }
+  .trow .uname { font-size: 14px; }
+  .trow.user { padding-left: 40px; height: 40px; }
+  .trow.user .avatar { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .trow.user.speaking .avatar { box-shadow: 0 0 0 2px var(--green); }
+  .trow.user.speaking .uname { color: var(--green); }
+  .eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; margin-left: auto; margin-right: 12px; }
+  .eq i { width: 2.5px; border-radius: 2px; background: var(--green); }
+  .eq i:nth-child(1) { height: 7px; } .eq i:nth-child(2) { height: 12px; } .eq i:nth-child(3) { height: 5px; } .eq i:nth-child(4) { height: 10px; }
+  .crown { margin-left: auto; margin-right: 12px; color: #FBBF24; font-size: 13px; }
+  .badge-muted { margin-left: auto; margin-right: 12px; font-size: 11px; color: var(--muted); background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; padding: 1px 7px; }
+
+  /* info card */
+  .info-card { flex: 1; display: flex; flex-direction: column; }
+  .info-banner { height: 64px; border-radius: 13px 13px 0 0; background: linear-gradient(120deg, #4C1D95 0%, #7C3AED 55%, #8B5CF6 100%); display: flex; align-items: center; padding: 0 20px; gap: 14px; }
+  .info-banner .logo-sm { width: 34px; height: 34px; border-radius: 9px; background: rgba(255,255,255,0.16); display: flex; align-items: center; justify-content: center; }
+  .info-banner h3 { color: #fff; font-size: 16px; font-weight: 700; }
+  .info-banner p { color: rgba(255,255,255,0.75); font-size: 12px; margin-top: 2px; }
+  .info-view { padding: 10px 20px 16px; font-size: 14px; }
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 18px; }
+  .info-row { display: flex; justify-content: space-between; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 9px; padding: 7px 12px; }
+  .info-row .k { color: var(--muted); }
+  .info-row .v { color: var(--text); font-weight: 600; }
+  .info-row .v.ok { color: var(--green); }
+  .motd { margin-top: 10px; background: var(--accent-soft); border: 1px solid #3D2A7A; color: #C4B5FD; border-radius: 9px; padding: 8px 12px; font-size: 13px; }
+
+  /* chat card */
+  .chat-card { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .chat-tabs { display: flex; align-items: center; padding: 5px 10px 0; gap: 2px; }
+  .ctab { padding: 9px 14px; border-radius: 10px; color: var(--muted); font-size: 13.5px; cursor: default; }
+  .ctab.sel { background: var(--accent-soft); color: var(--accent-bright); font-weight: 600; }
+  .chat-tabs .right { margin-left: auto; display: flex; gap: 4px; }
+  .chat-tabs .right .hbtn { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 9px; color: var(--muted); }
+  .chat-body { flex: 1; padding: 8px 12px; font-size: 13px; overflow: hidden; display: flex; flex-direction: column; gap: 7px; }
+  .msg { display: flex; gap: 10px; align-items: flex-start; }
+  .msg .avatar { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; }
+  .msg .bubble { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 4px 12px 12px 12px; padding: 7px 12px; max-width: 460px; }
+  .msg .who { font-size: 12px; font-weight: 700; margin-bottom: 2px; }
+  .msg .who .tag { font-size: 10px; font-weight: 600; color: var(--accent-bright); background: var(--accent-soft); border-radius: 6px; padding: 1px 6px; margin-left: 6px; }
+  .msg .txt { color: #D6D3E4; line-height: 1.45; }
+  .msg.system { padding-left: 42px; color: var(--muted); font-size: 12.5px; }
+  .msg.system .dot { color: var(--green); }
+  .chat-input-row { display: flex; align-items: center; gap: 8px; padding: 6px 12px 12px; }
+  .chat-input { flex: 1; background: var(--input); border: 1px solid var(--border); border-radius: 11px; padding: 9px 12px; color: var(--muted); font-size: 13.5px; min-height: 24px; }
+  .send-btn { width: 44px; height: 42px; background: var(--accent); border-radius: 11px; display: flex; align-items: center; justify-content: center; color: #fff; }
+
+  /* status bar */
+  .statusbar { position: absolute; bottom: 0; left: 0; right: 0; height: 38px; background: var(--surface-alt); border-top: 1px solid var(--border); display: flex; align-items: center; padding: 0 10px; gap: 14px; font-size: 12.5px; color: var(--muted); }
+  .statusbar .news { flex: 1; text-align: center; }
+  .statusbar .stat { display: flex; align-items: center; gap: 6px; }
+  .statusbar .stat svg { width: 14px; height: 14px; }
+
+  /* ===== Welcome ===== */
+  .welcome { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 0; }
+  .welcome img { width: 108px; height: 108px; border-radius: 26px; }
+  .welcome h1 { font-size: 44px; font-weight: 700; margin-top: 22px; letter-spacing: -0.5px; }
+  .welcome .hint { color: var(--muted); font-size: 15px; margin-top: 10px; }
+  .welcome .row { display: flex; gap: 12px; margin-top: 26px; }
+  .btn { background: var(--surface-alt); color: var(--text); border: 1px solid var(--border-strong); border-radius: 10px; padding: 9px 18px; font-size: 14px; min-height: 20px; }
+  .btn.primary { background: var(--accent); color: #fff; border: 0; }
+
+  /* ===== Diálogos ===== */
+  .overlay { position: absolute; inset: 0; background: rgba(4, 7, 18, 0.72); display: flex; align-items: center; justify-content: center; }
+  .dialog { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 14px; box-shadow: 0 24px 80px rgba(0,0,0,0.6); overflow: hidden; }
+  .dialog .dtitle { padding: 16px 22px 12px; font-size: 17px; font-weight: 700; }
+  .dialog .dbody { padding: 4px 22px 8px; }
+  .dialog .dfoot { display: flex; justify-content: flex-end; gap: 10px; padding: 14px 22px 18px; }
+  .frow { display: flex; flex-direction: column; gap: 6px; margin-bottom: 13px; }
+  .frow label { font-size: 13px; color: var(--muted); }
+  .frow .field { background: var(--input); border: 1px solid var(--border-strong); border-radius: 9px; padding: 9px 11px; font-size: 14px; color: var(--text); display: flex; justify-content: space-between; }
+  .frow .field .ph { color: #55607F; }
+  .radio-row { display: flex; gap: 18px; padding: 4px 0 8px; }
+  .radio { display: flex; align-items: center; gap: 7px; font-size: 13.5px; color: var(--text); }
+  .radio .rdot { width: 15px; height: 15px; border-radius: 50%; border: 2px solid var(--muted); }
+  .radio.on .rdot { border-color: var(--accent); background: radial-gradient(circle, var(--accent) 42%, transparent 46%); }
+  .check { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--text); }
+  .check .box { width: 16px; height: 16px; border-radius: 5px; border: 1px solid var(--border-strong); background: var(--input); }
+  .check.on .box { background: var(--accent); border-color: var(--accent); position: relative; }
+  .check.on .box::after { content: "✓"; position: absolute; inset: 0; color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+  .slider-row { display: flex; align-items: center; gap: 14px; margin: 6px 0 12px; }
+  .slider { flex: 1; height: 5px; border-radius: 3px; background: var(--border-strong); position: relative; }
+  .slider .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-bright)); }
+  .slider .knob { position: absolute; top: 50%; transform: translate(-50%,-50%); width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+  .slider-val { font-size: 13px; color: var(--accent-bright); font-weight: 600; min-width: 52px; text-align: right; }
+
+  /* ===== Options ===== */
+  .options-dialog { width: 860px; height: 580px; display: flex; flex-direction: column; }
+  .opts-body { flex: 1; display: flex; overflow: hidden; }
+  .opts-nav { width: 218px; background: var(--surface); border-right: 1px solid var(--border); padding: 8px; }
+  .opts-nav .nitem { display: flex; align-items: center; gap: 11px; height: 56px; padding: 6px 12px; border-radius: 10px; font-size: 14px; color: var(--text); }
+  .opts-nav .nitem svg { width: 19px; height: 19px; color: var(--muted); }
+  .opts-nav .nitem.sel { background: var(--selected); color: var(--accent-bright); }
+  .opts-nav .nitem.sel svg { color: var(--accent-bright); }
+  .opts-page { flex: 1; display: flex; flex-direction: column; background: var(--surface); }
+  .opts-header { background: var(--surface-alt); border-bottom: 1px solid var(--border); padding: 15px 22px; }
+  .opts-header h3 { font-size: 16px; font-weight: 700; }
+  .opts-header p { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .opts-content { flex: 1; padding: 18px 22px; overflow: hidden; }
+  .group-box { border: 1px solid var(--border); border-radius: 12px; padding: 14px 14px 12px; margin-bottom: 14px; position: relative; }
+  .group-box .gtitle { position: absolute; top: -9px; left: 12px; background: var(--surface); padding: 0 6px; font-size: 12.5px; color: var(--text); font-weight: 600; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+  .field-line { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .field-line label { font-size: 13.5px; color: var(--text); }
+  .field-line .select { background: var(--input); border: 1px solid var(--border-strong); border-radius: 9px; padding: 7px 11px; font-size: 13px; color: var(--text); min-width: 190px; display: flex; justify-content: space-between; gap: 18px; }
+</style>
+</head>
+<body>
+
+<!-- ============ SCREEN 1: MAIN CONNECTED ============ -->
+<div class="screen active" id="main">
+  <div class="menubar">
+    <div class="item">Conexões</div><div class="item">Favoritos</div><div class="item">Ferramentas</div><div class="item">Ajuda</div>
+  </div>
+  <div class="toolbar">
+    <div class="group">
+      <div class="tbtn danger" title="Desconectar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></div>
+      <div class="tbtn" title="Conectar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></div>
+      <div class="tbtn on" title="Microfone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg></div>
+      <div class="tbtn" title="Alto-falantes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div>
+      <div class="tbtn" title="Compartilhar tela"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+    </div>
+    <div class="group">
+      <div class="tbtn" title="Opções"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="tbtn" style="width:34px;height:34px;" title="Notificações"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+  </div>
+  <div class="serverbar">
+    <div class="server-pill"><span class="dot"></span> meuservidor.exemplo.com</div>
+    <div class="server-pill" style="color:var(--muted);">Sala de jogos</div>
+  </div>
+
+  <div class="body">
+    <div class="top-row">
+      <div class="card tree-card">
+        <div class="tree-header">
+          <span class="name">meuservidor.exemplo.com</span>
+          <span class="dot">●</span>
+          <div class="hbtns">
+            <div class="hbtn">⌕</div>
+            <div class="hbtn">⋯</div>
+          </div>
+        </div>
+        <div class="tree">
+          <div class="trow"><span class="arrow">▾</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Lobby</div>
+          <div class="trow" style="padding-left:34px;"><span class="arrow">▾</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 12h4"/><circle cx="15" cy="12" r="1.5"/><circle cx="18" cy="12" r="1.5"/></svg> Sala de jogos <span class="badge-muted">3/8</span></div>
+          <div class="trow user speaking"><div class="avatar" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6);">A</div><span class="uname">Admin</span><span class="eq"><i></i><i></i><i></i><i></i></span></div>
+          <div class="trow user"><div class="avatar" style="background:linear-gradient(135deg,#0E7490,#0891B2);">n</div><span class="uname">nina</span><span class="crown">👑</span></div>
+          <div class="trow user"><div class="avatar" style="background:linear-gradient(135deg,#059669,#10B981);">P</div><span class="uname">player_one</span></div>
+          <div class="trow" style="padding-left:34px;"><span class="arrow">▸</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Apenas conversa</div>
+          <div class="trow"><span class="arrow">▸</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Reuniões <span class="badge-muted">🔒</span></div>
+          <div class="trow"><span class="arrow">▸</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg> AFK</div>
+        </div>
+      </div>
+
+      <div class="card info-card">
+        <div class="info-banner">
+          <div class="logo-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" style="width:20px;height:20px;"><path d="M3 12h2l2-5 3 10 3-14 3 9 2-3h3"/></svg></div>
+          <div><h3>Servidor Halla</h3><p>meuservidor.exemplo.com · protocolo v5</p></div>
+        </div>
+        <div class="info-view">
+          <div class="info-grid">
+            <div class="info-row"><span class="k">Endereço</span><span class="v">meuservidor.exemplo.com</span></div>
+            <div class="info-row"><span class="k">Versão</span><span class="v">1.1.60 no Linux</span></div>
+            <div class="info-row"><span class="k">Tempo ativo</span><span class="v">3d 14h 22m</span></div>
+            <div class="info-row"><span class="k">Clientes</span><span class="v">4/32</span></div>
+            <div class="info-row"><span class="k">Canais</span><span class="v">5</span></div>
+            <div class="info-row"><span class="k">Perda de pacotes</span><span class="v ok">0,00%</span></div>
+            <div class="info-row"><span class="k">Ping</span><span class="v ok">23 ms</span></div>
+            <div class="info-row"><span class="k">Criptografia</span><span class="v ok">ChaCha20-Poly1305</span></div>
+          </div>
+          <div class="motd">📌 Bem-vindo ao servidor Halla! Crie seu canal temporário clicando com o botão direito na árvore.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card chat-card">
+      <div class="chat-tabs">
+        <div class="ctab sel">Chat do servidor</div>
+        <div class="ctab">Chat do canal</div>
+        <div class="right">
+          <div class="hbtn">⚙</div>
+          <div class="hbtn">✕</div>
+        </div>
+      </div>
+      <div class="chat-body">
+        <div class="msg system"><span class="dot">●</span> Conectado ao servidor como <b style="color:var(--text)">Admin</b>.</div>
+        <div class="msg system"><span class="dot">●</span> Você entrou no canal <b style="color:var(--text)">Sala de jogos</b>.</div>
+        <div class="msg">
+          <div class="avatar" style="background:linear-gradient(135deg,#0E7490,#0891B2);">n</div>
+          <div><div class="who">nina <span class="tag">Operador</span> <span style="color:var(--muted);font-weight:400;font-size:11px;">14:32</span></div><div class="bubble"><div class="txt">galera, alguém vai transmitir a tela hoje? o modo novo em 1080p60 tá ficando muito bom 😄</div></div></div>
+        </div>
+        <div class="msg">
+          <div class="avatar" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6);">A</div>
+          <div><div class="who">Admin <span class="tag">Fundador</span> <span style="color:var(--muted);font-weight:400;font-size:11px;">14:33</span></div><div class="bubble"><div class="txt">vou sim! ativei o H.264 por hardware nas Opções → Capturar, com áudio do PC via loopback. dá uma olhada que não volta eco nenhum</div></div></div>
+        </div>
+        <div class="msg">
+          <div class="avatar" style="background:linear-gradient(135deg,#059669,#10B981);">P</div>
+          <div><div class="who">player_one <span style="color:var(--muted);font-weight:400;font-size:11px;">14:34</span></div><div class="bubble"><div class="txt">aqui o sussurro também tá perfeito, falei só pra vocês dois agora e ninguém no lobby ouviu 👀</div></div></div>
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <div class="chat-input">Mensagem para o chat do servidor…</div>
+        <div class="send-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="statusbar">
+    <span class="stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg> Conectado</span>
+    <span class="news">Halla 1.1.0 · voz cifrada · servidor relay puro</span>
+    <span class="stat">🔒 TLS · Ed25519</span>
+  </div>
+</div>
+
+<!-- ============ SCREEN 2: WELCOME ============ -->
+<div class="screen" id="welcome">
+  <div class="menubar">
+    <div class="item">Conexões</div><div class="item">Favoritos</div><div class="item">Ferramentas</div><div class="item">Ajuda</div>
+  </div>
+  <div class="toolbar">
+    <div class="group">
+      <div class="tbtn danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></div>
+      <div class="tbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></div>
+      <div class="tbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg></div>
+      <div class="tbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
+    </div>
+    <div class="group">
+      <div class="tbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="tbtn" style="width:34px;height:34px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px;"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+  </div>
+  <div class="welcome">
+    <img src="/halla-logo.png" alt="Halla">
+    <h1>Halla</h1>
+    <div class="hint">Não conectado — use Conexões ▸ Conectar… para entrar em um servidor</div>
+    <div class="row">
+      <div class="btn primary">Conectar a um servidor</div>
+      <div class="btn">Gerenciar favoritos</div>
+    </div>
+  </div>
+  <div class="statusbar">
+    <span class="stat">Desconectado</span>
+    <span class="news">Halla 1.1.0 · cliente de voz livre estilo TeamSpeak 3</span>
+    <span class="stat">🔒 Identidade Ed25519 pronta</span>
+  </div>
+</div>
+
+<!-- ============ SCREEN 3: CONNECT DIALOG ============ -->
+<div class="screen" id="connect">
+  <div class="menubar"><div class="item sel">Conexões</div><div class="item">Favoritos</div><div class="item">Ferramentas</div><div class="item">Ajuda</div></div>
+  <div class="overlay">
+    <div class="dialog" style="width:460px;">
+      <div class="dtitle">Conectar a um servidor</div>
+      <div class="dbody">
+        <div class="frow"><label>Endereço do servidor</label><div class="field">163.176.35.133</div></div>
+        <div class="two-col" style="grid-template-columns:1fr 130px;">
+          <div class="frow"><label>Porta</label><div class="field">9987</div></div>
+          <div class="frow"><label>Canal</label><div class="field"><span class="ph">padrão</span></div></div>
+        </div>
+        <div class="frow"><label>Apelido</label><div class="field">Admin</div></div>
+        <div class="frow"><label>Senha do servidor (opcional)</label><div class="field"><span class="ph">••••••••</span></div></div>
+        <div class="frow"><label>Identidade</label><div class="field">Padrão (Ed25519) <span style="color:var(--green);">✓ verificada</span></div></div>
+        <div class="check on"><div class="box"></div> Lembrar nas conexões recentes</div>
+      </div>
+      <div class="dfoot">
+        <div class="btn">Cancelar</div>
+        <div class="btn primary">Conectar</div>
+      </div>
+    </div>
+  </div>
+  <div class="statusbar"><span class="stat">Desconectado</span><span class="news">TOFU: o certificado será fixado na primeira conexão</span><span class="stat">🔒 Ed25519</span></div>
+</div>
+
+<!-- ============ SCREEN 4: OPTIONS ============ -->
+<div class="screen" id="options">
+  <div class="overlay">
+    <div class="dialog options-dialog">
+      <div class="dtitle" style="padding-bottom:14px;">Opções</div>
+      <div class="opts-body">
+        <div class="opts-nav">
+          <div class="nitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> Aplicativo</div>
+          <div class="nitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> Reprodução</div>
+          <div class="nitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg> Capturar</div>
+          <div class="nitem sel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/></svg> Aparência</div>
+          <div class="nitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> Notificações</div>
+          <div class="nitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg> Teclas de atalho</div>
+          <div class="nitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Sussurro</div>
+          <div class="nitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Segurança</div>
+          <div class="nitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg> Complementos</div>
+        </div>
+        <div class="opts-page">
+          <div class="opts-header"><h3>Aparência</h3><p>Tema, ícones e comportamento da árvore de canais</p></div>
+          <div class="opts-content">
+            <div class="group-box">
+              <div class="gtitle">Geral</div>
+              <div class="two-col">
+                <div class="field-line"><label>Estilo</label><div class="select">Fusion <span style="color:var(--muted);">▾</span></div></div>
+                <div class="field-line"><label>Tema</label><div class="select" style="border-color:var(--accent);color:var(--accent-bright);">Escuro <span style="color:var(--muted);">▾</span></div></div>
+                <div class="field-line"><label>Pacote de ícones</label><div class="select">Halla (vetorial) <span style="color:var(--muted);">▾</span></div></div>
+                <div class="field-line"><label>Fonte</label><div class="select">Segoe UI · 10 pt <span style="color:var(--muted);">▾</span></div></div>
+              </div>
+            </div>
+            <div class="group-box">
+              <div class="gtitle">Árvore do canal</div>
+              <div class="two-col" style="grid-template-columns:1fr;">
+                <div class="check on"><div class="box"></div> Expandir canais automaticamente ao entrar</div>
+                <div class="check on"><div class="box"></div> Exibir emblemas verificados por Ed25519</div>
+                <div class="check"><div class="box"></div> Exibir número de clientes ao lado do canal</div>
+                <div class="check on"><div class="box"></div> Indicador de fala com equalizador animado</div>
+              </div>
+            </div>
+            <div class="group-box">
+              <div class="gtitle">Transparência da janela</div>
+              <div class="slider-row"><div class="slider"><div class="fill" style="width:12%;"></div><div class="knob" style="left:12%;"></div></div><div class="slider-val">12%</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dfoot" style="padding-top:10px;"><div class="btn primary">Salvar</div><div class="btn">Fechar</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCREEN 5: CHANNEL DIALOG ============ -->
+<div class="screen" id="channel">
+  <div class="menubar"><div class="item">Conexões</div><div class="item">Favoritos</div><div class="item sel">Ferramentas</div><div class="item">Ajuda</div></div>
+  <div class="overlay">
+    <div class="dialog" style="width:520px;">
+      <div class="dtitle">Criar canal</div>
+      <div class="dbody">
+        <div class="frow"><label>Nome do canal</label><div class="field">Sala de jogos</div></div>
+        <div class="frow"><label>Tópico</label><div class="field"><span class="ph">somente jogos casuais</span></div></div>
+        <div class="frow"><label>Senha (opcional)</label><div class="field"><span class="ph">••••</span></div></div>
+        <div class="frow"><label>Tipo</label>
+          <div class="radio-row">
+            <div class="radio"><div class="rdot"></div> Temporário</div>
+            <div class="radio on"><div class="rdot"></div> Semi-permanente</div>
+            <div class="radio"><div class="rdot"></div> Permanente</div>
+          </div>
+        </div>
+        <div class="frow"><label>Codec</label><div class="field">Opus Voice <span style="color:var(--muted);">▾</span></div></div>
+        <div class="frow"><label>Qualidade do codec</label>
+          <div class="slider-row"><div class="slider"><div class="fill" style="width:64%;"></div><div class="knob" style="left:64%;"></div></div><div class="slider-val">64 kbps</div></div>
+        </div>
+        <div class="frow"><label>Máximo de clientes</label><div class="field">8</div></div>
+        <div class="check on"><div class="box"></div> Canal moderado (requer talk power)</div>
+      </div>
+      <div class="dfoot"><div class="btn">Cancelar</div><div class="btn primary">Criar</div></div>
+    </div>
+  </div>
+  <div class="statusbar"><span class="stat">Conectado</span><span class="news">Criadores de canais temporários administram senha, bitrate e limite</span><span class="stat">🔒 ChaCha20</span></div>
+</div>
+
+<script>
+  const hash = location.hash.replace('#','') || 'main';
+  document.getElementById(hash)?.classList.add('active');
+</script>
+</body>
+</html>

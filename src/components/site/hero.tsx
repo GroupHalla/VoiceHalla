@@ -125,7 +125,7 @@ export function Hero() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
               </span>
               <span className="text-xs font-medium text-[#d8bcf7]">
-                Código aberto · Domínio público (Unlicense)
+                Código aberto · Livre para uso não comercial
               </span>
             </motion.div>
 
@@ -231,22 +231,10 @@ export function Hero() {
               style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 1100 }}
               className="relative"
             >
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#120d1c] shadow-2xl transition-shadow duration-500 hover:shadow-[0_30px_90px_-30px_rgba(139,49,232,0.5)]">
-                <div className="flex items-center gap-2 border-b border-white/[0.07] bg-white/[0.03] px-4 py-3">
-                  <span className="h-3 w-3 rounded-full bg-[#ff5f57]" aria-hidden="true" />
-                  <span className="h-3 w-3 rounded-full bg-[#febc2e]" aria-hidden="true" />
-                  <span className="h-3 w-3 rounded-full bg-[#28c840]" aria-hidden="true" />
-                  <span className="ml-3 font-mono text-xs text-zinc-500">
-                    Halla — meuservidor.exemplo.com
-                  </span>
-                  <span className="ml-auto flex items-center gap-1.5 font-mono text-[11px] text-emerald-400">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
-                    23 ms
-                  </span>
-                </div>
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#080D1C] shadow-2xl transition-shadow duration-500 hover:shadow-[0_30px_90px_-30px_rgba(139,49,232,0.5)]">
                 <img
                   src="/shots/demo.png"
-                  alt="Janela principal do Halla com a árvore de canais, painel de informações do servidor e chat em abas"
+                  alt="Janela principal do Halla no tema escuro atual: árvore de canais com indicadores de fala, painel de informações com banner roxo e chat em abas"
                   className="w-full"
                   width={1180}
                   height={760}

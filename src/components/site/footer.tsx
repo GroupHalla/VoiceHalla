@@ -129,8 +129,9 @@ export function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/[0.07] pt-8 sm:flex-row">
           <p className="flex items-center gap-2 text-xs text-zinc-500">
             <Scale className="h-3.5 w-3.5" aria-hidden="true" />
-            Dedicado ao domínio público (Unlicense) — usar, copiar, modificar,
-            vender e redistribuir livremente, com ou sem crédito.
+            Livre para uso não comercial — usar, estudar, modificar e
+            redistribuir gratuitamente. Uso comercial exige autorização
+            escrita dos mantenedores.
           </p>
           <a
             href="#"

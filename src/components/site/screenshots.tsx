@@ -11,42 +11,35 @@ const tabs = [
     label: "Servidor conectado",
     src: "/shots/demo.png",
     caption:
-      "Conectado: árvore de canais à esquerda, painel de informações do servidor e chat em abas na parte inferior.",
-  },
-  {
-    id: "main",
-    label: "Boas-vindas",
-    src: "/shots/main.png",
-    caption:
-      "Tela inicial do cliente desktop: barra de menus, atalhos de conexão e assistente de boas-vindas.",
+      "Tema escuro atual: toolbar com grupos arredondados, árvore de canais com indicador de fala, painel do servidor com banner roxo e chat em abas com bolhas.",
   },
   {
     id: "channel",
     label: "Criar canal",
     src: "/shots/channel.png",
     caption:
-      "Editor de canal: nome, tópico, senha, codec, qualidade, bitrate e limite de clientes.",
+      "Editor de canal: nome, tópico, senha, tipo, codec, qualidade, bitrate e limite de clientes.",
   },
   {
-    id: "whisper",
-    label: "Sussurro",
-    src: "/shots/opt-whisper.png",
+    id: "connect",
+    label: "Conectar",
+    src: "/shots/connect.png",
     caption:
-      "Listas de sussurro: alveje canais específicos ou conjuntos de usuários com indicador próprio.",
-  },
-  {
-    id: "hotkeys",
-    label: "Atalhos",
-    src: "/shots/opt-hotkeys.png",
-    caption:
-      "Teclas de atalho globais configuráveis — inclusive botões laterais do mouse, capturados em múltiplas camadas.",
+      "Diálogo de conexão: endereço, porta, apelido, senha e identidade Ed25519 verificada — com pinagem TOFU do certificado.",
   },
   {
     id: "options",
     label: "Opções",
     src: "/shots/options.png",
     caption:
-      "Janela de opções com navegação por categoria: aplicativo, captura, reprodução, aparência e notificações.",
+      "Opções com navegação lateral por categoria e tema claro/escuro trocável em tempo real, sem reiniciar.",
+  },
+  {
+    id: "main",
+    label: "Boas-vindas",
+    src: "/shots/main.png",
+    caption:
+      "Tela inicial do cliente: estado não conectado com atalhos de conexão e gerenciamento de favoritos.",
   },
 ];
 
@@ -137,14 +130,6 @@ export function Screenshots() {
                   exit={{ opacity: 0, scale: 0.99, x: -12 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-2 border-b border-white/[0.07] bg-white/[0.03] px-4 py-3">
-                    <span className="h-3 w-3 rounded-full bg-[#ff5f57]" aria-hidden="true" />
-                    <span className="h-3 w-3 rounded-full bg-[#febc2e]" aria-hidden="true" />
-                    <span className="h-3 w-3 rounded-full bg-[#28c840]" aria-hidden="true" />
-                    <span className="ml-3 font-mono text-xs text-zinc-500">
-                      Halla — {current.label}
-                    </span>
-                  </div>
                   <img
                     src={current.src}
                     alt={`Captura de tela do Halla: ${current.caption}`}

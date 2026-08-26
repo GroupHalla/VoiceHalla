@@ -347,7 +347,7 @@ export function Downloads() {
                   <button
                     type="button"
                     onClick={handleDownload}
-                    className="group relative inline-flex shrink-0 flex-col items-center justify-center gap-1 overflow-hidden rounded-xl bg-gradient-to-r from-[#8b31e8] to-[#6d28d9] px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-8px_rgba(139,49,232,0.6)] transition-shadow hover:shadow-[0_0_44px_-6px_rgba(139,49,232,0.85)]"
+                    className="group relative inline-flex shrink-0 flex-col items-center justify-center gap-1 overflow-hidden rounded-xl bg-gradient-to-r from-[#8b31e8] to-[#6d28d9] px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-8px_rgba(139,49,232,0.6)] transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_44px_-6px_rgba(139,49,232,0.85)] active:scale-[0.97]"
                   >
                     <span
                       aria-hidden="true"

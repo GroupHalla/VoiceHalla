@@ -51,6 +51,7 @@ local-*
 /download/
 /tests/
 /scripts/
+/tool-results/
 /worklog.md
 /upload/
 /Caddyfile

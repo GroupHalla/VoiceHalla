@@ -34,7 +34,7 @@ import path from "node:path";
  */
 
 const SHOTS_DIR = path.join(process.cwd(), "public", "screenshots");
-const SHOTS_URL = "/screenshots";
+const SHOTS_URL = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/screenshots`;
 const IMG_EXT = new Set([".png", ".jpg", ".jpeg", ".webp", ".avif"]);
 
 export type Shot = {

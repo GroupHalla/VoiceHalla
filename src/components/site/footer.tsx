@@ -1,4 +1,5 @@
 import { ArrowUp, FileText, Github, Scale } from "lucide-react";
+import Image from "next/image";
 import { Eq } from "@/components/site/effects";
 
 const projects = [
@@ -54,8 +55,8 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">
-              <img
-                src="/halla-logo.png"
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/halla-logo.png`}
                 alt="Logotipo do Halla"
                 className="h-9 w-9 rounded-lg"
                 width={36}

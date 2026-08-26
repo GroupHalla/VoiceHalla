@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { SectionHeader } from "@/components/site/effects";
 import type { Shot } from "@/data/screenshots";
 
@@ -114,14 +115,12 @@ export function Screenshots({ shots }: ScreenshotsProps) {
                   exit={{ opacity: 0, scale: 0.99, x: -12 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <img
+                  <Image
                     src={current.src}
                     alt={current.alt}
                     width={1180}
                     height={760}
                     className="block h-auto w-full"
-                    loading="lazy"
-                    decoding="async"
                   />
                 </motion.figure>
               </AnimatePresence>

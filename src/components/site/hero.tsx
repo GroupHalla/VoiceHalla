@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Eq } from "@/components/site/effects";
 import type { Shot } from "@/data/screenshots";
+import Image from "next/image";
 
 const SERVER_ADDRESS = "163.176.35.133";
 const SERVER_PORT = "9987";
@@ -29,7 +30,7 @@ type HeroProps = {
 };
 
 const DEFAULT_HERO = {
-  src: "/screenshots/01-janela-principal.png",
+  src: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/screenshots/01-janela-principal.png`,
   alt: "Janela principal do Halla no tema escuro atual: árvore de canais com indicadores de fala, painel de informações com banner roxo e chat em abas",
   label: "Janela principal",
 };
@@ -244,14 +245,13 @@ export function Hero({ heroShot }: HeroProps) {
               className="relative"
             >
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#080D1C] shadow-2xl transition-shadow duration-500 hover:shadow-[0_30px_90px_-30px_rgba(139,49,232,0.5)]">
-                <img
+                <Image
                   src={hero.src}
                   alt={hero.alt}
                   width={1180}
                   height={760}
                   className="block h-auto w-full rounded-2xl"
-                  loading="eager"
-                  decoding="async"
+                  priority
                 />
               </div>
 

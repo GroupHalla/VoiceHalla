@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { ArrowUpRight, Github, Menu, X } from "lucide-react";
 
@@ -52,8 +53,8 @@ export function Navbar() {
           aria-label="Halla — início"
         >
           <span className="relative">
-            <img
-              src="/halla-logo.png"
+            <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/halla-logo.png`}
               alt="Logotipo do Halla"
               className="h-8 w-8 rounded-lg transition-transform duration-300 group-hover:scale-110"
               width={32}

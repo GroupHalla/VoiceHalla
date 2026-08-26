@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "GroupHalla" }],
   icons: {
-    icon: "/halla-logo.png",
+    icon: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/halla-logo.png`,
   },
   openGraph: {
     title: "Halla — Comunicação por voz livre e aberta",

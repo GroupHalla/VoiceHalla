@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowDown,
@@ -23,6 +23,7 @@ import {
   VolumeX,
 } from "lucide-react";
 import { Eq, SectionHeader, Typewriter } from "@/components/site/effects";
+import { useLatestRelease } from "@/hooks/use-latest-release";
 
 /* ================= Animated channel tree (Desktop card) ================= */
 
@@ -228,11 +229,13 @@ function CardHeader({
   name,
   version,
   accent,
+  loading = false,
 }: {
   icon: typeof Monitor;
   name: string;
   version: string;
   accent: string;
+  loading?: boolean;
 }) {
   return (
     <div className="flex items-center justify-between">
@@ -245,7 +248,13 @@ function CardHeader({
         <h3 className="text-lg font-semibold text-white">{name}</h3>
       </div>
       <span className="rounded-md border border-white/10 bg-white/[0.05] px-2 py-1 font-mono text-[11px] text-zinc-300">
-        {version}
+        {loading ? (
+          <span className="inline-block animate-pulse text-zinc-500" aria-label="Carregando versão">
+            …
+          </span>
+        ) : (
+          version || "—"
+        )}
       </span>
     </div>
   );
@@ -279,15 +288,6 @@ function RepoLink({ href, name }: { href: string; name: string }) {
 
 /* ================= Section ================= */
 
-const terminalLines = [
-  "$ ./halla-server --config halla-server.ini",
-  "[ok] TLS ativo — cert.pem autoassinado",
-  "[ok] controle TCP/9987 · voz UDP/9987",
-  "[ok] SQLite conectado · 32 clientes máx.",
-  "[ok] relay AEAD — o servidor nunca decifra",
-  "Halla Server 1.1.60 pronto.",
-];
-
 const transports = [
   { label: "TCP + TLS 1.2+", sub: "controle · JSON" },
   { label: "UDP · Opus AEAD", sub: "voz · 20 ms" },
@@ -296,6 +296,26 @@ const transports = [
 ];
 
 export function Ecosystem() {
+  // Versões dinâmicas direto da API do GitHub (mesmo cache de 1h do download)
+  const desktop = useLatestRelease("Halla");
+  const mobile = useLatestRelease("Halla-Mobile");
+  const server = useLatestRelease("HallaServer");
+
+  const serverVersion = server.tag ? server.tag.replace(/^v/i, "") : "";
+  const terminalLines = useMemo(
+    () => [
+      "$ ./halla-server --config halla-server.ini",
+      "[ok] TLS ativo — cert.pem autoassinado",
+      "[ok] controle TCP/9987 · voz UDP/9987",
+      "[ok] SQLite conectado · 32 clientes máx.",
+      "[ok] relay AEAD — o servidor nunca decifra",
+      serverVersion
+        ? `Halla Server ${serverVersion} pronto.`
+        : "Halla Server pronto.",
+    ],
+    [serverVersion]
+  );
+
   return (
     <section id="ecossistema" className="relative scroll-mt-20 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -317,7 +337,8 @@ export function Ecosystem() {
             <CardHeader
               icon={Monitor}
               name="Halla Desktop"
-              version="v1.1.0"
+              version={desktop.tag ?? ""}
+              loading={desktop.loading}
               accent="from-[#a855f7] to-[#7c3aed]"
             />
             <p className="mt-4 text-sm leading-relaxed text-zinc-400">
@@ -344,7 +365,8 @@ export function Ecosystem() {
             <CardHeader
               icon={Smartphone}
               name="Halla Mobile"
-              version="v1.0.83"
+              version={mobile.tag ?? ""}
+              loading={mobile.loading}
               accent="from-[#22d3ee] to-[#0891b2]"
             />
             <p className="mt-4 text-sm leading-relaxed text-zinc-400">
@@ -373,7 +395,8 @@ export function Ecosystem() {
             <CardHeader
               icon={Container}
               name="Halla Server"
-              version="v1.1.60"
+              version={server.tag ?? ""}
+              loading={server.loading}
               accent="from-[#34d399] to-[#059669]"
             />
             <p className="mt-4 text-sm leading-relaxed text-zinc-400">
@@ -388,6 +411,7 @@ export function Ecosystem() {
                 </span>
               </div>
               <Typewriter
+                key={serverVersion || "boot"}
                 lines={terminalLines}
                 className="space-y-1 font-mono text-[11.5px] leading-relaxed text-zinc-300"
               />

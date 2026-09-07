@@ -9,7 +9,7 @@ const STAT_VALUES = [
   { value: 3, prefix: "", suffix: "" },
   { value: 20, prefix: "", suffix: " ms" },
   { value: 2160, prefix: "", suffix: "p" },
-  { value: 5, prefix: "v", suffix: "" },
+  { value: 6, prefix: "v", suffix: "" },
   { value: 0, prefix: "", suffix: "" },
 ];
 

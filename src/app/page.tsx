@@ -7,6 +7,7 @@ import { Features } from "@/components/site/features";
 import { Screenshots } from "@/components/site/screenshots";
 import { Security } from "@/components/site/security";
 import { Protocol } from "@/components/site/protocol";
+import { Changelog } from "@/components/site/changelog";
 import { Downloads } from "@/components/site/downloads";
 import { Cta } from "@/components/site/cta";
 import { Footer } from "@/components/site/footer";
@@ -28,6 +29,7 @@ export default function Home() {
         <Screenshots shots={shots} />
         <Security />
         <Protocol />
+        <Changelog />
         <Downloads />
         <Cta />
       </main>

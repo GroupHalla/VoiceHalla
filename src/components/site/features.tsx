@@ -17,7 +17,7 @@ import { Eq, SectionHeader, SpotlightCard } from "@/components/site/effects";
 import { useI18n } from "@/i18n/provider";
 
 const FEATURE_ICONS = [Ear, FolderTree, MessageSquareText, Puzzle, ShieldCheck, FileAudio, Users, Bot];
-const FEATURE_TAGS = ["whisper", "granular", "bbcode", "plugins", "ed25519", "wav · tts", "admin", "v5"];
+const FEATURE_TAGS = ["whisper", "granular", "bbcode", "plugins", "ed25519", "wav · tts", "admin", "v6"];
 
 const qualityPills = ["480p", "720p", "1080p", "2K", "4K"];
 

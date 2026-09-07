@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Halla — Free and open voice communication",
     description:
-      "Desktop, Mobile and Server. Per-channel end-to-end encrypted voice, 4K screen sharing over WebRTC, and the open v5 protocol. Free for non-commercial use.",
+      "Desktop, Mobile and Server. Per-channel end-to-end encrypted voice, 4K screen sharing over WebRTC, and the open v6 protocol. Free for non-commercial use.",
     siteName: "Halla",
     type: "website",
   },

@@ -15,6 +15,7 @@ const es: Dict = {
       { href: "#ecosystem", label: "Ecosistema" },
       { href: "#security", label: "Seguridad" },
       { href: "#protocol", label: "Protocolo" },
+      { href: "#changelog", label: "Changelog" },
       { href: "#download", label: "Descarga" },
     ],
   },
@@ -53,7 +54,7 @@ const es: Dict = {
       "ChaCha20-Poly1305",
       "Identidad Ed25519",
       "WebRTC 4K/60",
-      "Protocolo abierto v5",
+      "Protocolo abierto v6",
       "Susurro",
       "PTT flotante",
       "Canales temporales",
@@ -92,7 +93,7 @@ const es: Dict = {
     title: "Un protocolo, tres proyectos —",
     titleLine2: "del bolsillo al centro de datos",
     description:
-      "Desktop, Mobile y Server hablan el mismo idioma: el protocolo abierto v5. Entra al mismo servidor desde el PC o el móvil, comparte tu pantalla desde cualquiera de los dos y aloja todo en tu propia infraestructura.",
+      "Desktop, Mobile y Server hablan el mismo idioma: el protocolo abierto v6. Entra al mismo servidor desde el PC o el móvil, comparte tu pantalla desde cualquiera de los dos y aloja todo en tu propia infraestructura.",
     versionAria: "Cargando versión",
     treeServer: "miservidor.ejemplo.com",
     treeLobby: "Lobby",
@@ -132,7 +133,7 @@ const es: Dict = {
     ],
     terminalReady: "Halla Server {v} listo.",
     terminalReadyPlain: "Halla Server listo.",
-    protocolTitle: "Protocolo abierto v5",
+    protocolTitle: "Protocolo abierto v6",
     protocolBadge: "público",
     protocolDesc:
       "La especificación está abierta para que cualquiera implemente clientes, bots y herramientas compatibles. La capa de seguridad — TLS, Ed25519 y voz AEAD — es obligatoria en todas las versiones.",
@@ -175,7 +176,7 @@ const es: Dict = {
       {
         title: "Complementos",
         description:
-          "Paquetes .halla-addon con ABI C pública compartida entre Desktop y Mobile: hooks de audio PCM, efecto de radio y transporte de datos v5.",
+          "Paquetes .halla-addon con ABI C pública compartida entre Desktop y Mobile: hooks de audio PCM, efecto de radio y transporte de datos v6.",
       },
       {
         title: "Emblemas verificables",
@@ -195,7 +196,7 @@ const es: Dict = {
       {
         title: "Protocolo abierto",
         description:
-          "Especificación v5 documentada públicamente para implementar clientes, bots y herramientas. Control TCP/TLS con JSON y voz UDP cifrada.",
+          "Especificación v6 documentada públicamente para implementar clientes, bots y herramientas. Control TCP/TLS con JSON y voz UDP cifrada.",
       },
     ],
   },
@@ -260,12 +261,12 @@ const es: Dict = {
       {
         title: "Voz cifrada por canal",
         description:
-          "Audio Opus y transmisiones cifrados con ChaCha20-Poly1305 (AEAD) usando una clave de 32 bytes por canal. El servidor es un relé puro: reenvía los paquetes, pero nunca tiene la clave para descifrarlos.",
+          "Audio Opus y transmisiones cifrados con ChaCha20-Poly1305 (AEAD) usando una clave de grupo de 32 bytes generada por los propios clientes. El servidor es un relé puro: reenvía sobres e2e_key que no puede abrir.",
       },
       {
         title: "Rotación de claves",
         description:
-          "Siempre que la composición de un canal cambia — alguien entra, sale o es movido — la clave del componente se rota y redistribuye. Secreto hacia adelante básico incorporado en el protocolo, sin esfuerzo del usuario.",
+          "Siempre que la composición de un canal cambia — alguien entra, sale o es movido — la clave de grupo se rota y redistribuye entre los propios clientes, sellada con X25519 efímera. Secreto hacia adelante incorporado en el protocolo, sin esfuerzo del usuario.",
       },
       {
         title: "TLS con pin TOFU",
@@ -285,7 +286,7 @@ const es: Dict = {
     ],
   },
   protocol: {
-    kicker: "Protocolo abierto v5",
+    kicker: "Protocolo abierto v6",
     title: "Documentado para todos.",
     titleLine2: "Cerrado para nadie.",
     description:
@@ -329,6 +330,34 @@ const es: Dict = {
     spoofNote:
       "El servidor ignora el UID enviado por el cliente y lo recalcula a partir de la clave pública. La suplantación de identidad se vuelve inviable.",
     readSpec: "Leer la especificación completa",
+  },
+  changelog: {
+    kicker: "Changelog",
+    title: "Cada versión,",
+    titleLine2: "documentada",
+    description:
+      "El historial completo desde el protocolo v6 — el día en que el cifrado de extremo a extremo se hizo real. Elige un proyecto y acompaña: sin lanzamientos ocultos, sin cambios silenciosos.",
+    channelAria: "Elige el proyecto",
+    channels: {
+      desktop: "Desktop",
+      mobile: "Mobile",
+      server: "Server",
+    },
+    latest: "Más reciente",
+    milestone: "Protocolo v6",
+    viewRelease: "Ver versión",
+    viewReleaseAria: "Ver versión {tag} en GitHub",
+    fullHistory: "Historial completo de versiones en GitHub",
+    categories: {
+      protocol: "Protocolo",
+      security: "Seguridad",
+      added: "Añadido",
+      changed: "Cambiado",
+      fixed: "Corregido",
+      performance: "Rendimiento",
+    },
+    sinceNote:
+      "Versiones desde el despliegue del protocolo v6 · septiembre de 2026",
   },
   downloads: {
     kicker: "Descarga",

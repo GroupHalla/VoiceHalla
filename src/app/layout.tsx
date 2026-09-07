@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { I18nProvider } from "@/i18n/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Halla — Comunicação por voz livre, aberta e sem intermediários",
+  title: "Halla — Free, open voice communication without middlemen",
   description:
-    "Halla é um ecossistema de comunicação por voz de código aberto: cliente desktop (Windows/Linux), app Android nativo e servidor auto-hospedável. Voz Opus cifrada, compartilhamento de tela em 4K via WebRTC, canais com permissões granulares e protocolo aberto.",
+    "Halla is an open-source voice communication ecosystem: a desktop client (Windows/Linux), a native Android app, and a self-hostable server. Encrypted Opus voice, 4K screen sharing over WebRTC, channels with granular permissions, and an open protocol.",
   keywords: [
     "Halla",
     "VoIP",
@@ -24,7 +25,6 @@ export const metadata: Metadata = {
     "TeamSpeak",
     "Mumble",
     "open source",
-    "código aberto",
     "self-hosted",
     "Opus",
     "WebRTC",
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
     icon: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/halla-logo.png`,
   },
   openGraph: {
-    title: "Halla — Comunicação por voz livre e aberta",
+    title: "Halla — Free and open voice communication",
     description:
-      "Desktop, Mobile e Server. Voz cifrada de ponta a ponta por canal, tela em 4K via WebRTC e protocolo aberto v5. Livre para uso não comercial.",
+      "Desktop, Mobile and Server. Per-channel end-to-end encrypted voice, 4K screen sharing over WebRTC, and the open v5 protocol. Free for non-commercial use.",
     siteName: "Halla",
     type: "website",
   },
@@ -49,11 +49,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        {children}
+        <I18nProvider>{children}</I18nProvider>
         <Toaster />
       </body>
     </html>

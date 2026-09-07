@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { Eq, SectionHeader, Typewriter } from "@/components/site/effects";
 import { useLatestRelease } from "@/hooks/use-latest-release";
+import { useI18n } from "@/i18n/provider";
 
 /* ================= Animated channel tree (Desktop card) ================= */
 
@@ -63,11 +64,12 @@ function UserRow({
 }
 
 function ChannelTree() {
+  const { t } = useI18n();
   const [guestJoined, setGuestJoined] = useState(false);
 
   useEffect(() => {
-    const t = setInterval(() => setGuestJoined((v) => !v), 4200);
-    return () => clearInterval(t);
+    const timer = setInterval(() => setGuestJoined((v) => !v), 4200);
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -79,7 +81,7 @@ function ChannelTree() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
           </span>
-          <span className="text-zinc-300">meuservidor.exemplo.com</span>
+          <span className="text-zinc-300">{t.ecosystem.treeServer}</span>
         </div>
         <span className="flex items-center gap-1.5 text-[11px] text-emerald-400/90">
           <span className="h-1 w-1 rounded-full bg-emerald-400" aria-hidden="true" />
@@ -91,13 +93,13 @@ function ChannelTree() {
         <div className="flex items-center gap-1.5 text-zinc-500">
           <ChevronDown className="h-3 w-3" aria-hidden="true" />
           <MessageSquare className="h-3 w-3" aria-hidden="true" />
-          <span>Lobby</span>
+          <span>{t.ecosystem.treeLobby}</span>
         </div>
 
         <div className="pl-4">
           <div className="flex items-center gap-1.5 text-zinc-500">
             <Gamepad2 className="h-3 w-3" aria-hidden="true" />
-            <span>Sala de jogos</span>
+            <span>{t.ecosystem.treeGameRoom}</span>
           </div>
           <div className="space-y-0.5 pl-4 pt-0.5">
             <UserRow name="Admin" color="bg-gradient-to-br from-[#8b31e8] to-[#6d28d9]" speaking crown />
@@ -125,13 +127,13 @@ function ChannelTree() {
         <div className="flex items-center gap-1.5 text-zinc-500">
           <ChevronDown className="h-3 w-3" aria-hidden="true" />
           <Lock className="h-3 w-3 text-amber-400/70" aria-hidden="true" />
-          <span>Reuniões</span>
-          <span className="ml-auto text-[10px] text-zinc-600">senha</span>
+          <span>{t.ecosystem.treeMeetings}</span>
+          <span className="ml-auto text-[10px] text-zinc-600">{t.ecosystem.treePassword}</span>
         </div>
 
         <div className="flex items-center gap-1.5 text-[#c99bf5]/70">
           <Plus className="h-3 w-3" aria-hidden="true" />
-          <span className="text-[11px]">Canal temporário…</span>
+          <span className="text-[11px]">{t.ecosystem.treeTempChannel}</span>
         </div>
       </div>
     </div>
@@ -141,6 +143,7 @@ function ChannelTree() {
 /* ================= PTT visual (Mobile card) ================= */
 
 function PttVisual() {
+  const { t } = useI18n();
   return (
     <div className="relative h-44 overflow-hidden rounded-xl border border-white/10 bg-[#0b0713]/90">
       {/* Mock home screen dots */}
@@ -163,7 +166,7 @@ function PttVisual() {
           />
           <button
             type="button"
-            aria-label="Exemplo de botão de push-to-talk flutuante"
+            aria-label={t.ecosystem.mobilePttAria}
             className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-gradient-to-br from-[#8b31e8] to-[#6d28d9] shadow-[0_0_44px_-6px_rgba(139,49,232,0.9)] transition-transform active:scale-95"
           >
             <Mic className="h-7 w-7 text-white" aria-hidden="true" />
@@ -177,9 +180,9 @@ function PttVisual() {
         <Headphones className="h-4 w-4 shrink-0 text-[#7de8f7]" aria-hidden="true" />
         <div className="min-w-0 flex-1">
           <p className="truncate text-[11.5px] font-semibold text-white">
-            Halla · Sala de jogos
+            {t.ecosystem.mobileNotifTitle}
           </p>
-          <p className="text-[10.5px] text-zinc-500">3 no canal · conectado</p>
+          <p className="text-[10.5px] text-zinc-500">{t.ecosystem.mobileNotifSub}</p>
         </div>
         <span className="flex shrink-0 items-center gap-2 rounded-lg border border-white/10 bg-black/40 px-2 py-1">
           <Mic className="h-3 w-3 text-zinc-400" aria-hidden="true" />
@@ -189,7 +192,7 @@ function PttVisual() {
       </div>
 
       <p className="absolute left-4 top-3 text-[10px] font-medium uppercase tracking-[0.16em] text-zinc-600">
-        PTT flutuante · sobre outros apps
+        {t.ecosystem.mobilePttLabel}
       </p>
     </div>
   );
@@ -237,6 +240,7 @@ function CardHeader({
   accent: string;
   loading?: boolean;
 }) {
+  const { t } = useI18n();
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3.5">
@@ -249,7 +253,7 @@ function CardHeader({
       </div>
       <span className="rounded-md border border-white/10 bg-white/[0.05] px-2 py-1 font-mono text-[11px] text-zinc-300">
         {loading ? (
-          <span className="inline-block animate-pulse text-zinc-500" aria-label="Carregando versão">
+          <span className="inline-block animate-pulse text-zinc-500" aria-label={t.ecosystem.versionAria}>
             …
           </span>
         ) : (
@@ -288,14 +292,8 @@ function RepoLink({ href, name }: { href: string; name: string }) {
 
 /* ================= Section ================= */
 
-const transports = [
-  { label: "TCP + TLS 1.2+", sub: "controle · JSON" },
-  { label: "UDP · Opus AEAD", sub: "voz · 20 ms" },
-  { label: "DTLS-SRTP P2P", sub: "tela · WebRTC" },
-  { label: "TLS", sub: "ServerQuery" },
-];
-
 export function Ecosystem() {
+  const { t } = useI18n();
   // Versões dinâmicas direto da API do GitHub (mesmo cache de 1h do download)
   const desktop = useLatestRelease("Halla");
   const mobile = useLatestRelease("Halla-Mobile");
@@ -305,30 +303,27 @@ export function Ecosystem() {
   const terminalLines = useMemo(
     () => [
       "$ ./halla-server --config halla-server.ini",
-      "[ok] TLS ativo — cert.pem autoassinado",
-      "[ok] controle TCP/9987 · voz UDP/9987",
-      "[ok] SQLite conectado · 32 clientes máx.",
-      "[ok] relay AEAD — o servidor nunca decifra",
+      ...t.ecosystem.terminalLines,
       serverVersion
-        ? `Halla Server ${serverVersion} pronto.`
-        : "Halla Server pronto.",
+        ? t.ecosystem.terminalReady.replace("{v}", serverVersion)
+        : t.ecosystem.terminalReadyPlain,
     ],
-    [serverVersion]
+    [t, serverVersion]
   );
 
   return (
-    <section id="ecossistema" className="relative scroll-mt-20 py-20 sm:py-28">
+    <section id="ecosystem" className="relative scroll-mt-20 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          kicker="Ecossistema"
+          kicker={t.ecosystem.kicker}
           accent="purple"
           title={
             <>
-              Um protocolo, três projetos —
-              <br className="hidden sm:block" /> do bolso ao datacenter
+              {t.ecosystem.title}
+              <br className="hidden sm:block" /> {t.ecosystem.titleLine2}
             </>
           }
-          description="Desktop, Mobile e Server falam a mesma língua: o protocolo aberto v5. Entre no mesmo servidor pelo PC ou pelo celular, transmita sua tela de qualquer um dos dois e hospede tudo na sua própria infraestrutura."
+          description={t.ecosystem.description}
         />
 
         <div className="mt-14 grid gap-5 lg:grid-cols-12">
@@ -342,20 +337,15 @@ export function Ecosystem() {
               accent="from-[#a855f7] to-[#7c3aed]"
             />
             <p className="mt-4 text-sm leading-relaxed text-zinc-400">
-              O cliente completo para Windows e Linux, em C++17 com Qt 6.
-              Ícones desenhados em tempo de execução, tema claro/escuro
-              instantâneo e todas as ferramentas de administração que uma
-              comunidade precisa.
+              {t.ecosystem.desktopDesc}
             </p>
             <div className="mt-5">
               <ChannelTree />
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
-              <Chip>Push-to-talk</Chip>
-              <Chip>Sussurro</Chip>
-              <Chip>Hotkeys globais</Chip>
-              <Chip>Overlay da call</Chip>
-              <Chip>Gravação WAV</Chip>
+              {t.ecosystem.desktopChips.map((chip) => (
+                <Chip key={chip}>{chip}</Chip>
+              ))}
             </div>
             <RepoLink href="https://github.com/GroupHalla/Halla" name="GroupHalla/Halla" />
           </BentoCard>
@@ -370,19 +360,15 @@ export function Ecosystem() {
               accent="from-[#22d3ee] to-[#0891b2]"
             />
             <p className="mt-4 text-sm leading-relaxed text-zinc-400">
-              App Android nativo (Kotlin + núcleo C++/JNI) — sem Qt, sem
-              wrapper. Voz com AEC e supressão de ruído, reconexão silenciosa
-              ao trocar de rede e serviço em primeiro plano que sobrevive à
-              tela apagada.
+              {t.ecosystem.mobileDesc}
             </p>
             <div className="mt-5">
               <PttVisual />
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
-              <Chip>PTT flutuante</Chip>
-              <Chip>Wi-Fi ↔ móvel</Chip>
-              <Chip>MediaProjection</Chip>
-              <Chip>pt · en · es</Chip>
+              {t.ecosystem.mobileChips.map((chip) => (
+                <Chip key={chip}>{chip}</Chip>
+              ))}
             </div>
             <RepoLink
               href="https://github.com/GroupHalla/Halla-Mobile"
@@ -400,8 +386,7 @@ export function Ecosystem() {
               accent="from-[#34d399] to-[#059669]"
             />
             <p className="mt-4 text-sm leading-relaxed text-zinc-400">
-              Servidor auto-hospedável em C++/Qt: TLS no controle, voz em relay
-              puro — ele nunca decifra o áudio. SQLite ou MySQL.
+              {t.ecosystem.serverDesc}
             </p>
             <div className="mt-5 overflow-hidden rounded-xl border border-white/10 bg-black/60 p-4">
               <div className="mb-2.5 flex items-center gap-1.5">
@@ -417,10 +402,9 @@ export function Ecosystem() {
               />
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
-              <Chip>Docker</Chip>
-              <Chip>systemd</Chip>
-              <Chip>Pterodactyl</Chip>
-              <Chip>TURN opcional</Chip>
+              {t.ecosystem.serverChips.map((chip) => (
+                <Chip key={chip}>{chip}</Chip>
+              ))}
             </div>
             <RepoLink
               href="https://github.com/GroupHalla/HallaServer"
@@ -435,21 +419,19 @@ export function Ecosystem() {
                 <FileText className="h-5 w-5 text-[#7de8f7]" aria-hidden="true" />
               </div>
               <h3 className="text-lg font-semibold text-white">
-                Protocolo aberto v5
+                {t.ecosystem.protocolTitle}
               </h3>
               <span className="ml-auto rounded-md border border-white/10 bg-white/[0.05] px-2 py-1 font-mono text-[11px] text-zinc-300">
-                público
+                {t.ecosystem.protocolBadge}
               </span>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-zinc-400">
-              A especificação é aberta para qualquer pessoa implementar
-              clientes, bots e ferramentas compatíveis. A camada de segurança —
-              TLS, Ed25519 e voz AEAD — é obrigatória em todas as versões.
+              {t.ecosystem.protocolDesc}
             </p>
             <div className="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-              {transports.map((t, i) => (
+              {t.ecosystem.transports.map((tr, i) => (
                 <motion.div
-                  key={t.label}
+                  key={tr.label}
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -457,9 +439,9 @@ export function Ecosystem() {
                   className="rounded-xl border border-white/[0.08] bg-black/30 p-3"
                 >
                   <p className="font-mono text-[11.5px] font-semibold text-[#7de8f7]">
-                    {t.label}
+                    {tr.label}
                   </p>
-                  <p className="mt-1 text-[11px] text-zinc-500">{t.sub}</p>
+                  <p className="mt-1 text-[11px] text-zinc-500">{tr.sub}</p>
                 </motion.div>
               ))}
             </div>
@@ -470,7 +452,7 @@ export function Ecosystem() {
               className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[#7de8f7] transition-colors hover:text-[#a5f0fb]"
             >
               <ArrowDown className="hidden" aria-hidden="true" />
-              Ler a especificação completa
+              {t.ecosystem.readSpec}
               <ArrowUpRight
                 className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 aria-hidden="true"

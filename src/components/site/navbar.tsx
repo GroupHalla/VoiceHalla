@@ -5,16 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { ArrowUpRight, Github, Menu, X } from "lucide-react";
-
-const links = [
-  { href: "#recursos", label: "Recursos" },
-  { href: "#ecossistema", label: "Ecossistema" },
-  { href: "#seguranca", label: "Segurança" },
-  { href: "#protocolo", label: "Protocolo" },
-  { href: "#download", label: "Download" },
-];
+import { LanguageSwitcher } from "@/components/site/language-switcher";
+import { useI18n } from "@/i18n/provider";
 
 export function Navbar() {
+  const { t } = useI18n();
+  const links = t.nav.links;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -50,12 +46,12 @@ export function Navbar() {
         <Link
           href="#"
           className="group flex items-center gap-2.5"
-          aria-label="Halla — início"
+          aria-label={t.nav.ariaHome}
         >
           <span className="relative">
             <Image
               src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/halla-logo.png`}
-              alt="Logotipo do Halla"
+              alt={t.nav.logoAlt}
               className="h-8 w-8 rounded-lg transition-transform duration-300 group-hover:scale-110"
               width={32}
               height={32}
@@ -86,7 +82,8 @@ export function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:block">
+          <LanguageSwitcher />
           <a
             href="https://github.com/GroupHalla"
             target="_blank"
@@ -106,7 +103,7 @@ export function Navbar() {
           className="rounded-md p-2 text-zinc-300 transition-colors hover:text-white md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          aria-label={open ? t.nav.ariaCloseMenu : t.nav.ariaOpenMenu}
         >
           {open ? (
             <X className="h-5 w-5" aria-hidden="true" />
@@ -139,6 +136,14 @@ export function Navbar() {
                   {l.label}
                 </motion.a>
               ))}
+              <motion.div
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.05 * links.length }}
+                className="mt-1"
+              >
+                <LanguageSwitcher />
+              </motion.div>
               <motion.a
                 href="https://github.com/GroupHalla"
                 target="_blank"

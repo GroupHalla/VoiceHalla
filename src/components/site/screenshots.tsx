@@ -6,12 +6,17 @@ import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { SectionHeader } from "@/components/site/effects";
 import type { Shot } from "@/data/screenshots";
+import { useI18n } from "@/i18n/provider";
 
 type ScreenshotsProps = {
   shots: Shot[];
 };
 
+type ShotStrings = { label: string; caption: string; alt: string };
+
 export function Screenshots({ shots }: ScreenshotsProps) {
+  const { t } = useI18n();
+  const localized = t.gallery.shots as Record<string, ShotStrings>;
   const [activeIdx, setActiveIdx] = useState(0);
   const safeIdx = shots.length > 0 ? Math.min(activeIdx, shots.length - 1) : 0;
   const current = shots[safeIdx];
@@ -21,16 +26,24 @@ export function Screenshots({ shots }: ScreenshotsProps) {
       <section className="relative overflow-hidden py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-4 text-center text-zinc-500 sm:px-6">
           <p>
-            Nenhuma captura de tela encontrada em{" "}
+            {t.gallery.emptyPrefix}{" "}
             <code className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-zinc-300">
               public/screenshots/
             </code>
-            . Adicione PNGs nessa pasta para vê-los aqui.
+            {t.gallery.emptySuffix}
           </p>
         </div>
       </section>
     );
   }
+
+  const stringsFor = (shot: Shot): ShotStrings =>
+    localized[shot.filename.replace(/\.[^.]+$/, "")] ?? {
+      label: shot.label,
+      caption: shot.caption,
+      alt: shot.alt,
+    };
+  const currentStrings = stringsFor(current);
 
   return (
     <section className="relative overflow-hidden py-20 sm:py-28">
@@ -40,15 +53,15 @@ export function Screenshots({ shots }: ScreenshotsProps) {
       />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          kicker="Interface"
+          kicker={t.gallery.kicker}
           accent="cyan"
           title={
             <>
-              Limpa, clássica e
-              <br className="hidden sm:block" /> direta ao ponto
+              {t.gallery.title}
+              <br className="hidden sm:block" /> {t.gallery.titleLine2}
             </>
           }
-          description="A interface segue a tradição dos grandes clientes de voz: densa em informação, fácil de dominar e com tema claro e escuro trocáveis em tempo real — sem reiniciar."
+          description={t.gallery.description}
         />
 
         <div className="mt-12 grid gap-6 lg:grid-cols-12">
@@ -56,11 +69,11 @@ export function Screenshots({ shots }: ScreenshotsProps) {
           <div
             className="flex gap-2 overflow-x-auto pb-2 lg:col-span-4 lg:flex-col lg:overflow-visible lg:pb-0"
             role="tablist"
-            aria-label="Capturas de tela do Halla"
+            aria-label={t.gallery.ariaLabel}
           >
-            {shots.map((t, i) => (
+            {shots.map((s, i) => (
               <motion.button
-                key={t.filename}
+                key={s.filename}
                 role="tab"
                 aria-selected={safeIdx === i}
                 onClick={() => setActiveIdx(i)}
@@ -86,7 +99,7 @@ export function Screenshots({ shots }: ScreenshotsProps) {
                     safeIdx === i ? "text-white" : "text-zinc-400"
                   }`}
                 >
-                  {t.label}
+                  {stringsFor(s).label}
                 </span>
                 <ChevronRight
                   className={`ml-auto hidden h-4 w-4 transition-all lg:block ${
@@ -117,7 +130,7 @@ export function Screenshots({ shots }: ScreenshotsProps) {
                 >
                   <Image
                     src={current.src}
-                    alt={current.alt}
+                    alt={currentStrings.alt}
                     width={1180}
                     height={760}
                     className="block h-auto w-full"
@@ -132,7 +145,7 @@ export function Screenshots({ shots }: ScreenshotsProps) {
               transition={{ delay: 0.15 }}
               className="mt-4 text-sm text-zinc-500"
             >
-              {current.caption}
+              {currentStrings.caption}
             </motion.p>
           </div>
         </div>

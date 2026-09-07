@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useInView } from "framer-motion";
+import { useI18n } from "@/i18n/provider";
 
 /* ---------- Equalizer bars (voice activity indicator) ---------- */
 export function Eq({
@@ -43,6 +44,7 @@ export function CountUp({
   duration?: number;
   className?: string;
 }) {
+  const { localeTag } = useI18n();
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const [display, setDisplay] = useState(0);
@@ -64,7 +66,7 @@ export function CountUp({
   return (
     <span ref={ref} className={className}>
       {prefix}
-      {display.toLocaleString("pt-BR")}
+      {display.toLocaleString(localeTag)}
       {suffix}
     </span>
   );

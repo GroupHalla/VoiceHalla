@@ -10,8 +10,10 @@ import {
   Server,
 } from "lucide-react";
 import { Eq } from "@/components/site/effects";
+import { useI18n } from "@/i18n/provider";
 
 export function Cta() {
+  const { t } = useI18n();
   const [copied, setCopied] = useState(false);
 
   const copyAddress = async () => {
@@ -50,26 +52,23 @@ export function Cta() {
             <div className="flex items-center gap-3">
               <Eq bars={5} />
               <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#d8bcf7]">
-                servidor oficial · aberto ao público
+                {t.cta.kicker}
               </span>
             </div>
 
             <h2 className="mt-5 max-w-2xl text-balance text-left text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl">
-              Entre no servidor oficial
-              <br className="hidden sm:block" /> e dê sua opinião
+              {t.cta.title}
+              <br className="hidden sm:block" /> {t.cta.titleLine2}
             </h2>
             <p className="mt-4 max-w-2xl text-left text-base leading-relaxed text-zinc-400">
-              Canais permanentes e temporários para testar áudio de baixa
-              latência, compartilhamento de tela e o ecossistema completo — do
-              Desktop e do Mobile. Encontrou um bug ou tem uma sugestão? O
-              canal de feedback é oficial e direto.
+              {t.cta.description}
             </p>
 
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
               <button
                 onClick={copyAddress}
                 className="group flex items-center justify-center gap-2.5 rounded-xl border border-white/10 bg-black/40 px-5 py-3.5 font-mono text-sm text-zinc-200 transition-all hover:border-[#b57bee]/40 hover:text-white"
-                aria-label="Copiar endereço do servidor oficial"
+                aria-label={t.cta.copyAria}
               >
                 <Server className="h-4 w-4 text-[#b57bee]" aria-hidden="true" />
                 163.176.35.133:9987
@@ -93,13 +92,13 @@ export function Cta() {
                   className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full"
                 />
                 <MessageSquareWarning className="h-4 w-4" aria-hidden="true" />
-                Reportar bug ou sugerir melhoria
+                {t.cta.report}
                 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
             {copied && (
               <p className="mt-3 text-xs text-emerald-400" role="status">
-                Endereço copiado — cole no Connect do cliente Halla.
+                {t.cta.copied}
               </p>
             )}
           </div>

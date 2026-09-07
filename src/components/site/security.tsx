@@ -10,50 +10,15 @@ import {
   Vault,
 } from "lucide-react";
 import { SectionHeader, Aurora } from "@/components/site/effects";
+import { useI18n } from "@/i18n/provider";
 
-const items = [
-  {
-    icon: Fingerprint,
-    title: "Identidade Ed25519",
-    description:
-      "Cada cliente gera um par de chaves Ed25519. O login exige a assinatura de um desafio com nonce — e o UID é derivado da chave pública, nunca do que o cliente alega ser. Bans, grupos e emblemas ficam vinculados a essa identidade.",
-  },
-  {
-    icon: Lock,
-    title: "Voz cifrada por canal",
-    description:
-      "Áudio Opus e transmissões cifrados com ChaCha20-Poly1305 (AEAD) usando chave de 32 bytes por canal. O servidor é um relay puro: encaminha os pacotes, mas nunca possui a chave para decifrá-los.",
-  },
-  {
-    icon: RefreshCcw,
-    title: "Rotação de chaves",
-    description:
-      "Sempre que a composição de um canal muda — alguém entra, sai ou é movido — a chave do componente é rotacionada e redistribuída. Forward secrecy básica embutida no protocolo, sem esforço do usuário.",
-  },
-  {
-    icon: KeyRound,
-    title: "TLS com pinagem TOFU",
-    description:
-      "O canal de controle roda sobre TLS 1.2+. Na primeira conexão, o fingerprint do certificado é fixado; se ele mudar depois, o cliente alerta sobre possível ataque man-in-the-middle — o modelo de confiança do SSH.",
-  },
-  {
-    icon: Vault,
-    title: "Chaves no cofre do SO",
-    description:
-      "A chave privada nunca fica em texto puro: o Desktop usa Credential Manager, Keychain ou Secret Service via QtKeychain; o Mobile cifra com chave AES do Android Keystore, com backup portátil protegido por senha.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Atualizações verificadas",
-    description:
-      "Antes de instalar qualquer atualização, o cliente confere o checksum SHA-256 e só baixa de um domínio fixo. No Mobile, o APK assinado passa por apksigner verify antes de ser publicado.",
-  },
-];
+const ITEM_ICONS = [Fingerprint, Lock, RefreshCcw, KeyRound, Vault, ShieldCheck];
 
 export function Security() {
+  const { t } = useI18n();
   return (
     <section
-      id="seguranca"
+      id="security"
       className="relative scroll-mt-20 overflow-hidden py-20 sm:py-28"
     >
       <Aurora variant="mixed" />
@@ -63,15 +28,15 @@ export function Security() {
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
               <SectionHeader
-                kicker="Segurança primeiro"
+                kicker={t.security.kicker}
                 accent="emerald"
                 title={
                   <>
-                    O servidor nunca escuta
-                    <br className="hidden sm:block" /> o que você diz
+                    {t.security.title}
+                    <br className="hidden sm:block" /> {t.security.titleLine2}
                   </>
                 }
-                description="A arquitetura de segurança do Halla é obrigatória para todas as conexões, independente da versão do protocolo. Não é uma opção premium — é o padrão."
+                description={t.security.description}
               />
 
               <motion.div
@@ -82,7 +47,7 @@ export function Security() {
                 className="mt-8 rounded-2xl border border-white/[0.08] bg-black/40 p-5 sm:p-6"
               >
                 <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500">
-                  como o áudio viaja
+                  {t.security.flowTitle}
                 </p>
                 <div className="space-y-3 font-mono text-[13px] leading-relaxed">
                   <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-zinc-300">
@@ -96,22 +61,22 @@ export function Security() {
                   </p>
                   <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
                     <span className="rounded bg-white/[0.06] px-1.5 py-0.5 text-[11px] text-zinc-400">
-                      servidor
+                      {t.security.flowServerChip}
                     </span>
                     <span className="text-zinc-400">
-                      encaminha cifrado <span className="text-red-400">sem poder decifrar</span>
+                      {t.security.flowServer} <span className="text-red-400">{t.security.flowServerDenied}</span>
                     </span>
                   </p>
                   <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-zinc-300">
                     <span className="rounded bg-emerald-400/15 px-1.5 py-0.5 text-[11px] text-emerald-300">
-                      você
+                      {t.security.flowYou}
                     </span>
                     <span aria-hidden="true" className="text-zinc-600">→</span>
-                    <span className="text-emerald-400">valida tag AEAD</span>
+                    <span className="text-emerald-400">{t.security.flowValidateTag}</span>
                     <span aria-hidden="true" className="text-zinc-600">→</span>
-                    <span className="text-[#c99bf5]">decodifica</span>
+                    <span className="text-[#c99bf5]">{t.security.flowDecode}</span>
                     <span aria-hidden="true" className="text-zinc-600">→</span>
-                    <span className="text-zinc-300">alto-falante</span>
+                    <span className="text-zinc-300">{t.security.flowSpeaker}</span>
                   </p>
                 </div>
                 <div className="flow-line mt-5 h-px w-full" aria-hidden="true" />
@@ -126,7 +91,9 @@ export function Security() {
               className="flow-line absolute bottom-6 left-[27px] top-6 hidden w-px sm:block"
             />
             <div className="space-y-4">
-              {items.map((item, i) => (
+              {t.security.items.map((item, i) => {
+                const Icon = ITEM_ICONS[i] ?? ShieldCheck;
+                return (
                 <motion.div
                   key={item.title}
                   initial={{ opacity: 0, x: 32 }}
@@ -137,7 +104,7 @@ export function Security() {
                 >
                   <div className="flex items-start gap-4">
                     <div className="relative z-[1] flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-emerald-400/25 bg-[#0a0712] shadow-lg transition-transform duration-300 group-hover:scale-110">
-                      <item.icon className="h-5 w-5 text-emerald-300" aria-hidden="true" />
+                      <Icon className="h-5 w-5 text-emerald-300" aria-hidden="true" />
                     </div>
                     <div>
                       <h3 className="text-base font-semibold text-white">
@@ -149,7 +116,8 @@ export function Security() {
                     </div>
                   </div>
                 </motion.div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

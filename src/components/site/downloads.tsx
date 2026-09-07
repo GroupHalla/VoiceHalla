@@ -17,6 +17,7 @@ import {
 import { SectionHeader, SpotlightCard } from "@/components/site/effects";
 import { useLatestRelease, type UseLatestRelease } from "@/hooks/use-latest-release";
 import { latestRelease } from "@/lib/github";
+import { useI18n } from "@/i18n/provider";
 
 type PlatformId = "desktop" | "mobile" | "server";
 
@@ -26,99 +27,16 @@ type DownloadTarget = {
   match: (name: string) => boolean;
 };
 
-const platforms: {
+/* Static platform metadata (repo/links/icons); text comes from the dict. */
+const PLATFORM_META: {
   id: PlatformId;
-  label: string;
-  icon: typeof Monitor;
-  title: string;
-  subtitle: string;
-  description: string;
   repoName: string;
   repo: string;
-  releaseNote: string;
-  code: string;
-  filename: string;
-  deps: string[];
+  icon: typeof Monitor;
 }[] = [
-  {
-    id: "desktop",
-    repoName: "Halla",
-    label: "Desktop",
-    icon: Monitor,
-    title: "Halla Desktop",
-    subtitle: "Windows · Linux · C++17 + Qt 6",
-    description:
-      "Baixe o instalador NSIS para Windows — o botão sempre aponta para a última release publicada. Para Linux, compile do código-fonte com CMake. O modo WebRTC nativo de compartilhamento de tela é opcional e usa o SDK pré-compilado do Halla WebRTC Builds.",
-    repo: "https://github.com/GroupHalla/Halla",
-    releaseNote: "Instaladores e binários ficam na aba Releases do repositório.",
-    code: `# Linux (instala dependências se faltarem)
-./build-linux.sh
-./build/Halla
-
-# Windows / manual — qualquer plataforma
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build`,
-    filename: "bash — linux / windows",
-    deps: [
-      "CMake ≥ 3.21",
-      "Qt 6.2+",
-      "OpenSSL",
-      "libopus",
-      "QtKeychain",
-    ],
-  },
-  {
-    id: "mobile",
-    repoName: "Halla-Mobile",
-    label: "Mobile",
-    icon: Smartphone,
-    title: "Halla Mobile",
-    subtitle: "Android 8.0+ (API 26) · Kotlin + C++/JNI",
-    description:
-      "App Android nativo com serviço em primeiro plano, PTT flutuante e transmissão de tela via MediaProjection. O botão baixa sempre o APK assinado mais recente; atualizações também podem ser instaladas de dentro do próprio app.",
-    repo: "https://github.com/GroupHalla/Halla-Mobile",
-    releaseNote:
-      "APK assinado com verificação apksigner e SHA-256 publicado junto.",
-    code: `# Compilar do código-fonte
-./gradlew assembleDebug      # desenvolvimento
-
-# Release oficial (CI em tags v*)
-./gradlew assembleRelease`,
-    filename: "bash — android",
-    deps: [
-      "Android Studio",
-      "JDK 17",
-      "Android SDK 34",
-      "NDK 25.2.9519653",
-      "Internet no 1º build",
-    ],
-  },
-  {
-    id: "server",
-    repoName: "HallaServer",
-    label: "Server",
-    icon: Container,
-    title: "Halla Server",
-    subtitle: "Self-hosted · C++/Qt · SQLite/MySQL",
-    description:
-      "Rode seu próprio servidor: binário único com configuração em INI, certificado autoassinado gerado na primeira execução (ou Let's Encrypt), Docker, systemd e egg pronto para Pterodactyl.",
-    repo: "https://github.com/GroupHalla/HallaServer",
-    releaseNote:
-      "Dockerfile, serviço systemd e egg Pterodactyl inclusos no repo.",
-    code: `# Executar
-./halla-server --config halla-server.ini
-
-# Portas padrão
-# TCP+UDP 9987 (controle TLS + voz Opus AEAD)`,
-    filename: "bash — servidor",
-    deps: [
-      "CMake + C++17",
-      "Qt 6 (Network, Sql)",
-      "OpenSSL",
-      "SQLite ou MySQL",
-      "TURN opcional",
-    ],
-  },
+  { id: "desktop", repoName: "Halla", repo: "https://github.com/GroupHalla/Halla", icon: Monitor },
+  { id: "mobile", repoName: "Halla-Mobile", repo: "https://github.com/GroupHalla/Halla-Mobile", icon: Smartphone },
+  { id: "server", repoName: "HallaServer", repo: "https://github.com/GroupHalla/HallaServer", icon: Container },
 ];
 
 /* Qual asset de cada repo o botão de download deve pegar na última release. */
@@ -166,6 +84,7 @@ function defaultServerTarget(): string {
 }
 
 function CodeBlock({ code, filename }: { code: string; filename: string }) {
+  const { t } = useI18n();
   const [copied, setCopied] = useState(false);
   const copy = async () => {
     try {
@@ -193,17 +112,17 @@ function CodeBlock({ code, filename }: { code: string; filename: string }) {
         <button
           onClick={copy}
           className="flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.05] px-2.5 py-1 text-[11px] font-medium text-zinc-400 transition-colors hover:text-white"
-          aria-label="Copiar comandos"
+          aria-label={t.downloads.copyAria}
         >
           {copied ? (
             <>
               <Check className="h-3 w-3 text-emerald-400" aria-hidden="true" />
-              copiado
+              {t.downloads.copied}
             </>
           ) : (
             <>
               <Copy className="h-3 w-3" aria-hidden="true" />
-              copiar
+              {t.downloads.copy}
             </>
           )}
         </button>
@@ -216,6 +135,11 @@ function CodeBlock({ code, filename }: { code: string; filename: string }) {
 }
 
 export function Downloads() {
+  const { t } = useI18n();
+  const platforms = PLATFORM_META.map((p) => ({
+    ...p,
+    ...t.downloads.platforms[p.id],
+  }));
   const [active, setActive] = useState<PlatformId>("desktop");
   const current = platforms.find((p) => p.id === active) ?? platforms[0];
 
@@ -245,7 +169,7 @@ export function Downloads() {
     if (!data) data = await latestRelease(current.repoName);
     const found = data?.assets.find((a) => activeTarget.match(a.name));
     if (found) {
-      window.location.href = found.browser_download_url;
+      window.location.assign(found.browser_download_url);
     } else {
       window.open(`${current.repo}/releases/latest`, "_blank", "noopener,noreferrer");
     }
@@ -262,16 +186,16 @@ export function Downloads() {
       />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          kicker="Download"
+          kicker={t.downloads.kicker}
           accent="purple"
-          title="Comece a falar em minutos"
-          description="Gratuito para uso pessoal, educacional e comunitário: use, estude, modifique e redistribua sem pedir permissão. Vender ou embutir em produto comercial exige autorização escrita dos mantenedores."
+          title={t.downloads.title}
+          description={t.downloads.description}
         />
 
         <div
           className="mt-10 flex flex-wrap items-center gap-2"
           role="tablist"
-          aria-label="Plataformas do Halla"
+          aria-label={t.downloads.platformsAria}
         >
           {platforms.map((p) => (
             <button
@@ -325,21 +249,21 @@ export function Downloads() {
                     <div
                       className="flex flex-wrap gap-1.5 md:justify-end"
                       role="group"
-                      aria-label="Escolha a plataforma do servidor"
+                      aria-label={t.downloads.targetsAria}
                     >
-                      {targets.map((t) => (
+                      {targets.map((tg) => (
                         <button
-                          key={t.id}
+                          key={tg.id}
                           type="button"
-                          onClick={() => setServerTarget(t.id)}
-                          aria-pressed={serverTarget === t.id}
+                          onClick={() => setServerTarget(tg.id)}
+                          aria-pressed={serverTarget === tg.id}
                           className={`rounded-full border px-3 py-1 text-[11px] font-medium transition-colors ${
-                            serverTarget === t.id
+                            serverTarget === tg.id
                               ? "border-[#b57bee]/50 bg-[#b57bee]/[0.14] text-white"
                               : "border-white/[0.08] bg-white/[0.02] text-zinc-400 hover:border-white/[0.16] hover:text-zinc-200"
                           }`}
                         >
-                          {t.label}
+                          {tg.label}
                         </button>
                       ))}
                     </div>
@@ -355,7 +279,9 @@ export function Downloads() {
                     />
                     <span className="flex items-center gap-2">
                       <Download className="h-4 w-4" aria-hidden="true" />
-                      {rel.tag ? `Baixar ${rel.tag}` : "Baixar release"}
+                      {rel.tag
+                        ? t.downloads.downloadTag.replace("{tag}", rel.tag)
+                        : t.downloads.downloadFallback}
                     </span>
                     {asset && (
                       <span className="max-w-[280px] truncate font-mono text-[10px] font-normal text-white/75">
@@ -369,7 +295,7 @@ export function Downloads() {
                     rel="noreferrer"
                     className="text-[11px] font-medium text-zinc-500 transition-colors hover:text-[#c99bf5]"
                   >
-                    ou abra a página de releases no GitHub →
+                    {t.downloads.releasesLink}
                   </a>
                 </div>
               </div>
@@ -377,7 +303,7 @@ export function Downloads() {
               <div className="mt-7">
                 <p className="mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-500">
                   <Terminal className="h-3.5 w-3.5" aria-hidden="true" />
-                  Compilar do código-fonte
+                  {t.downloads.buildTitle}
                 </p>
                 <CodeBlock code={current.code} filename={current.filename} />
                 <p className="mt-3 flex items-center gap-1.5 text-[13px] text-zinc-500">
@@ -404,7 +330,7 @@ export function Downloads() {
                 className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#c99bf5] transition-colors hover:text-[#e3cdfa]"
               >
                 <Github className="h-4 w-4" aria-hidden="true" />
-                Código-fonte no GitHub
+                {t.downloads.sourceLink}
                 <ArrowUpRight
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                   aria-hidden="true"

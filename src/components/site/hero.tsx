@@ -21,6 +21,7 @@ import {
 import { Eq } from "@/components/site/effects";
 import type { Shot } from "@/data/screenshots";
 import Image from "next/image";
+import { useI18n } from "@/i18n/provider";
 
 const SERVER_ADDRESS = "163.176.35.133";
 const SERVER_PORT = "9987";
@@ -28,19 +29,6 @@ const SERVER_PORT = "9987";
 type HeroProps = {
   heroShot?: Shot | null;
 };
-
-const DEFAULT_HERO = {
-  src: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/screenshots/01-janela-principal.png`,
-  alt: "Janela principal do Halla no tema escuro atual: árvore de canais com indicadores de fala, painel de informações com banner roxo e chat em abas",
-  label: "Janela principal",
-};
-
-const ROTATING = [
-  "seu servidor.",
-  "sua regra.",
-  "sua comunidade.",
-  "sua liberdade.",
-];
 
 const wordReveal = {
   hidden: { opacity: 0, y: 28, filter: "blur(10px)" },
@@ -53,6 +41,13 @@ const wordReveal = {
 };
 
 export function Hero({ heroShot }: HeroProps) {
+  const { t } = useI18n();
+  const DEFAULT_HERO = {
+    src: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/screenshots/01-janela-principal.png`,
+    alt: t.hero.heroAlt,
+    label: t.hero.heroLabel,
+  };
+  const ROTATING = t.hero.rotating;
   const hero = heroShot ?? DEFAULT_HERO;
   const [copied, setCopied] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
@@ -70,12 +65,12 @@ export function Hero({ heroShot }: HeroProps) {
   });
 
   useEffect(() => {
-    const t = setInterval(
+    const timer = setInterval(
       () => setWordIndex((v) => (v + 1) % ROTATING.length),
       2500
     );
-    return () => clearInterval(t);
-  }, []);
+    return () => clearInterval(timer);
+  }, [ROTATING.length]);
 
   const onMouseMove = (e: MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -138,7 +133,7 @@ export function Hero({ heroShot }: HeroProps) {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
               </span>
               <span className="text-xs font-medium text-[#d8bcf7]">
-                Código aberto · Livre para uso não comercial
+                {t.hero.badge}
               </span>
             </motion.div>
 
@@ -150,7 +145,7 @@ export function Hero({ heroShot }: HeroProps) {
                 custom={0}
                 className="block"
               >
-                Sua voz,
+                {t.hero.title}
               </motion.span>
               <span className="block min-h-[1.2em]">
                 <AnimatePresence mode="wait">
@@ -174,11 +169,7 @@ export function Hero({ heroShot }: HeroProps) {
               transition={{ duration: 0.55, delay: 0.35 }}
               className="mt-6 max-w-xl text-left text-base leading-relaxed text-zinc-400 sm:text-lg"
             >
-              O Halla é um ecossistema completo de comunicação por voz —
-              cliente desktop para Windows e Linux, app Android nativo e
-              servidor auto-hospedável. Áudio Opus cifrado, canais com
-              permissões granulares, sussurro, tela em 4K e um protocolo aberto
-              documentado. Sem telemetria, sem intermediários, sem custo.
+              {t.hero.description}
             </motion.p>
 
             <motion.div
@@ -196,7 +187,7 @@ export function Hero({ heroShot }: HeroProps) {
                   className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full"
                 />
                 <Download className="h-5 w-5" aria-hidden="true" />
-                Baixar o Halla
+                {t.hero.downloadCta}
               </a>
               <a
                 href="https://github.com/GroupHalla"
@@ -205,7 +196,7 @@ export function Hero({ heroShot }: HeroProps) {
                 className="inline-flex h-12 items-center gap-2 rounded-xl border border-white/12 bg-white/[0.04] px-7 text-[15px] font-semibold text-zinc-200 transition-all hover:border-white/25 hover:bg-white/[0.09] hover:text-white"
               >
                 <Github className="h-5 w-5" aria-hidden="true" />
-                Ver no GitHub
+                {t.hero.githubCta}
               </a>
             </motion.div>
 
@@ -217,15 +208,15 @@ export function Hero({ heroShot }: HeroProps) {
             >
               <span className="flex items-center gap-2.5 text-sm text-zinc-400">
                 <Eq bars={5} />
-                Opus de baixa latência
+                {t.hero.lowLatency}
               </span>
               <span className="flex items-center gap-2 text-sm text-zinc-400">
                 <ShieldCheck className="h-4 w-4 text-[#b57bee]" aria-hidden="true" />
-                Voz cifrada por canal
+                {t.hero.encryptedVoice}
               </span>
               <span className="flex items-center gap-2 text-sm text-zinc-400">
                 <Lock className="h-4 w-4 text-[#7de8f7]" aria-hidden="true" />
-                Sem telemetria
+                {t.hero.noTelemetry}
               </span>
             </motion.div>
           </div>
@@ -268,7 +259,7 @@ export function Hero({ heroShot }: HeroProps) {
                 <div>
                   <p className="text-xs font-semibold text-white">Admin</p>
                   <p className="flex items-center gap-1.5 text-[11px] text-emerald-400">
-                    <Eq bars={3} /> falando agora
+                    <Eq bars={3} /> {t.hero.speakingNow}
                   </p>
                 </div>
               </motion.div>
@@ -281,7 +272,7 @@ export function Hero({ heroShot }: HeroProps) {
               >
                 <MonitorPlay className="h-4 w-4 text-[#7de8f7]" aria-hidden="true" />
                 <div>
-                  <p className="text-xs font-semibold text-white">Live · 1080p60</p>
+                  <p className="text-xs font-semibold text-white">{t.hero.liveLabel}</p>
                   <p className="text-[11px] text-zinc-500">WebRTC P2P</p>
                 </div>
               </motion.div>
@@ -294,7 +285,7 @@ export function Hero({ heroShot }: HeroProps) {
               >
                 <Fingerprint className="h-4 w-4 text-[#b57bee]" aria-hidden="true" />
                 <p className="font-mono text-[11px] text-zinc-300">
-                  Ed25519 · UID verificado
+                  {t.hero.uidVerified}
                 </p>
               </motion.div>
 
@@ -328,18 +319,17 @@ export function Hero({ heroShot }: HeroProps) {
               </span>
               <div>
                 <p className="text-sm font-semibold text-white">
-                  Servidor oficial no ar — teste agora
+                  {t.hero.officialTitle}
                 </p>
                 <p className="mt-0.5 text-sm text-zinc-400">
-                  Canais permanentes e temporários, aberto ao público, acesso
-                  multiplataforma.
+                  {t.hero.officialDesc}
                 </p>
               </div>
             </div>
             <button
               onClick={copyAddress}
               className="group flex w-full items-center justify-center gap-2.5 rounded-xl border border-white/10 bg-black/40 px-4 py-2.5 font-mono text-sm text-zinc-200 transition-all hover:border-[#b57bee]/40 hover:text-white sm:w-auto"
-              aria-label="Copiar endereço do servidor oficial"
+              aria-label={t.hero.copyAria}
             >
               {SERVER_ADDRESS}
               <span className="text-zinc-600">:</span>
@@ -359,7 +349,7 @@ export function Hero({ heroShot }: HeroProps) {
               className="relative z-[2] px-5 pb-4 text-xs text-emerald-400 sm:px-6"
               role="status"
             >
-              Endereço copiado — cole no Connect do cliente Halla.
+              {t.hero.copied}
             </p>
           )}
         </motion.div>

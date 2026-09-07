@@ -3,39 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, FileText, Terminal } from "lucide-react";
 import { SectionHeader } from "@/components/site/effects";
-
-const transports = [
-  {
-    channel: "Controle",
-    transport: "TCP + TLS 1.2+",
-    port: "9987",
-    use: "Autenticação, canais, chat, estados, moderação e sinalização WebRTC — mensagens JSON, uma por linha, até 2 MiB.",
-  },
-  {
-    channel: "Voz",
-    transport: "UDP · Opus AEAD",
-    port: "9987",
-    use: "Pacotes de 20 ms cifrados com ChaCha20-Poly1305 e chave por canal. O servidor apenas retransmite o relay.",
-  },
-  {
-    channel: "Tela (moderna)",
-    transport: "WebRTC P2P · DTLS-SRTP",
-    port: "dinâmica",
-    use: "Vídeo e áudio da transmissão de tela trafegam direto entre os clientes; offer/answer e ICE passam pelo controle TLS.",
-  },
-  {
-    channel: "Tela (legado)",
-    transport: "UDP · JPEG",
-    port: "9987",
-    use: "Frames JPEG fatiados e cifrados como alternativa que dispensa o SDK nativo de WebRTC.",
-  },
-  {
-    channel: "ServerQuery",
-    transport: "TCP + TLS",
-    port: "configurável",
-    use: "Administração remota do servidor, desligada por padrão e com bind local quando habilitada.",
-  },
-];
+import { useI18n } from "@/i18n/provider";
 
 const loginSteps = [
   { dir: "C→S", msg: "hello", payload: "{ proto, uid, nick, idPub }", color: "purple" },
@@ -56,22 +24,23 @@ const stepStyles = {
 };
 
 export function Protocol() {
+  const { t } = useI18n();
   return (
     <section
-      id="protocolo"
+      id="protocol"
       className="relative scroll-mt-20 py-20 sm:py-28"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          kicker="Protocolo aberto v5"
+          kicker={t.protocol.kicker}
           accent="cyan"
           title={
             <>
-              Documentado para todos.
-              <br className="hidden sm:block" /> Fechado para ninguém.
+              {t.protocol.title}
+              <br className="hidden sm:block" /> {t.protocol.titleLine2}
             </>
           }
-          description="A especificação completa é pública: qualquer pessoa pode implementar clientes, bots e ferramentas compatíveis. A camada de segurança — TLS, Ed25519 e voz AEAD — é obrigatória para todas as versões."
+          description={t.protocol.description}
         />
 
         <div className="mt-14 grid gap-6 lg:grid-cols-12">
@@ -84,14 +53,14 @@ export function Protocol() {
             className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] lg:col-span-7"
           >
             <div className="hidden grid-cols-[1.1fr_1.4fr_0.8fr] gap-4 border-b border-white/[0.07] bg-white/[0.03] px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-500 md:grid">
-              <span>Canal</span>
-              <span>Transporte</span>
-              <span>Porta</span>
+              <span>{t.protocol.thChannel}</span>
+              <span>{t.protocol.thTransport}</span>
+              <span>{t.protocol.thPort}</span>
             </div>
             <div className="divide-y divide-white/[0.05]">
-              {transports.map((t, i) => (
+              {t.protocol.transports.map((tr, i) => (
                 <motion.div
-                  key={t.channel}
+                  key={tr.channel}
                   initial={{ opacity: 0, x: -16 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -99,19 +68,19 @@ export function Protocol() {
                   className="grid gap-2 px-6 py-5 transition-colors hover:bg-white/[0.025] md:grid-cols-[1.1fr_1.4fr_0.8fr] md:items-start md:gap-4"
                 >
                   <div className="text-sm font-semibold text-white">
-                    {t.channel}
+                    {tr.channel}
                     <p className="mt-1.5 text-[13px] font-normal leading-relaxed text-zinc-400 md:hidden">
-                      {t.use}
+                      {tr.use}
                     </p>
                   </div>
                   <div className="font-mono text-[13px] text-[#7de8f7]">
-                    {t.transport}
+                    {tr.transport}
                   </div>
                   <div className="font-mono text-[13px] text-zinc-400">
-                    {t.port}
+                    {tr.port}
                   </div>
                   <p className="hidden text-[13px] leading-relaxed text-zinc-400 md:col-span-3 md:block">
-                    {t.use}
+                    {tr.use}
                   </p>
                 </motion.div>
               ))}
@@ -129,7 +98,7 @@ export function Protocol() {
             <div className="flex items-center gap-2.5">
               <Terminal className="h-4 w-4 text-[#c99bf5]" aria-hidden="true" />
               <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-300">
-                Login com prova de posse
+                {t.protocol.loginTitle}
               </h3>
             </div>
 
@@ -186,8 +155,7 @@ export function Protocol() {
               transition={{ delay: 1.7 }}
               className="mt-5 rounded-lg border border-emerald-400/15 bg-emerald-400/[0.05] p-3 text-[13px] leading-relaxed text-zinc-400"
             >
-              O servidor ignora o UID enviado pelo cliente e recalcula a partir
-              da chave pública. Spoofing de identidade torna-se impraticável.
+              {t.protocol.spoofNote}
             </motion.p>
 
             <a
@@ -197,7 +165,7 @@ export function Protocol() {
               className="group mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[#7de8f7] transition-colors hover:text-[#a5f0fb]"
             >
               <FileText className="h-4 w-4" aria-hidden="true" />
-              Ler a especificação completa
+              {t.protocol.readSpec}
               <ArrowUpRight
                 className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 aria-hidden="true"

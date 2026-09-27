@@ -1205,3 +1205,135 @@ h2 em {
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   FX PACK — efeitos v3
+   aurora · dust · spotlight · sheen · stagger · status ao vivo
+   (JS: js/fx.js · respeita prefers-reduced-motion)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── 1. Aurora: blobs do hero respiram devagar ── */
+.hero__blob--a { animation: fxAuroraA 26s ease-in-out infinite alternate; }
+.hero__blob--b { animation: fxAuroraB 21s ease-in-out infinite alternate; }
+.hero__blob--c { animation: fxAuroraC 31s ease-in-out infinite alternate; }
+@keyframes fxAuroraA {
+  0%   { translate: 0 0;          scale: 1; }
+  50%  { translate: 48px 36px;    scale: 1.07; }
+  100% { translate: -36px 18px;   scale: .96; }
+}
+@keyframes fxAuroraB {
+  0%   { translate: 0 0;          scale: 1; }
+  50%  { translate: 62px -42px;   scale: 1.12; }
+  100% { translate: 20px 32px;    scale: .94; }
+}
+@keyframes fxAuroraC {
+  0%   { translate: 0 0;          scale: 1; }
+  50%  { translate: -56px 28px;   scale: 1.09; }
+  100% { translate: 28px -24px;   scale: .97; }
+}
+.stage-glow { animation: fxGlowPulse 7s ease-in-out infinite alternate; }
+@keyframes fxGlowPulse { from { opacity: .72; scale: .97; } to { opacity: 1; scale: 1.05; } }
+.outro__blob { animation: fxOutroPulse 10s ease-in-out infinite alternate; transform-origin: 50% 100%; }
+@keyframes fxOutroPulse { from { opacity: .68; scale: 1; } to { opacity: 1; scale: 1.14; } }
+
+/* ── 2. Brilho deslizante nos textos em gradiente ── */
+.hero__title em, h2 em, .outro h2 em {
+  background-size: 220% 100%;
+  animation: fxSheenText 9s ease-in-out infinite;
+}
+@keyframes fxSheenText {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ── 3. Sheen nos botões principais ── */
+.btn--primary, .btn--white { position: relative; overflow: hidden; }
+.btn--primary::after, .btn--white::after {
+  content: ''; position: absolute; top: -40%; bottom: -40%; left: 0;
+  width: 34%; pointer-events: none;
+  transform: translateX(-180%) skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .5), transparent);
+}
+.btn--primary:hover::after, .btn--white:hover::after {
+  transform: translateX(440%) skewX(-18deg);
+  transition: transform .85s var(--ease);
+}
+
+/* ── 4. Spotlight que segue o mouse (classe aplicada via fx.js) ── */
+.fx-spot { position: relative; }
+.fx-spot > * { position: relative; z-index: 1; }
+.fx-spot::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  border-radius: inherit; pointer-events: none;
+  background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%),
+              rgba(124, 92, 255, .20), transparent 65%);
+  opacity: 0; transition: opacity .45s var(--ease);
+}
+.fx-spot:hover::before { opacity: 1; }
+.panel--perms.fx-spot::before, .codewin.fx-spot::before {
+  background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%),
+              rgba(124, 92, 255, .13), transparent 65%);
+}
+
+/* ── 5. Micro-interações ── */
+.dl__ic { transition: transform .45s var(--ease); }
+.dl__card:hover .dl__ic { transform: rotate(-7deg) scale(1.09); }
+.shots__rail img { transition: transform .55s var(--ease); }
+.shots__rail figure:hover img { transform: scale(1.05); }
+.stream__play { animation: fxPlay 2.8s ease-in-out infinite; }
+@keyframes fxPlay {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(255, 255, 255, .18); }
+  50%      { transform: scale(1.06); box-shadow: 0 0 0 16px rgba(255, 255, 255, 0); }
+}
+.wordband {
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.wordband:hover .wordband__track { animation-play-state: paused; }
+.faq__i[open] .faq__b { animation: fxFaq .42s var(--ease); }
+@keyframes fxFaq { from { opacity: 0; translate: 0 -8px; } }
+.app__bell svg { transform-origin: 50% 18%; animation: fxBell 7s ease-in-out infinite; }
+@keyframes fxBell {
+  0%, 21%, 100% { transform: rotate(0); }
+  3%  { transform: rotate(12deg); }
+  6%  { transform: rotate(-10deg); }
+  9%  { transform: rotate(7deg); }
+  12% { transform: rotate(-5deg); }
+  15% { transform: rotate(2deg); }
+}
+.chat__input .field::after {
+  content: ''; display: inline-block; width: 1.5px; height: 13px;
+  margin-left: 3px; background: #8b95a3; vertical-align: -2px;
+  animation: fxCaret 1.15s step-end infinite;
+}
+@keyframes fxCaret { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0; } }
+.bar span {
+  animation: grow 1.6s var(--ease) both, fxBreathe 3.6s ease-in-out 2s infinite alternate;
+  transform-origin: left center;
+}
+@keyframes fxBreathe { from { transform: scaleX(1); } to { transform: scaleX(.94); } }
+
+/* ── 6. Stagger cascata das linhas do mockup (índices via fx.js) ── */
+.fx-st {
+  opacity: 0; translate: 0 9px;
+  transition: opacity .5s var(--ease), translate .5s var(--ease);
+  transition-delay: calc(.28s + var(--i, 0) * 42ms);
+}
+.hero__stage.in .fx-st { opacity: 1; translate: 0 0; }
+
+/* ── 7. Canvas de partículas do hero ── */
+.fx-dust { position: absolute; inset: 0; pointer-events: none; }
+
+/* ── 8. Scrollbar & seleção ── */
+::selection { background: rgba(124, 92, 255, .55); color: #fff; }
+html { scrollbar-width: thin; scrollbar-color: rgba(124, 92, 255, .6) rgba(255, 255, 255, .05); }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: rgba(255, 255, 255, .04); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c5cff, #22d3ee);
+  border-radius: 99px; border: 2.5px solid var(--ink);
+}
+
+/* ── 9. Barra de progresso com gradiente vivo ── */
+.scroll-progress span { background-size: 220% 100%; animation: fxBar 5s linear infinite; }
+@keyframes fxBar { from { background-position: 0% 0; } to { background-position: 220% 0; } }

@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="css/style.css" rel="stylesheet"/>
+<link href="css/style.css?v=3" rel="stylesheet"/>
 </head>
 <body>
 <div aria-hidden="true" class="scroll-progress"><span id="scrollBar"></span></div>
@@ -57,6 +57,7 @@
 <div aria-hidden="true" class="hero__blob hero__blob--a"></div>
 <div aria-hidden="true" class="hero__blob hero__blob--b"></div>
 <div aria-hidden="true" class="hero__blob hero__blob--c"></div>
+<canvas aria-hidden="true" class="fx-dust"></canvas>
 <img alt="" aria-hidden="true" class="hero__mark" src="assets/logo.png"/>
 <div class="container hero__inner">
 <div class="hero__badge reveal" data-i18n="k012:2">
@@ -161,7 +162,7 @@
 <dl class="info__grid">
 <dt data-i18n="k309:0">Endereço:</dt><dd>163.176.35.133</dd>
 <dt data-i18n="k310:0">Versão:</dt><dd data-i18n="k311:0">1.1.71 no Linux</dd>
-<dt data-i18n="k312:0">Tempo ativo:</dt><dd>00:00:03</dd>
+<dt data-i18n="k312:0">Tempo ativo:</dt><dd id="uptimeVal">00:00:03</dd>
 <dt data-i18n="k313:0">Clientes conectados:</dt><dd>1 / 1000</dd>
 <dt data-i18n="k314:0">Canais:</dt><dd>25</dd>
 <dt data-i18n="k315:0">Perda de pacotes:</dt><dd>0,00%</dd>
@@ -194,7 +195,7 @@
 <footer class="app__status">
 <span class="app__srv" data-i18n="k300:0">Servidor Oficial da Comunidade Halla | github.com/grouphalla</span>
 <span class="app__mid"><span data-i18n="k318:0">Bem-vindo ao Halla!</span><i>•</i><span data-i18n="k307:0">Cliente de comunicação de voz</span><i>•</i><span>github.com/GroupHalla/Halla</span></span>
-<span class="app__who"><i class="sprout">🌱</i><span data-i18n="k319:0">Conectado como</span>&nbsp;<b>OFFICIAL HALLA ADMIN</b><i class="lock">🔒</i><b>E2EE</b><span>Ping: 59 ms</span><span><span data-i18n="k315:0">Perda de pacotes:</span> 0,00%</span></span>
+<span class="app__who"><i class="sprout">🌱</i><span data-i18n="k319:0">Conectado como</span>&nbsp;<b>OFFICIAL HALLA ADMIN</b><i class="lock">🔒</i><b>E2EE</b><span id="pingVal">Ping: 59 ms</span><span><span data-i18n="k315:0">Perda de pacotes:</span> 0,00%</span></span>
 </footer>
 </div>
 </div>
@@ -585,5 +586,6 @@
 <script src="js/i18n.js"></script>
 <script src="js/latest.js"></script>
 <script src="js/main.js"></script>
+<script src="js/fx.js"></script>
 </body>
 </html>

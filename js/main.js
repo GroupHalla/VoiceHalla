@@ -87,6 +87,15 @@
   }
 
   /* ─── copiar ─── */
+  const UI = {
+    copied: { pt: 'Copiado: ', en: 'Copied: ', es: 'Copiado: ' },
+    copyFail: { pt: 'Não foi possível copiar', en: 'Could not copy', es: 'No se pudo copiar' },
+    close: { pt: 'Fechar', en: 'Close', es: 'Cerrar' },
+  };
+  const uiLang = () => {
+    const l = (document.documentElement.lang || 'pt-BR').slice(0, 2).toLowerCase();
+    return UI.copied[l] ? l : 'pt';
+  };
   $$('.copy').forEach((btn) => {
     btn.addEventListener('click', async () => {
       const val = btn.dataset.copy || '';
@@ -104,12 +113,57 @@
         }
         btn.classList.add('copied');
         setTimeout(() => btn.classList.remove('copied'), 1600);
-        toast(`Copiado: ${val}`);
+        toast(UI.copied[uiLang()] + val);
       } catch (_) {
-        toast('Não foi possível copiar');
+        toast(UI.copyFail[uiLang()]);
       }
     });
   });
+
+  /* ─── lightbox da galeria ─── */
+  const shotsRail = $('#shotsRail');
+  if (shotsRail) {
+    let lb = null;
+    let lbKey = null;
+    const lbClose = () => {
+      if (!lb) return;
+      const el = lb; lb = null;
+      el.classList.remove('on');
+      setTimeout(() => el.remove(), 260);
+      document.body.style.overflow = '';
+      if (lbKey) { document.removeEventListener('keydown', lbKey); lbKey = null; }
+    };
+    shotsRail.querySelectorAll('figure').forEach((fig) => {
+      fig.addEventListener('click', () => {
+        const img = fig.querySelector('img');
+        if (!img || lb) return;
+        const src = img.currentSrc || img.src;
+        const cap = fig.querySelector('figcaption');
+        const capText = cap ? cap.textContent.trim() : '';
+        lb = document.createElement('div');
+        lb.className = 'lb';
+        lb.setAttribute('role', 'dialog');
+        lb.setAttribute('aria-modal', 'true');
+        lb.innerHTML =
+          '<figure class="lb__fig">' +
+          '<img class="lb__img" src="' + src + '" alt="' + (img.alt || capText).replace(/"/g, '&quot;') + '" />' +
+          (capText ? '<figcaption class="lb__cap">' + capText + '</figcaption>' : '') +
+          '</figure>' +
+          '<div class="lb__x" role="button" aria-label="' + UI.close[uiLang()] + '" tabindex="0">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
+          '</div>';
+        document.body.appendChild(lb);
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => requestAnimationFrame(() => lb.classList.add('on')));
+        lb.addEventListener('click', (e) => { if (e.target === lb) lbClose(); });
+        const x = lb.querySelector('.lb__x');
+        x.addEventListener('click', lbClose);
+        x.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); lbClose(); } });
+        lbKey = (e) => { if (e.key === 'Escape') lbClose(); };
+        document.addEventListener('keydown', lbKey);
+      });
+    });
+  }
 
   /* ─── FAQ: um aberto por vez ─── */
   const faqItems = $$('.faq__i');

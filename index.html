@@ -1,492 +1,481 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+
+<html data-theme="dark" lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Halla — Fale à vontade. Ninguém está ouvindo.</title>
-<meta name="description" content="Halla é um app de voz de baixa latência para comunidades. Criptografia ponta a ponta de verdade, servidor 100% seu, tela em 4K e nada de conta, anúncio ou plano pago." />
-<meta name="theme-color" content="#0a0917" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Halla — Fale à vontade. Ninguém está ouvindo." />
-<meta property="og:description" content="Voz de baixa latência, E2EE de verdade e servidor próprio. Grátis para uso pessoal e comercial." />
-<meta property="og:image" content="https://grouphalla.github.io/VoiceHalla/assets/app-icon.png" />
-<link rel="icon" href="assets/app-icon.png" type="image/png" />
-<link rel="apple-touch-icon" href="assets/app-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css" />
+<meta content="Halla é um app de voz de baixa latência para comunidades. Criptografia ponta a ponta de verdade, servidor 100% seu, tela em 4K e nada de conta, anúncio ou plano pago." name="description"/>
+<meta content="#0a0917" name="theme-color"/>
+<meta content="website" property="og:type"/>
+<meta content="Halla — Fale à vontade. Ninguém está ouvindo." property="og:title"/>
+<meta content="Voz de baixa latência, E2EE de verdade e servidor próprio. Grátis para uso pessoal e comercial." property="og:description"/>
+<meta content="https://grouphalla.github.io/VoiceHalla/assets/app-icon.png" property="og:image"/>
+<link href="assets/app-icon.png" rel="icon" type="image/png"/>
+<link href="assets/app-icon.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-
-<div class="scroll-progress" aria-hidden="true"><span id="scrollBar"></span></div>
-
+<div aria-hidden="true" class="scroll-progress"><span id="scrollBar"></span></div>
 <!-- ══════════════ NAV ══════════════ -->
 <header class="nav" id="nav">
-  <div class="nav__inner">
-    <a href="#top" class="brand" aria-label="Halla — início">
-      <span class="brand__mark"><img src="assets/logo.png" alt="" width="32" height="32" /></span>
-      <span class="brand__name">halla</span>
-    </a>
-
-    <nav class="nav__links" id="navLinks" aria-label="Navegação principal">
-      <a href="#voz">Voz</a>
-      <a href="#tela">Tela</a>
-      <a href="#privacidade">Privacidade</a>
-      <a href="#servidor">Servidor</a>
-      <a href="#plataformas">Baixar</a>
-      <a href="#faq">Dúvidas</a>
-    </nav>
-
-    <div class="nav__actions">
-      <a href="https://github.com/GroupHalla" class="nav__gh" target="_blank" rel="noopener" aria-label="GitHub do Halla">
-        <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.78 2.71 1.27 3.37.97.1-.75.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
-      </a>
-      <a href="#plataformas" class="btn btn--primary btn--sm">Baixar</a>
-      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
+<div class="nav__inner">
+<a aria-label="Halla — início" class="brand" href="#top">
+<span class="brand__mark"><img alt="" height="32" src="assets/logo.png" width="32"/></span>
+<span class="brand__name" data-i18n="k001:0">halla</span>
+</a>
+<nav aria-label="Navegação principal" class="nav__links" id="navLinks">
+<a data-i18n="k002:0" href="#voz">Voz</a>
+<a data-i18n="k003:0" href="#tela">Tela</a>
+<a data-i18n="k004:0" href="#privacidade">Privacidade</a>
+<a data-i18n="k005:0" href="#servidor">Servidor</a>
+<a data-i18n="k006:0" href="#plataformas">Baixar</a>
+<a data-i18n="k007:0" href="#faq">Dúvidas</a>
+</nav>
+<div class="nav__actions">
+<div aria-label="Idioma / Language / Idioma" class="langsw" id="langSw" role="group">
+<button aria-pressed="true" data-i18n="k008:0" data-lang="pt" type="button">PT</button>
+<button aria-pressed="false" data-i18n="k009:0" data-lang="en" type="button">EN</button>
+<button aria-pressed="false" data-i18n="k010:0" data-lang="es" type="button">ES</button>
+</div>
+<a aria-label="GitHub do Halla" class="nav__gh" href="https://github.com/GroupHalla" rel="noopener" target="_blank">
+<svg class="ic" fill="currentColor" viewbox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.78 2.71 1.27 3.37.97.1-.75.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"></path></svg>
+</a>
+<a class="btn btn--primary btn--sm" data-i18n="k011:0" href="#plataformas">Baixar</a>
+<button aria-expanded="false" aria-label="Abrir menu" class="hamburger" id="hamburger">
+<span></span><span></span><span></span>
+</button>
+</div>
+</div>
 </header>
-
 <main id="top">
-
 <!-- ══════════════ HERO ══════════════ -->
 <section class="hero">
-  <div class="hero__blob hero__blob--a" aria-hidden="true"></div>
-  <div class="hero__blob hero__blob--b" aria-hidden="true"></div>
-  <div class="hero__blob hero__blob--c" aria-hidden="true"></div>
-  <img class="hero__mark" src="assets/logo.png" alt="" aria-hidden="true" />
-
-  <div class="container hero__inner">
-    <div class="hero__badge reveal">
-      <span class="dot-live"></span>
-      Código aberto &nbsp;·&nbsp; sem conta &nbsp;·&nbsp; sem anúncio &nbsp;·&nbsp; sem plano pago
+<div aria-hidden="true" class="hero__blob hero__blob--a"></div>
+<div aria-hidden="true" class="hero__blob hero__blob--b"></div>
+<div aria-hidden="true" class="hero__blob hero__blob--c"></div>
+<img alt="" aria-hidden="true" class="hero__mark" src="assets/logo.png"/>
+<div class="container hero__inner">
+<div class="hero__badge reveal" data-i18n="k012:2">
+<span class="dot-live"></span>
+      Código aberto  ·  sem conta  ·  sem anúncio  ·  sem plano pago
     </div>
-
-    <h1 class="hero__title reveal" style="--d:.05s">
-      Fale à vontade.<br />
-      <em>Ninguém está ouvindo.</em>
-    </h1>
-
-    <p class="hero__lead reveal" style="--d:.1s">
+<h1 class="hero__title reveal" data-i18n="k013:0" style="--d:.05s">
+      Fale à vontade.<br/>
+<em data-i18n="k014:0">Ninguém está ouvindo.</em>
+</h1>
+<p class="hero__lead reveal" data-i18n="k015:0" style="--d:.1s">
       Halla é um app de voz de baixa latência para comunidades que levam a call a sério.
       Criptografia ponta a ponta de verdade, servidor 100% seu e áudio que não trava
       no meio da frase.
     </p>
-
-    <div class="hero__cta reveal" style="--d:.15s">
-      <a href="#plataformas" class="btn btn--primary btn--xl">
-        <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.1 10 4.2v7.1H3zM11 4.1 21 2.8v8.5h-10zM3 12.7h7v7.1L3 18.9zM11 12.7h10v8.5l-10-1.3z"/></svg>
+<div class="hero__cta reveal" style="--d:.15s">
+<a class="btn btn--primary btn--xl" data-asset=".exe" data-i18n="k016:2" data-release="Halla" href="https://github.com/GroupHalla/Halla/releases/latest" id="heroWin" rel="noopener" target="_blank">
+<svg class="ic" fill="currentColor" viewbox="0 0 24 24"><path d="M3 5.1 10 4.2v7.1H3zM11 4.1 21 2.8v8.5h-10zM3 12.7h7v7.1L3 18.9zM11 12.7h10v8.5l-10-1.3z"></path></svg>
         Baixar para Windows
       </a>
-      <a href="#plataformas" class="btn btn--ghost btn--xl">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18.5h2"/></svg>
+<a class="btn btn--ghost btn--xl" data-asset=".apk" data-i18n="k017:2" data-release="Halla-Mobile" href="https://github.com/GroupHalla/Halla-Mobile/releases/latest" id="heroAndroid" rel="noopener" target="_blank">
+<svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="20" rx="3" width="12" x="6" y="2"></rect><path d="M11 18.5h2"></path></svg>
         Android
       </a>
-    </div>
-
-    <p class="hero__note reveal" style="--d:.2s">
-      Grátis para uso pessoal, comunitário <b>e comercial</b> · Windows · Linux · Android
+</div>
+<p class="hero__note reveal" data-i18n="k018:0" data-i18n-1="k020:2" style="--d:.2s">
+      Grátis para uso pessoal, comunitário <b data-i18n="k019:0">e comercial</b> · Windows · Linux · Android
     </p>
-  </div>
-
-  <!-- big product visual -->
-  <div class="container hero__stage reveal" style="--d:.22s">
-    <div class="stage-glow" aria-hidden="true"></div>
-    <div class="app" id="appWindow">
-      <div class="app__bar">
-        <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
-        <div class="app__title"><img src="assets/logo.png" alt="" width="13" height="13" /> Halla — Comunidade Halla</div>
-        <div class="app__pill"><span class="dot-live dot-live--sm"></span> conectado</div>
-      </div>
-
-      <div class="app__body">
-        <aside class="app__side">
-          <div class="side-head">
-            <span class="side-badge">CH</span>
-            <div><b>Comunidade Halla</b><small>halla.oficial</small></div>
-          </div>
-
-          <div class="tree">
-            <div class="chan chan--open">
-              <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h5V3z"/></svg>
-              Lobby Geral <span class="cnt">3</span>
+</div>
+<!-- big product visual: réplica fiel da UI do app (v1.1.37, tema escuro) -->
+<div class="container hero__stage reveal" style="--d:.22s">
+<div aria-hidden="true" class="stage-glow"></div>
+<div class="app" id="appWindow">
+<div class="app__bar">
+<span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+<div class="app__title" data-i18n="k021:1"><img alt="" height="13" src="assets/logo.png" width="13"/> Halla — Comunidade Halla</div>
+<div class="app__pill" data-i18n="k022:1"><span class="dot-live dot-live--sm"></span> conectado</div>
+</div>
+<!-- barra de menus + transporte, como no app -->
+<div class="app__menu">
+<nav aria-hidden="true" class="app__nav">
+<span data-i18n="k023:0">Conexões</span><span data-i18n="k024:0">Marcadores</span><span data-i18n="k025:0">Eu</span><span data-i18n="k026:0">Permissões</span><span data-i18n="k027:0">Ferramentas</span><span data-i18n="k028:0">Complementos</span><span data-i18n="k029:0">Ajuda</span>
+</nav>
+<div aria-hidden="true" class="app__transport">
+<span class="tb tb--on" title="Microfone">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="11" rx="3" width="6" x="9" y="2"></rect><path d="M5 10a7 7 0 0 0 14 0M12 17v4"></path></svg>
+</span>
+<canvas aria-hidden="true" height="26" id="wave" width="220"></canvas>
+<span class="tb" title="Áudio">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M3 14v-4a9 9 0 0 1 18 0v4"></path><rect height="7" rx="1.6" width="4" x="3" y="14"></rect><rect height="7" rx="1.6" width="4" x="17" y="14"></rect></svg>
+</span>
+<span class="tb" title="Gravação">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" fill="currentColor" r="3" stroke="none"></circle></svg>
+</span>
+<span class="tb" title="Configurações">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1h.2a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.5 1z"></path></svg>
+</span>
+</div>
+<span aria-hidden="true" class="app__bell">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg>
+</span>
+</div>
+<div class="app__body">
+<aside class="app__side">
+<div class="srv">
+<span class="srv__ic">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="6" rx="2" width="18" x="3" y="4"></rect><rect height="6" rx="2" width="18" x="3" y="14"></rect><path d="M7 7h.01M7 17h.01"></path></svg>
+</span>
+<div class="srv__name"><b data-i18n="k030:0">Servidor oficial da Comunidade Halla</b><small data-i18n="k031:0">163.176.35.133:9987</small></div>
+<span aria-hidden="true" class="srv__on"></span>
+</div>
+<div class="tree">
+<div class="cat cat--open" data-i18n="k032:1"><svg class="caret" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>Área de entrada</div>
+<div class="ch" data-i18n="k033:2">
+<span class="ch__ic ch__ic--ok"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24"><polyline points="5 12.5 10 17.5 19 7"></polyline></svg></span>
+              Lobby Geral <span class="cnt" data-i18n="k034:0">3</span>
+</div>
+<div class="users">
+<div class="user user--talk">
+<span class="av" data-i18n="k035:0">M</span><span data-i18n="k036:0">Marina</span>
+<span class="bars"><i></i><i></i><i></i><i></i></span>
+</div>
+<div class="user"><span class="av" data-i18n="k037:0">R</span><span data-i18n="k038:0">Rafael</span>
+<svg class="ic ic--xs mute" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M3 3l18 18M9 9v3a3 3 0 0 0 5.1 2.1M15 11.5V5a3 3 0 0 0-5.9-.7"></path><path d="M17 17a5 5 0 0 1-7.9-4M12 19v3"></path></svg>
+</div>
+<div class="user user--me"><span class="av" data-i18n="k039:0">V</span><span data-i18n="k040:0">Você</span></div>
+</div>
+<div class="cat cat--open" data-i18n="k041:1"><svg class="caret" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>Área pública</div>
+<div class="ch" data-i18n="k042:2">
+<span class="ch__ic ch__ic--ok"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24"><polyline points="5 12.5 10 17.5 19 7"></polyline></svg></span>
+              Talk 1
             </div>
-            <div class="users">
-              <div class="user user--talk">
-                <span class="av av--v">M</span><span>Marina</span>
-                <span class="bars"><i></i><i></i><i></i><i></i></span>
-              </div>
-              <div class="user"><span class="av av--c">R</span><span>Rafael</span>
-                <svg class="ic ic--xs mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l18 18M9 9v3a3 3 0 0 0 5.1 2.1M15 11.5V5a3 3 0 0 0-5.9-.7"/><path d="M17 17a5 5 0 0 1-7.9-4M12 19v3"/></svg>
-              </div>
-              <div class="user"><span class="av av--a">L</span><span>Lucas</span></div>
-            </div>
-
-            <div class="chan">
-              <svg class="caret caret--shut" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+<div class="ch" data-i18n="k043:2">
+<span class="ch__ic ch__ic--no"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3" viewbox="0 0 24 24"><path d="M6 12h12"></path></svg></span>
               Sala Privada
             </div>
-
-            <div class="chan chan--open">
-              <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg>
-              Gameplay — 4K <span class="cnt">2</span>
-            </div>
-            <div class="users">
-              <div class="user user--live">
-                <span class="av av--g">B</span><span>Bruna</span>
-                <span class="live"><svg class="ic ic--xs" viewBox="0 0 24 24" fill="currentColor"><polygon points="10 8 16 12 10 16"/></svg>LIVE</span>
-              </div>
-              <div class="user user--talk">
-                <span class="av av--o">T</span><span>Thiago</span>
-                <span class="bars"><i></i><i></i><i></i><i></i></span>
-              </div>
-            </div>
-
-            <div class="chan">
-              <svg class="caret caret--shut" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-              AFK
-            </div>
-          </div>
-
-          <div class="side-foot">
-            <span class="av av--me">V</span>
-            <div class="me"><b>Você</b><small>#a3f1 · E2EE ✓</small></div>
-            <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9M4.6 9a1.7 1.7 0 0 0-.3-1.9"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
-          </div>
-        </aside>
-
-        <section class="app__main">
-          <div class="main-head">
-            <div>
-              <h4># lobby-geral</h4>
-              <p>Canal permanente · Opus 48 kHz · 64 kbps</p>
-            </div>
-            <div class="main-chips"><span class="chip chip--ok">E2EE</span><span class="chip">128 ms</span></div>
-          </div>
-
-          <div class="chat">
-            <div class="msg"><span class="av av--v">M</span><div><b>Marina</b><time>21:04</time><p>fala galera, subindo a stream agora 🎙️</p></div></div>
-            <div class="msg"><span class="av av--c">R</span><div><b>Rafael</b><time>21:04</time><p>qualidade tá absurda, nenhum corte</p></div></div>
-            <div class="msg msg--sys">
-              <svg class="ic ic--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+<div class="cat cat--open" data-i18n="k044:1"><svg class="caret" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>Gaming</div>
+<div class="ch" data-i18n="k045:2">
+<span class="ch__ic ch__ic--ok"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24"><polyline points="5 12.5 10 17.5 19 7"></polyline></svg></span>
+              Gameplay — 4K <span class="cnt" data-i18n="k046:0">2</span>
+</div>
+<div class="users">
+<div class="user user--live">
+<span class="av" data-i18n="k047:0">B</span><span data-i18n="k048:0">Bruna</span>
+<span class="live" data-i18n="k049:1"><svg class="ic ic--xs" fill="currentColor" viewbox="0 0 24 24"><polygon points="10 8 16 12 10 16"></polygon></svg>LIVE</span>
+</div>
+<div class="user user--talk">
+<span class="av" data-i18n="k050:0">T</span><span data-i18n="k051:0">Thiago</span>
+<span class="bars"><i></i><i></i><i></i><i></i></span>
+</div>
+</div>
+<div class="cat" data-i18n="k052:1"><svg class="caret caret--shut" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>AFK</div>
+</div>
+</aside>
+<section class="app__main">
+<div class="app__tabs">
+<span data-i18n="k053:0">Chat do servidor</span>
+<span class="on" data-i18n="k054:0">Chat do canal</span>
+<span class="app__chinfo" data-i18n="k055:0">Lobby Geral · Opus 48 kHz</span>
+</div>
+<div class="chat">
+<div class="msg"><b data-i18n="k056:0">Marina</b><time data-i18n="k057:0">21:04</time><p data-i18n="k058:0">fala galera, subindo a stream agora 🎙️</p></div>
+<div class="msg"><b data-i18n="k059:0">Rafael</b><time data-i18n="k060:0">21:04</time><p data-i18n="k061:0">qualidade tá absurda, nenhum corte</p></div>
+<div class="msg msg--sys" data-i18n="k062:2">
+<svg class="ic ic--xs" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
               Sessão E2EE verificada via SAS
             </div>
-            <div class="msg"><span class="av av--a">L</span><div><b>Lucas</b><time>21:05</time><p>me dá whisper quando o boss spawnar 👀</p></div></div>
-          </div>
-
-          <div class="voicebar">
-            <div class="voicebar__mic">
-              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg>
-            </div>
-            <canvas id="wave" width="600" height="46"></canvas>
-            <div class="ptt">PTT</div>
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
+<div class="msg"><b data-i18n="k063:0">Lucas</b><time data-i18n="k064:0">21:05</time><p data-i18n="k065:0">me dá whisper quando o boss spawnar 👀</p></div>
+</div>
+<div class="app__input">
+<span aria-hidden="true" class="fmt"><b data-i18n="k066:0">B</b><i data-i18n="k067:0">I</i><s data-i18n="k068:0">S</s><code>&lt;/&gt;</code></span>
+<span class="field" data-i18n="k069:0">Digite a mensagem...</span>
+<span aria-hidden="true" class="send">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+</span>
+</div>
 </section>
-
+</div>
+<div class="app__status">
+<span class="app__srv" data-i18n="k070:1"><svg class="ic ic--xs" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"></path><path d="M3 12l9 4 9-4M3 17l9 4 9-4"></path></svg> Comunidade Halla</span>
+<span class="app__stats" data-i18n="k071:0" data-i18n-1="k073:4" data-i18n-2="k074:6" data-i18n-3="k075:8">Conectado como <b data-i18n="k072:0">Você</b><i class="sep"></i><svg class="ic ic--xs" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="10" rx="2" width="16" x="4" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg> E2EE<i class="sep"></i>Ping: 128 ms<i class="sep"></i>Perda: 0.00%</span>
+</div>
+</div>
+</div>
+</section>
 <!-- ══════════════ WORD MARQUEE ══════════════ -->
-<section class="wordband" aria-hidden="true">
-  <div class="wordband__track">
-    <span>falar</span><i>✦</i><span>jogar</span><i>✦</i><span>rir</span><i>✦</i>
-    <span>cochichar</span><i>✦</i><span>streamar</span><i>✦</i><span>gritar</span><i>✦</i>
-    <span>maratonar</span><i>✦</i><span>criar</span><i>✦</i>
-    <span>falar</span><i>✦</i><span>jogar</span><i>✦</i><span>rir</span><i>✦</i>
-    <span>cochichar</span><i>✦</i><span>streamar</span><i>✦</i><span>gritar</span><i>✦</i>
-    <span>maratonar</span><i>✦</i><span>criar</span><i>✦</i>
-  </div>
+<section aria-hidden="true" class="wordband">
+<div class="wordband__track">
+<span data-i18n="k076:0">falar</span><i data-i18n="k077:0">✦</i><span data-i18n="k078:0">jogar</span><i data-i18n="k079:0">✦</i><span data-i18n="k080:0">rir</span><i data-i18n="k081:0">✦</i>
+<span data-i18n="k082:0">cochichar</span><i data-i18n="k083:0">✦</i><span data-i18n="k084:0">streamar</span><i data-i18n="k085:0">✦</i><span data-i18n="k086:0">gritar</span><i data-i18n="k087:0">✦</i>
+<span data-i18n="k088:0">maratonar</span><i data-i18n="k089:0">✦</i><span data-i18n="k090:0">criar</span><i data-i18n="k091:0">✦</i>
+<span data-i18n="k092:0">falar</span><i data-i18n="k093:0">✦</i><span data-i18n="k094:0">jogar</span><i data-i18n="k095:0">✦</i><span data-i18n="k096:0">rir</span><i data-i18n="k097:0">✦</i>
+<span data-i18n="k098:0">cochichar</span><i data-i18n="k099:0">✦</i><span data-i18n="k100:0">streamar</span><i data-i18n="k101:0">✦</i><span data-i18n="k102:0">gritar</span><i data-i18n="k103:0">✦</i>
+<span data-i18n="k104:0">maratonar</span><i data-i18n="k105:0">✦</i><span data-i18n="k106:0">criar</span><i data-i18n="k107:0">✦</i>
+</div>
 </section>
-
 <!-- ══════════════ VOZ ══════════════ -->
 <section class="block block--dark" id="voz">
-  <div class="container split">
-    <div class="split__copy reveal">
-      <span class="kicker">01 — Motor de voz</span>
-      <h2>Parece que todo mundo<br /><em>tá na mesma sala.</em></h2>
-      <p>
-        Quadros de 20&nbsp;ms, 48&nbsp;kHz, e um monte de DSP rodando dentro do próprio
+<div class="container split">
+<div class="split__copy reveal">
+<span class="kicker" data-i18n="k108:0">01 — Motor de voz</span>
+<h2 data-i18n="k109:0">Parece que todo mundo<br/><em data-i18n="k110:0">tá na mesma sala.</em></h2>
+<p data-i18n="k111:0">
+        Quadros de 20 ms, 48 kHz, e um monte de DSP rodando dentro do próprio
         binário — não em um plugin que você precisa instalar. O resultado: voz limpa,
         presente, sem aquele corte no meio da palavra.
       </p>
-      <ul class="ticks">
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><b>RNNoise neural</b> tira teclado, ventilador e rua da jogada</li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><b>Cancelamento de eco</b> com ducking enquanto alguém fala</li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><b>Whisper</b> para um canal, uma galera ou uma lista fechada</li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><b>PTT por tecla ou botão do mouse</b> — inclusive os laterais</li>
-      </ul>
-    </div>
-
-    <div class="split__visual reveal" style="--d:.1s">
-      <div class="panel panel--eq">
-        <div class="panel__top"><span class="dot-live dot-live--sm"></span> mixagem ao vivo <small>out.mix</small></div>
-        <div class="eq" id="eq">
-          <i style="--h:36%"></i><i style="--h:74%"></i><i style="--h:52%"></i><i style="--h:92%"></i>
-          <i style="--h:44%"></i><i style="--h:68%"></i><i style="--h:85%"></i><i style="--h:33%"></i>
-          <i style="--h:60%"></i><i style="--h:79%"></i><i style="--h:42%"></i><i style="--h:70%"></i>
-          <i style="--h:89%"></i><i style="--h:50%"></i><i style="--h:75%"></i><i style="--h:39%"></i>
-          <i style="--h:64%"></i><i style="--h:82%"></i><i style="--h:47%"></i><i style="--h:71%"></i>
-        </div>
-        <div class="eq-axis"><span>60 Hz</span><span>250</span><span>1 k</span><span>4 k</span><span>12 kHz</span></div>
-        <div class="meters">
-          <div class="meter"><div class="meter__l"><span>Entrada</span><b>-6.2 dB</b></div><div class="bar"><span style="width:74%"></span></div></div>
-          <div class="meter"><div class="meter__l"><span>Ruído removido</span><b>-18.4 dB</b></div><div class="bar bar--cy"><span style="width:52%"></span></div></div>
-          <div class="meter"><div class="meter__l"><span>Eco suprimido</span><b>-22.1 dB</b></div><div class="bar bar--lm"><span style="width:63%"></span></div></div>
-        </div>
-        <div class="panel__foot">
-          <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2 3 14h8l-1 8 10-12h-8z"/></svg>
+<ul class="ticks">
+<li data-i18n="k113:2"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><b data-i18n="k112:0">RNNoise neural</b> tira teclado, ventilador e rua da jogada</li>
+<li data-i18n="k115:2"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><b data-i18n="k114:0">Cancelamento de eco</b> com ducking enquanto alguém fala</li>
+<li data-i18n="k117:2"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><b data-i18n="k116:0">Whisper</b> para um canal, uma galera ou uma lista fechada</li>
+<li data-i18n="k119:2"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><b data-i18n="k118:0">PTT por tecla ou botão do mouse</b> — inclusive os laterais</li>
+</ul>
+</div>
+<div class="split__visual reveal" style="--d:.1s">
+<div class="panel panel--eq">
+<div class="panel__top" data-i18n="k120:1"><span class="dot-live dot-live--sm"></span> mixagem ao vivo <small data-i18n="k121:0">out.mix</small></div>
+<div class="eq" id="eq">
+<i style="--h:36%"></i><i style="--h:74%"></i><i style="--h:52%"></i><i style="--h:92%"></i>
+<i style="--h:44%"></i><i style="--h:68%"></i><i style="--h:85%"></i><i style="--h:33%"></i>
+<i style="--h:60%"></i><i style="--h:79%"></i><i style="--h:42%"></i><i style="--h:70%"></i>
+<i style="--h:89%"></i><i style="--h:50%"></i><i style="--h:75%"></i><i style="--h:39%"></i>
+<i style="--h:64%"></i><i style="--h:82%"></i><i style="--h:47%"></i><i style="--h:71%"></i>
+</div>
+<div class="eq-axis"><span data-i18n="k122:0">60 Hz</span><span data-i18n="k123:0">250</span><span data-i18n="k124:0">1 k</span><span data-i18n="k125:0">4 k</span><span data-i18n="k126:0">12 kHz</span></div>
+<div class="meters">
+<div class="meter"><div class="meter__l"><span data-i18n="k127:0">Entrada</span><b data-i18n="k128:0">-6.2 dB</b></div><div class="bar"><span style="width:74%"></span></div></div>
+<div class="meter"><div class="meter__l"><span data-i18n="k129:0">Ruído removido</span><b data-i18n="k130:0">-18.4 dB</b></div><div class="bar bar--cy"><span style="width:52%"></span></div></div>
+<div class="meter"><div class="meter__l"><span data-i18n="k131:0">Eco suprimido</span><b data-i18n="k132:0">-22.1 dB</b></div><div class="bar bar--lm"><span style="width:63%"></span></div></div>
+</div>
+<div class="panel__foot" data-i18n="k133:2">
+<svg class="ic ic--sm" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M13 2 3 14h8l-1 8 10-12h-8z"></path></svg>
           0 quadros perdidos nos últimos 60 s
         </div>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ══════════════ TELA (light block) ══════════════ -->
 <section class="block block--light" id="tela">
-  <div class="container split split--rev">
-    <div class="split__visual reveal">
-      <div class="stream">
-        <div class="stream__screen">
-          <div class="stream__scan"></div>
-          <div class="stream__tag"><span class="dot-live dot-live--sm"></span> AO VIVO</div>
-          <div class="stream__title">Gameplay — Gameplay 4K · Bruna</div>
-          <div class="stream__play">
-            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="9 6 19 12 9 18"/></svg>
-          </div>
-        </div>
-        <div class="stream__bar">
-          <div class="qpills">
-            <span>480p</span><span>720p</span><span>1080p</span><span>1440p</span><span class="on">2160p</span>
-          </div>
-          <div class="qmeta"><b>60 FPS</b><i></i><b>8000 kbps</b><i></i><b>H.264 · HW</b></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="split__copy reveal" style="--d:.1s">
-      <span class="kicker kicker--dark">02 — Compartilhamento de tela</span>
-      <h2>Assista junto.<br /><em>Em 4K. Sem lag.</em></h2>
-      <p>
+<div class="container split split--rev">
+<div class="split__visual reveal">
+<div class="stream">
+<div class="stream__screen">
+<div class="stream__scan"></div>
+<div class="stream__tag" data-i18n="k134:1"><span class="dot-live dot-live--sm"></span> AO VIVO</div>
+<div class="stream__title" data-i18n="k135:0">Gameplay — Gameplay 4K · Bruna</div>
+<div class="stream__play">
+<svg fill="currentColor" viewbox="0 0 24 24"><polygon points="9 6 19 12 9 18"></polygon></svg>
+</div>
+</div>
+<div class="stream__bar">
+<div class="qpills">
+<span data-i18n="k136:0">480p</span><span data-i18n="k137:0">720p</span><span data-i18n="k138:0">1080p</span><span data-i18n="k139:0">1440p</span><span class="on" data-i18n="k140:0">2160p</span>
+</div>
+<div class="qmeta"><b data-i18n="k141:0">60 FPS</b><i></i><b data-i18n="k142:0">8000 kbps</b><i></i><b data-i18n="k143:0">H.264 · HW</b></div>
+</div>
+</div>
+</div>
+<div class="split__copy reveal" style="--d:.1s">
+<span class="kicker kicker--dark" data-i18n="k144:0">02 — Compartilhamento de tela</span>
+<h2 data-i18n="k145:0">Assista junto.<br/><em data-i18n="k146:0">Em 4K. Sem lag.</em></h2>
+<p data-i18n="k147:0" data-i18n-1="k149:2">
         Vídeo e áudio por WebRTC, com sinalização passando pelo servidor e mídia
         direto entre vocês. O seletor de qualidade é estilo YouTube — e respeita
-        o teto do <b>seu</b> servidor, não o de um plano pago.
+        o teto do <b data-i18n="k148:0">seu</b> servidor, não o de um plano pago.
       </p>
-      <ul class="ticks ticks--dark">
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>De <b>480p a 2160p</b>, 30 ou 60 FPS, bitrate independente</li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><b>Áudio do PC por processo</b> — jogo e música chegam sem eco</li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><b>H.264 por hardware</b> no Windows, com fallback para VP8</li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>O viewer guarda só o frame mais novo: <b>latência não acumula</b></li>
-      </ul>
-    </div>
-  </div>
+<ul class="ticks ticks--dark">
+<li data-i18n="k150:1" data-i18n-1="k152:3"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>De <b data-i18n="k151:0">480p a 2160p</b>, 30 ou 60 FPS, bitrate independente</li>
+<li data-i18n="k154:2"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><b data-i18n="k153:0">Áudio do PC por processo</b> — jogo e música chegam sem eco</li>
+<li data-i18n="k156:2"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><b data-i18n="k155:0">H.264 por hardware</b> no Windows, com fallback para VP8</li>
+<li data-i18n="k157:1"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>O viewer guarda só o frame mais novo: <b data-i18n="k158:0">latência não acumula</b></li>
+</ul>
+</div>
+</div>
 </section>
-
 <!-- ══════════════ PRIVACIDADE ══════════════ -->
 <section class="block block--violet" id="privacidade">
-  <div class="container">
-    <div class="head head--center reveal">
-      <span class="kicker">03 — Privacidade</span>
-      <h2>O servidor só repassa.<br /><em>Nunca escuta.</em></h2>
-      <p>
+<div class="container">
+<div class="head head--center reveal">
+<span class="kicker" data-i18n="k159:0">03 — Privacidade</span>
+<h2 data-i18n="k160:0">O servidor só repassa.<br/><em data-i18n="k161:0">Nunca escuta.</em></h2>
+<p data-i18n="k162:0">
         No protocolo v6, as chaves de conteúdo nascem e morrem nos clientes.
         O HallaServer encaminha pacotes cifrados e é literalmente incapaz de lê-los.
         Não é um recurso premium — é o padrão, obrigatório, em toda conexão.
       </p>
-    </div>
-
-    <div class="priv">
-      <div class="priv__main reveal">
-        <div class="sas">
-          <div class="sas__top">
-            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+</div>
+<div class="priv">
+<div class="priv__main reveal">
+<div class="sas">
+<div class="sas__top" data-i18n="k163:2">
+<svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
             Verificação de identidade
           </div>
-          <div class="sas__code">
-            <span>4</span><span>8</span><span>2</span><em></em>
-            <span>9</span><span>1</span><span>7</span><em></em>
-            <span>3</span><span>0</span><span>5</span>
-          </div>
-          <p class="sas__hint">
+<div class="sas__code">
+<span data-i18n="k164:0">4</span><span data-i18n="k165:0">8</span><span data-i18n="k166:0">2</span><em></em>
+<span data-i18n="k167:0">9</span><span data-i18n="k168:0">1</span><span data-i18n="k169:0">7</span><em></em>
+<span data-i18n="k170:0">3</span><span data-i18n="k171:0">0</span><span data-i18n="k172:0">5</span>
+</div>
+<p class="sas__hint" data-i18n="k173:0">
             Confira estes 9 dígitos com a outra ponta. Se baterem, não existe ninguém
             no meio da conversa — nem o próprio servidor.
           </p>
-          <div class="sas__ok">
-            <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+<div class="sas__ok" data-i18n="k174:2">
+<svg class="ic ic--sm" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
             Identidade verificada · Ed25519 · SAS correspondente
           </div>
-        </div>
-      </div>
-
-      <div class="priv__side">
-        <div class="pcard reveal" style="--d:.05s">
-          <div class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-          <div><h4>TLS com TOFU pinning</h4><p>O certificado é confiado na primeira conexão e você é alertado se mudar depois. Modelo SSH.</p></div>
-        </div>
-        <div class="pcard reveal" style="--d:.1s">
-          <div class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6z"/><circle cx="12" cy="11" r="2"/><path d="M12 13v3"/></svg></div>
-          <div><h4>Identidade Ed25519</h4><p>Seu UID vem da chave pública. Você prova quem é assinando um desafio — não dá para "dizer".</p></div>
-        </div>
-        <div class="pcard reveal" style="--d:.15s">
-          <div class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
-          <div><h4>E2EE v6 de verdade</h4><p>X25519 efêmero + HKDF-SHA256 + AES-256-GCM. As chaves são geradas pelos clientes.</p></div>
-        </div>
-        <div class="pcard reveal" style="--d:.2s">
-          <div class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 12h.01M10 12h.01M14 12h.01M18 12h.01"/></svg></div>
-          <div><h4>Chave privada no cofre do SO</h4><p>Credential Manager, Keychain ou Secret Service. Nunca em texto plano nas configurações.</p></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cryptorow reveal">
-      <span>ChaCha20-Poly1305</span><i></i><span>AES-256-GCM</span><i></i><span>HKDF-SHA256</span><i></i>
-      <span>Ed25519</span><i></i><span>X25519</span><i></i><span>Opus</span>
-    </div>
-  </div>
+</div>
+</div>
+<div class="priv__side">
+<div class="pcard reveal" style="--d:.05s">
+<div class="pcard__ic"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="10" rx="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+<div><h4 data-i18n="k175:0">TLS com TOFU pinning</h4><p data-i18n="k176:0">O certificado é confiado na primeira conexão e você é alertado se mudar depois. Modelo SSH.</p></div>
+</div>
+<div class="pcard reveal" style="--d:.1s">
+<div class="pcard__ic"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6z"></path><circle cx="12" cy="11" r="2"></circle><path d="M12 13v3"></path></svg></div>
+<div><h4 data-i18n="k177:0">Identidade Ed25519</h4><p data-i18n="k178:0">Seu UID vem da chave pública. Você prova quem é assinando um desafio — não dá para "dizer".</p></div>
+</div>
+<div class="pcard reveal" style="--d:.15s">
+<div class="pcard__ic"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="12" rx="3" width="12" x="6" y="6"></rect><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></div>
+<div><h4 data-i18n="k179:0">E2EE v6 de verdade</h4><p data-i18n="k180:0">X25519 efêmero + HKDF-SHA256 + AES-256-GCM. As chaves são geradas pelos clientes.</p></div>
+</div>
+<div class="pcard reveal" style="--d:.2s">
+<div class="pcard__ic"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="12" rx="3" width="20" x="2" y="6"></rect><path d="M6 12h.01M10 12h.01M14 12h.01M18 12h.01"></path></svg></div>
+<div><h4 data-i18n="k181:0">Chave privada no cofre do SO</h4><p data-i18n="k182:0">Credential Manager, Keychain ou Secret Service. Nunca em texto plano nas configurações.</p></div>
+</div>
+</div>
+</div>
+<div class="cryptorow reveal">
+<span data-i18n="k183:0">ChaCha20-Poly1305</span><i></i><span data-i18n="k184:0">AES-256-GCM</span><i></i><span data-i18n="k185:0">HKDF-SHA256</span><i></i>
+<span data-i18n="k186:0">Ed25519</span><i></i><span data-i18n="k187:0">X25519</span><i></i><span data-i18n="k188:0">Opus</span>
+</div>
+</div>
 </section>
-
 <!-- ══════════════ SERVIDOR (light) ══════════════ -->
 <section class="block block--light" id="servidor">
-  <div class="container split">
-    <div class="split__copy reveal">
-      <span class="kicker kicker--dark">04 — Seu servidor</span>
-      <h2>Suas regras.<br /><em>Sua infra.</em></h2>
-      <p>
+<div class="container split">
+<div class="split__copy reveal">
+<span class="kicker kicker--dark" data-i18n="k189:0">04 — Seu servidor</span>
+<h2 data-i18n="k190:0">Suas regras.<br/><em data-i18n="k191:0">Sua infra.</em></h2>
+<p data-i18n="k192:0">
         Rode o HallaServer no seu VPS, na sua máquina ou em um painel de hospedagem —
         e seja dono da sua comunidade de verdade. Canais, permissões, identidades e
         histórico ficam com você.
       </p>
-      <ul class="ticks ticks--dark">
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><b>Docker, systemd ou Pterodactyl</b> — sobe em minutos</li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><b>Permissões granulares</b>: Allow / Deny / Herança, talk power, operador</li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><b>Canais temporários dinâmicos</b> e senha por canal</li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><b>Licença livre</b> — inclusive para hospedagem paga</li>
-      </ul>
-
-      <div class="conn">
-        <div class="conn__row">
-          <span class="conn__l">Servidor oficial</span>
-          <code>163.176.35.133:9987</code>
-          <button class="copy" data-copy="163.176.35.133:9987" aria-label="Copiar endereço">
-            <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="split__visual reveal" style="--d:.1s">
-      <div class="panel panel--perms">
-        <div class="panel__top"><svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Permissões — Canal “Gameplay”</div>
-        <div class="perm">
-          <div class="perm__h"><span>Permissão</span><span>Herda</span><span>Allow</span><span>Deny</span></div>
-          <div class="perm__r"><span>Ver canal</span><i class="rd on"></i><i class="rd"></i><i class="rd"></i></div>
-          <div class="perm__r"><span>Entrar</span><i class="rd"></i><i class="rd on"></i><i class="rd"></i></div>
-          <div class="perm__r"><span>Falar</span><i class="rd"></i><i class="rd on"></i><i class="rd"></i></div>
-          <div class="perm__r"><span>Chat de texto</span><i class="rd on"></i><i class="rd"></i><i class="rd"></i></div>
-          <div class="perm__r"><span>Ouvir</span><i class="rd"></i><i class="rd on"></i><i class="rd"></i></div>
-          <div class="perm__r"><span>Compartilhar tela</span><i class="rd"></i><i class="rd on"></i><i class="rd"></i></div>
-          <div class="perm__r"><span>Mover clientes</span><i class="rd"></i><i class="rd"></i><i class="rd on"></i></div>
-        </div>
-        <div class="panel__foot">
-          <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+<ul class="ticks ticks--dark">
+<li data-i18n="k194:2"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><b data-i18n="k193:0">Docker, systemd ou Pterodactyl</b> — sobe em minutos</li>
+<li data-i18n="k196:2"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><b data-i18n="k195:0">Permissões granulares</b>: Allow / Deny / Herança, talk power, operador</li>
+<li data-i18n="k198:2"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><b data-i18n="k197:0">Canais temporários dinâmicos</b> e senha por canal</li>
+<li data-i18n="k200:2"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><b data-i18n="k199:0">Licença livre</b> — inclusive para hospedagem paga</li>
+</ul>
+<div class="conn">
+<div class="conn__row">
+<span class="conn__l" data-i18n="k201:0">Servidor oficial</span>
+<code>163.176.35.133:9987</code>
+<button aria-label="Copiar endereço" class="copy" data-copy="163.176.35.133:9987">
+<svg class="ic ic--sm" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="12" rx="2" width="12" x="9" y="9"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+</button>
+</div>
+</div>
+</div>
+<div class="split__visual reveal" style="--d:.1s">
+<div class="panel panel--perms">
+<div class="panel__top" data-i18n="k202:1"><svg class="ic ic--sm" fill="none" stroke="currentColor" stroke-width="1.9" viewbox="0 0 24 24"><rect height="10" rx="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Permissões — Canal “Gameplay”</div>
+<div class="perm">
+<div class="perm__h"><span data-i18n="k203:0">Permissão</span><span data-i18n="k204:0">Herda</span><span data-i18n="k205:0">Allow</span><span data-i18n="k206:0">Deny</span></div>
+<div class="perm__r"><span data-i18n="k207:0">Ver canal</span><i class="rd on"></i><i class="rd"></i><i class="rd"></i></div>
+<div class="perm__r"><span data-i18n="k208:0">Entrar</span><i class="rd"></i><i class="rd on"></i><i class="rd"></i></div>
+<div class="perm__r"><span data-i18n="k209:0">Falar</span><i class="rd"></i><i class="rd on"></i><i class="rd"></i></div>
+<div class="perm__r"><span data-i18n="k210:0">Chat de texto</span><i class="rd on"></i><i class="rd"></i><i class="rd"></i></div>
+<div class="perm__r"><span data-i18n="k211:0">Ouvir</span><i class="rd"></i><i class="rd on"></i><i class="rd"></i></div>
+<div class="perm__r"><span data-i18n="k212:0">Compartilhar tela</span><i class="rd"></i><i class="rd on"></i><i class="rd"></i></div>
+<div class="perm__r"><span data-i18n="k213:0">Mover clientes</span><i class="rd"></i><i class="rd"></i><i class="rd on"></i></div>
+</div>
+<div class="panel__foot" data-i18n="k214:2">
+<svg class="ic ic--sm" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v4M12 16h.01"></path></svg>
           Toda ação respeita as permissões do servidor — inclusive no Android
         </div>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ══════════════ PLATAFORMAS ══════════════ -->
 <section class="block block--dark" id="plataformas">
-  <div class="container">
-    <div class="head head--center reveal">
-      <span class="kicker">05 — Onde você estiver</span>
-      <h2>No PC, no bolso,<br /><em>no seu datacenter.</em></h2>
-      <p>Três projetos, um protocolo só. Entre pelo celular e continue pelo PC
+<div class="container">
+<div class="head head--center reveal">
+<span class="kicker" data-i18n="k215:0">05 — Onde você estiver</span>
+<h2 data-i18n="k216:0">No PC, no bolso,<br/><em data-i18n="k217:0">no seu datacenter.</em></h2>
+<p data-i18n="k218:0">Três projetos, um protocolo só. Entre pelo celular e continue pelo PC
          sem perder o lugar.</p>
-    </div>
-
-    <div class="dl">
-      <a class="dl__card reveal" href="https://github.com/GroupHalla/Halla/releases" target="_blank" rel="noopener">
-        <div class="dl__ic">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.1 10 4.2v7.1H3zM11 4.1 21 2.8v8.5h-10zM3 12.7h7v7.1L3 18.9zM11 12.7h10v8.5l-10-1.3z"/></svg>
-        </div>
-        <h3>Windows</h3>
-        <p>Cliente desktop completo · C++17 + Qt 6</p>
-        <span class="dl__go">Baixar v1.1.37 <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-
-      <a class="dl__card reveal" style="--d:.07s" href="https://github.com/GroupHalla/Halla/releases" target="_blank" rel="noopener">
-        <div class="dl__ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <h3>Linux</h3>
-        <p>Build nativo · CMake · pacote .desktop</p>
-        <span class="dl__go">Baixar v1.1.37 <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-
-      <a class="dl__card reveal" style="--d:.14s" href="https://github.com/GroupHalla/Halla-Mobile/releases" target="_blank" rel="noopener">
-        <div class="dl__ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18.5h2"/></svg>
-        </div>
-        <h3>Android</h3>
-        <p>App nativo · Android 8.0+ · PTT flutuante</p>
-        <span class="dl__go">Baixar v1.0.100 <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-
-      <a class="dl__card reveal" style="--d:.21s" href="https://github.com/GroupHalla/HallaServer" target="_blank" rel="noopener">
-        <div class="dl__ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></svg>
-        </div>
-        <h3>Halla Server</h3>
-        <p>Self-hosted · Docker · systemd · Pterodactyl</p>
-        <span class="dl__go">Baixar v1.1.71 <svg class="ic ic--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-    </div>
-
-    <!-- screenshots strip -->
-    <div class="shots reveal">
-      <div class="shots__rail" id="shotsRail">
-        <figure><img src="assets/shots/demo.png" alt="Janela principal do Halla" loading="lazy" /><figcaption>Janela principal</figcaption></figure>
-        <figure><img src="assets/shots/channel.png" alt="Gerenciamento de canais" loading="lazy" /><figcaption>Canais</figcaption></figure>
-        <figure><img src="assets/shots/connect.png" alt="Tela de conexão" loading="lazy" /><figcaption>Conexão</figcaption></figure>
-        <figure><img src="assets/shots/appearance.png" alt="Configurações do aplicativo" loading="lazy" /><figcaption>Opções</figcaption></figure>
-        <figure><img src="assets/shots/capture.png" alt="Opções de captura" loading="lazy" /><figcaption>Captura</figcaption></figure>
-        <figure><img src="assets/shots/main.png" alt="Tela de boas-vindas do Halla" loading="lazy" /><figcaption>Boas-vindas</figcaption></figure>
-      </div>
-      <p class="shots__hint">Arraste para o lado →</p>
-    </div>
-  </div>
+</div>
+<div class="dl">
+<a class="dl__card reveal" data-asset=".exe" data-release="Halla" href="https://github.com/GroupHalla/Halla/releases/latest" id="dlWin" rel="noopener" target="_blank">
+<div class="dl__ic">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M3 5.1 10 4.2v7.1H3zM11 4.1 21 2.8v8.5h-10zM3 12.7h7v7.1L3 18.9zM11 12.7h10v8.5l-10-1.3z"></path></svg>
+</div>
+<h3 data-i18n="k219:0">Windows</h3>
+<p data-i18n="k220:0">Cliente desktop completo · C++17 + Qt 6</p>
+<span class="dl__go"><span class="dl__verb" data-i18n="k221:0">Baixar</span> <span class="dl__ver" data-i18n="k222:0">v1.1.37</span> <svg class="ic ic--sm" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+<a class="dl__card reveal" data-asset=".AppImage" data-release="Halla" href="https://github.com/GroupHalla/Halla/releases/latest" id="dlLinux" rel="noopener" style="--d:.07s" target="_blank">
+<div class="dl__ic">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="18" rx="2.5" width="18" x="3" y="3"></rect><path d="M3 9h18M9 21V9"></path></svg>
+</div>
+<h3 data-i18n="k223:0">Linux</h3>
+<p data-i18n="k224:0">Build nativo · CMake · pacote .desktop</p>
+<span class="dl__go"><span class="dl__verb" data-i18n="k225:0">Baixar</span> <span class="dl__ver" data-i18n="k226:0">v1.1.37</span> <svg class="ic ic--sm" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+<a class="dl__card reveal" data-asset=".apk" data-release="Halla-Mobile" href="https://github.com/GroupHalla/Halla-Mobile/releases/latest" id="dlAndroid" rel="noopener" style="--d:.14s" target="_blank">
+<div class="dl__ic">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="20" rx="3" width="12" x="6" y="2"></rect><path d="M11 18.5h2"></path></svg>
+</div>
+<h3 data-i18n="k227:0">Android</h3>
+<p data-i18n="k228:0">App nativo · Android 8.0+ · PTT flutuante</p>
+<span class="dl__go"><span class="dl__verb" data-i18n="k229:0">Baixar</span> <span class="dl__ver" data-i18n="k230:0">v1.0.100</span> <svg class="ic ic--sm" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+<a class="dl__card reveal" href="https://github.com/GroupHalla/HallaServer" id="dlSrv" rel="noopener" style="--d:.21s" target="_blank">
+<div class="dl__ic">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="7" rx="2" width="20" x="2" y="3"></rect><rect height="7" rx="2" width="20" x="2" y="14"></rect><path d="M6 6.5h.01M6 17.5h.01"></path></svg>
+</div>
+<h3 data-i18n="k231:0">Halla Server</h3>
+<p data-i18n="k232:0">Self-hosted · Docker · systemd · Pterodactyl</p>
+<span class="dl__go"><span class="dl__verb" data-i18n="k233:0">Ver no GitHub</span> <span class="dl__ver" data-i18n="k234:0">v1.1.71</span> <svg class="ic ic--sm" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+</div>
+<!-- screenshots strip -->
+<div class="shots reveal">
+<div class="shots__rail" id="shotsRail">
+<figure><img alt="Janela principal do Halla — servidor da comunidade" data-i18n-alt="k293" loading="lazy" src="assets/shots/demo.png"/><figcaption data-i18n="k235:0">Janela principal</figcaption></figure>
+<figure><img alt="Diálogo de criação de canal" data-i18n-alt="k294" loading="lazy" src="assets/shots/channel.png"/><figcaption data-i18n="k236:0">Canais</figcaption></figure>
+<figure><img alt="Diálogo de conexão ao servidor" data-i18n-alt="k295" loading="lazy" src="assets/shots/connect.png"/><figcaption data-i18n="k237:0">Conexão</figcaption></figure>
+<figure><img alt="Configurações do aplicativo" data-i18n-alt="k296" loading="lazy" src="assets/shots/appearance.png"/><figcaption data-i18n="k238:0">Opções</figcaption></figure>
+<figure><img alt="Opções de captura" data-i18n-alt="k297" loading="lazy" src="assets/shots/capture.png"/><figcaption data-i18n="k239:0">Captura</figcaption></figure>
+<figure><img alt="Tela de boas-vindas do Halla" data-i18n-alt="k298" loading="lazy" src="assets/shots/main.png"/><figcaption data-i18n="k240:0">Boas-vindas</figcaption></figure>
+</div>
+<p class="shots__hint" data-i18n="k241:0">Arraste para o lado →</p>
+</div>
+</div>
 </section>
-
 <!-- ══════════════ ADD-ONS ══════════════ -->
 <section class="block block--dark block--tight">
-  <div class="container addons reveal">
-    <div class="addons__copy">
-      <span class="kicker">06 — Add-ons &amp; SDK</span>
-      <h2>Escreveu uma vez,<br /><em>roda em todo lugar.</em></h2>
-      <p>
+<div class="container addons reveal">
+<div class="addons__copy">
+<span class="kicker" data-i18n="k242:0">06 — Add-ons &amp; SDK</span>
+<h2 data-i18n="k243:0">Escreveu uma vez,<br/><em data-i18n="k244:0">roda em todo lugar.</em></h2>
+<p data-i18n="k245:0" data-i18n-1="k246:2">
         Pacote <code>.halla-addon</code> único, ABI em C estável. Um plugin feito para
         o desktop, recompilado pro Android, funciona sem mudar uma linha.
         E tem catálogo oficial online — dá pra atualizar sem publicar APK novo.
       </p>
-      <div class="abichips">
-        <span>halla.core.v1</span><span>halla.connection.v1</span><span>halla.audio.v1</span>
-        <span>halla.data.v1</span><span>halla.ui.v1</span>
-      </div>
-    </div>
-
-    <div class="addons__code">
-      <div class="codewin">
-        <div class="codewin__bar"><span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span><em>manifest.json</em></div>
+<div class="abichips">
+<span data-i18n="k247:0">halla.core.v1</span><span data-i18n="k248:0">halla.connection.v1</span><span data-i18n="k249:0">halla.audio.v1</span>
+<span data-i18n="k250:0">halla.data.v1</span><span data-i18n="k251:0">halla.ui.v1</span>
+</div>
+</div>
+<div class="addons__code">
+<div class="codewin">
+<div class="codewin__bar"><span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span><em data-i18n="k252:0">manifest.json</em></div>
 <pre><code><span class="c-p">{</span>
   <span class="c-k">"id"</span>: <span class="c-s">"official.radio-voice"</span>,
   <span class="c-k">"name"</span>: <span class="c-s">"Voz de Rádio"</span>,
@@ -497,115 +486,107 @@
     <span class="c-k">"android-arm64"</span>:  <span class="c-s">"libradio_voice.so"</span>
   }
 <span class="c-p">}</span></code></pre>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ══════════════ FAQ ══════════════ -->
 <section class="block block--dark block--tight" id="faq">
-  <div class="container container--narrow">
-    <div class="head head--center reveal">
-      <span class="kicker">Dúvidas rápidas</span>
-      <h2>Antes de você perguntar.</h2>
-    </div>
-
-    <div class="faq">
-      <details class="faq__i reveal">
-        <summary>É grátis mesmo?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <div class="faq__b"><p>É. Uso pessoal, educacional, comunitário e comercial — incluindo provedores de hospedagem cobrando por planos próprios. Não precisa pedir autorização para nada disso.</p></div>
-      </details>
-      <details class="faq__i reveal">
-        <summary>Preciso hospedar meu próprio servidor?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <div class="faq__b"><p>Não. Existe um servidor oficial público no ar (163.176.35.133:9987). Mas se você quiser soberania total — e essa é a proposta do projeto — o HallaServer sobe em minutos no seu VPS.</p></div>
-      </details>
-      <details class="faq__i reveal">
-        <summary>Minhas conversas são criptografadas de verdade?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <div class="faq__b"><p>Sim, em duas camadas. A voz viaja cifrada com ChaCha20-Poly1305; além disso, o protocolo v6 implementa E2EE real — as chaves de conteúdo são geradas e distribuídas pelos clientes. O servidor é um relé opaco. Dá para conferir a identidade da outra ponta por um código SAS de 9 dígitos.</p></div>
-      </details>
-      <details class="faq__i reveal">
-        <summary>Funciona no celular?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <div class="faq__b"><p>Sim. O Halla Mobile é um app nativo para Android 8.0+ — não é uma casquinha web. Tem voz em segundo plano, botão PTT flutuante por cima de outros apps e dá para compartilhar a tela do próprio celular.</p></div>
-      </details>
-      <details class="faq__i reveal">
-        <summary>Dá para estender com plugins?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <div class="faq__b"><p>Dá. O SDK expõe uma ABI em C estável (halla_plugin_api.h) com interfaces modulares, e os pacotes .halla-addon rodam no desktop e no Android. O exemplo oficial mais divertido é o filtro de voz de rádio da polícia.</p></div>
-      </details>
-      <details class="faq__i reveal">
-        <summary>Quais sistemas operacionais são suportados?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <div class="faq__b"><p>Windows e Linux no desktop (C++17 + Qt 6) e Android 8.0+ no celular. Todos se conectam ao mesmo HallaServer, com o mesmo protocolo e as mesmas permissões.</p></div>
-      </details>
-    </div>
-  </div>
+<div class="container container--narrow">
+<div class="head head--center reveal">
+<span class="kicker" data-i18n="k253:0">Dúvidas rápidas</span>
+<h2 data-i18n="k254:0">Antes de você perguntar.</h2>
+</div>
+<div class="faq">
+<details class="faq__i reveal">
+<summary data-i18n="k255:0">É grátis mesmo?<svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></summary>
+<div class="faq__b"><p data-i18n="k256:0">É. Uso pessoal, educacional, comunitário e comercial — incluindo provedores de hospedagem cobrando por planos próprios. Não precisa pedir autorização para nada disso.</p></div>
+</details>
+<details class="faq__i reveal">
+<summary data-i18n="k257:0">Preciso hospedar meu próprio servidor?<svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></summary>
+<div class="faq__b"><p data-i18n="k258:0">Não. Existe um servidor oficial público no ar (163.176.35.133:9987). Mas se você quiser soberania total — e essa é a proposta do projeto — o HallaServer sobe em minutos no seu VPS.</p></div>
+</details>
+<details class="faq__i reveal">
+<summary data-i18n="k259:0">Minhas conversas são criptografadas de verdade?<svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></summary>
+<div class="faq__b"><p data-i18n="k260:0">Sim, em duas camadas. A voz viaja cifrada com ChaCha20-Poly1305; além disso, o protocolo v6 implementa E2EE real — as chaves de conteúdo são geradas e distribuídas pelos clientes. O servidor é um relé opaco. Dá para conferir a identidade da outra ponta por um código SAS de 9 dígitos.</p></div>
+</details>
+<details class="faq__i reveal">
+<summary data-i18n="k261:0">Funciona no celular?<svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></summary>
+<div class="faq__b"><p data-i18n="k262:0">Sim. O Halla Mobile é um app nativo para Android 8.0+ — não é uma casquinha web. Tem voz em segundo plano, botão PTT flutuante por cima de outros apps e dá para compartilhar a tela do próprio celular.</p></div>
+</details>
+<details class="faq__i reveal">
+<summary data-i18n="k263:0">Dá para estender com plugins?<svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></summary>
+<div class="faq__b"><p data-i18n="k264:0">Dá. O SDK expõe uma ABI em C estável (halla_plugin_api.h) com interfaces modulares, e os pacotes .halla-addon rodam no desktop e no Android. O exemplo oficial mais divertido é o filtro de voz de rádio da polícia.</p></div>
+</details>
+<details class="faq__i reveal">
+<summary data-i18n="k265:0">Quais sistemas operacionais são suportados?<svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></summary>
+<div class="faq__b"><p data-i18n="k266:0">Windows e Linux no desktop (C++17 + Qt 6) e Android 8.0+ no celular. Todos se conectam ao mesmo HallaServer, com o mesmo protocolo e as mesmas permissões.</p></div>
+</details>
+</div>
+</div>
 </section>
-
 <!-- ══════════════ FINAL CTA ══════════════ -->
 <section class="outro">
-  <div class="outro__blob" aria-hidden="true"></div>
-  <div class="container outro__inner reveal">
-    <img src="assets/logo.png" alt="" width="76" height="76" class="outro__logo" />
-    <h2>Chega de scroll.<br /><em>Vai dar um “alô?”.</em></h2>
-    <p>Baixa, entra no servidor oficial e descobre como é uma call sem corte,
+<div aria-hidden="true" class="outro__blob"></div>
+<div class="container outro__inner reveal">
+<img alt="" class="outro__logo" height="76" src="assets/logo.png" width="76"/>
+<h2 data-i18n="k267:0">Chega de scroll.<br/><em data-i18n="k268:0">Vai dar um “alô?”.</em></h2>
+<p data-i18n="k269:0">Baixa, entra no servidor oficial e descobre como é uma call sem corte,
        sem anúncio e sem ninguém ouvindo.</p>
-    <div class="outro__cta">
-      <a href="#plataformas" class="btn btn--white btn--xl">Baixar agora</a>
-      <a href="https://github.com/GroupHalla" class="btn btn--glass btn--xl" target="_blank" rel="noopener">Ver o código</a>
-    </div>
-  </div>
+<div class="outro__cta">
+<a class="btn btn--white btn--xl" data-asset=".exe" data-i18n="k270:0" data-release="Halla" href="https://github.com/GroupHalla/Halla/releases/latest" id="outroDl" rel="noopener" target="_blank">Baixar agora</a>
+<a class="btn btn--glass btn--xl" data-i18n="k271:0" href="https://github.com/GroupHalla" rel="noopener" target="_blank">Ver o código</a>
+</div>
+</div>
 </section>
-
 </main>
-
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer class="foot">
-  <div class="container foot__grid">
-    <div class="foot__brand">
-      <a href="#top" class="brand">
-        <span class="brand__mark"><img src="assets/logo.png" alt="" width="30" height="30" /></span>
-        <span class="brand__name">halla</span>
-      </a>
-      <p>Comunicação por voz de baixa latência para comunidades. Código aberto,
+<div class="container foot__grid">
+<div class="foot__brand">
+<a class="brand" href="#top">
+<span class="brand__mark"><img alt="" height="30" src="assets/logo.png" width="30"/></span>
+<span class="brand__name" data-i18n="k272:0">halla</span>
+</a>
+<p data-i18n="k273:0">Comunicação por voz de baixa latência para comunidades. Código aberto,
          protocolo próprio e criptografia ponta a ponta.</p>
-      <div class="foot__soc">
-        <a href="https://github.com/GroupHalla/Halla" target="_blank" rel="noopener" aria-label="Halla Desktop"><svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.78 2.71 1.27 3.37.97.1-.75.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg></a>
-        <a href="https://github.com/GroupHalla/HallaServer" target="_blank" rel="noopener" aria-label="Halla Server"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></svg></a>
-        <a href="https://github.com/GroupHalla/Halla-Mobile" target="_blank" rel="noopener" aria-label="Halla Mobile"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18.5h2"/></svg></a>
-      </div>
-    </div>
-
-    <div class="foot__col">
-      <h4>Projeto</h4>
-      <a href="https://github.com/GroupHalla/Halla" target="_blank" rel="noopener">Halla Desktop</a>
-      <a href="https://github.com/GroupHalla/Halla-Mobile" target="_blank" rel="noopener">Halla Mobile</a>
-      <a href="https://github.com/GroupHalla/HallaServer" target="_blank" rel="noopener">Halla Server</a>
-      <a href="https://github.com/GroupHalla/Halla-WebRTC-Builds" target="_blank" rel="noopener">WebRTC Builds</a>
-    </div>
-
-    <div class="foot__col">
-      <h4>Documentação</h4>
-      <a href="https://github.com/GroupHalla/HallaServer/blob/main/PROTOCOL.md" target="_blank" rel="noopener">Especificação v6</a>
-      <a href="https://github.com/GroupHalla/Halla/blob/main/docs/PLUGINS.md" target="_blank" rel="noopener">Guia de add-ons</a>
-      <a href="https://github.com/GroupHalla/HallaServer/blob/main/SECURITY.md" target="_blank" rel="noopener">Segurança do servidor</a>
-      <a href="https://github.com/GroupHalla/Halla/blob/main/SECURITY.md" target="_blank" rel="noopener">Política de segurança</a>
-    </div>
-
-    <div class="foot__col">
-      <h4>Comunidade</h4>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScwy7k_HyeNnl8kuNfMSs8H-pHUGfhuKijAxkYkzd7m_aX4NA/viewform" target="_blank" rel="noopener">Reportar um bug</a>
-      <a href="#servidor">Servidor oficial</a>
-      <a href="#faq">Dúvidas frequentes</a>
-      <a href="#plataformas">Downloads</a>
-    </div>
-  </div>
-
-  <div class="container foot__bottom">
-    <p>© <span id="year">2026</span> Halla — uso livre para fins pessoais e comerciais.</p>
-    <p class="foot__made">Feito para quem leva a call a sério.</p>
-  </div>
+<div class="foot__soc">
+<a aria-label="Halla Desktop" href="https://github.com/GroupHalla/Halla" rel="noopener" target="_blank"><svg class="ic" fill="currentColor" viewbox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.78 2.71 1.27 3.37.97.1-.75.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"></path></svg></a>
+<a aria-label="Halla Server" href="https://github.com/GroupHalla/HallaServer" rel="noopener" target="_blank"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="7" rx="2" width="20" x="2" y="3"></rect><rect height="7" rx="2" width="20" x="2" y="14"></rect><path d="M6 6.5h.01M6 17.5h.01"></path></svg></a>
+<a aria-label="Halla Mobile" href="https://github.com/GroupHalla/Halla-Mobile" rel="noopener" target="_blank"><svg class="ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="20" rx="3" width="12" x="6" y="2"></rect><path d="M11 18.5h2"></path></svg></a>
+</div>
+</div>
+<div class="foot__col">
+<h4 data-i18n="k274:0">Projeto</h4>
+<a data-i18n="k275:0" href="https://github.com/GroupHalla/Halla" rel="noopener" target="_blank">Halla Desktop</a>
+<a data-i18n="k276:0" href="https://github.com/GroupHalla/Halla-Mobile" rel="noopener" target="_blank">Halla Mobile</a>
+<a data-i18n="k277:0" href="https://github.com/GroupHalla/HallaServer" rel="noopener" target="_blank">Halla Server</a>
+<a data-i18n="k278:0" href="https://github.com/GroupHalla/Halla-WebRTC-Builds" rel="noopener" target="_blank">WebRTC Builds</a>
+</div>
+<div class="foot__col">
+<h4 data-i18n="k279:0">Documentação</h4>
+<a data-i18n="k280:0" href="https://github.com/GroupHalla/HallaServer/blob/main/PROTOCOL.md" rel="noopener" target="_blank">Especificação v6</a>
+<a data-i18n="k281:0" href="https://github.com/GroupHalla/Halla/blob/main/docs/PLUGINS.md" rel="noopener" target="_blank">Guia de add-ons</a>
+<a data-i18n="k282:0" href="https://github.com/GroupHalla/HallaServer/blob/main/SECURITY.md" rel="noopener" target="_blank">Segurança do servidor</a>
+<a data-i18n="k283:0" href="https://github.com/GroupHalla/Halla/blob/main/SECURITY.md" rel="noopener" target="_blank">Política de segurança</a>
+</div>
+<div class="foot__col">
+<h4 data-i18n="k284:0">Comunidade</h4>
+<a data-i18n="k285:0" href="https://docs.google.com/forms/d/e/1FAIpQLScwy7k_HyeNnl8kuNfMSs8H-pHUGfhuKijAxkYkzd7m_aX4NA/viewform" rel="noopener" target="_blank">Reportar um bug</a>
+<a data-i18n="k286:0" href="#servidor">Servidor oficial</a>
+<a data-i18n="k287:0" href="#faq">Dúvidas frequentes</a>
+<a data-i18n="k288:0" href="#plataformas">Downloads</a>
+</div>
+</div>
+<div class="container foot__bottom">
+<p data-i18n="k289:0" data-i18n-1="k291:2">© <span data-i18n="k290:0" id="year">2026</span> Halla — uso livre para fins pessoais e comerciais.</p>
+<p class="foot__made" data-i18n="k292:0">Feito para quem leva a call a sério.</p>
+</div>
 </footer>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
+<script src="js/i18n-dict.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/latest.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

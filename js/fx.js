@@ -129,7 +129,192 @@
     setTimeout(tick, 2600);
   }
 
-  /* ─── 6. assinatura no console ─── */
+  /* ─── 6. tilt 3D nos cards ─── */
+  if (finePointer && !reduced) {
+    const tiltEls = $$('.dl__card, .pcard, .shots__rail figure');
+    tiltEls.forEach((el) => {
+      el.classList.add('fx-tilt');
+      let raf = 0, ev = null;
+      const apply = () => {
+        raf = 0;
+        if (!ev) return;
+        const r = el.getBoundingClientRect();
+        const px = (ev.clientX - r.left) / r.width - .5;
+        const py = (ev.clientY - r.top) / r.height - .5;
+        const lift = el.classList.contains('pcard') ? 'translateX(6px) ' : 'translateY(-6px) ';
+        el.style.transform = lift +
+          'rotateX(' + (-py * 7).toFixed(2) + 'deg) rotateY(' + (px * 7).toFixed(2) + 'deg)';
+      };
+      el.addEventListener('pointerenter', () => {
+        el.style.willChange = 'transform';
+      });
+      el.addEventListener('pointermove', (e) => {
+        ev = e;
+        if (!raf) raf = requestAnimationFrame(apply);
+      }, { passive: true });
+      el.addEventListener('pointerleave', () => {
+        if (raf) { cancelAnimationFrame(raf); raf = 0; }
+        ev = null;
+        el.style.transform = '';
+        el.style.willChange = '';
+      });
+    });
+  }
+
+  /* ─── 7. botões magnéticos (hero + outro) ─── */
+  if (finePointer && !reduced) {
+    $$('.hero__cta .btn, .outro__cta .btn').forEach((btn) => {
+      btn.addEventListener('pointermove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const dx = Math.max(-8, Math.min(8, (e.clientX - (r.left + r.width / 2)) * .22));
+        const dy = Math.max(-6, Math.min(6, (e.clientY - (r.top + r.height / 2)) * .3));
+        btn.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + (dy - 2).toFixed(1) + 'px)';
+      }, { passive: true });
+      btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
+    });
+  }
+
+  /* ─── 8. ripple nos botões ─── */
+  if (!reduced) {
+    document.addEventListener('pointerdown', (e) => {
+      const btn = e.target.closest ? e.target.closest('.btn') : null;
+      if (!btn) return;
+      const r = btn.getBoundingClientRect();
+      const sp = document.createElement('span');
+      sp.className = 'fx-ripple';
+      sp.style.left = (e.clientX - r.left).toFixed(0) + 'px';
+      sp.style.top = (e.clientY - r.top).toFixed(0) + 'px';
+      btn.appendChild(sp);
+      sp.addEventListener('animationend', () => sp.remove(), { once: true });
+    }, { passive: true });
+  }
+
+  /* ─── 9. código SAS: dígitos rolam e assentam quando entram na tela ─── */
+  const sasCode = $('.sas__code');
+  if (sasCode && !reduced && 'IntersectionObserver' in window) {
+    const digits = $$('span', sasCode);
+    const finals = digits.map((d) => (d.firstChild ? d.firstChild.data : d.textContent));
+    const sio = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        sio.disconnect();
+        digits.forEach((d, i) => {
+          const node = d.firstChild;
+          const final = finals[i];
+          const dur = 420 + i * 95;
+          const t0 = performance.now();
+          d.classList.remove('set');
+          (function roll(now) {
+            if (now - t0 < dur) {
+              if (node) node.data = String(Math.floor(Math.random() * 10));
+              requestAnimationFrame(roll);
+            } else {
+              if (node) node.data = final;
+              d.classList.add('set');
+            }
+          })(t0);
+        });
+      });
+    }, { threshold: .45 });
+    sio.observe(sasCode);
+  }
+
+  /* ─── 10. chat vivo: alguém "digita" e manda mensagem no mockup ─── */
+  const chatLog = $('.app__chat .chat__log');
+  if (chatLog && window.HALLA_I18N && !reduced) {
+    const USERS = ['Bruna', 'Luan', 'mari.dev', 'khali', 'rtc_nina'];
+    const KEYS = ['k320', 'k321', 'k322', 'k323', 'k324'];
+    const slot = document.createElement('p');
+    slot.id = 'chatSim';
+    slot.setAttribute('aria-hidden', 'true');
+    chatLog.appendChild(slot);
+
+    let visible = true, idx = Math.floor(Math.random() * KEYS.length), stop = false;
+    new IntersectionObserver((es) => {
+      es.forEach((en) => { visible = en.isIntersecting; });
+    }, { threshold: .15 }).observe(chatLog);
+
+    const dictOf = () => {
+      const l = (document.documentElement.lang || 'pt').slice(0, 2).toLowerCase();
+      return window.HALLA_I18N[l] || window.HALLA_I18N.pt;
+    };
+    const clock = () => {
+      const d = new Date();
+      return [d.getHours(), d.getMinutes(), d.getSeconds()]
+        .map((n) => String(n).padStart(2, '0')).join(':');
+    };
+    const wait = (ms, fn) => setTimeout(() => {
+      if (stop || document.hidden || !visible) { wait(900, fn); return; }
+      fn();
+    }, ms);
+
+    const next = () => {
+      if (stop) return;
+      const user = USERS[idx % USERS.length];
+      const msg = dictOf()[KEYS[idx % KEYS.length]] || '';
+      idx++;
+
+      // 1) indicador de digitação
+      slot.className = 'chat__typing';
+      slot.innerHTML = '<i></i><i></i><i></i>';
+      wait(1300 + Math.random() * 900, () => {
+        // 2) mensagem entra no lugar
+        slot.className = 'chat__msg';
+        slot.innerHTML = '<time>[' + clock() + ']</time> <b>' + user +
+          '</b><span></span>';
+        slot.lastChild.textContent = msg;
+        wait(3800 + Math.random() * 2200, () => {
+          // 3) some e recomeça
+          slot.classList.add('out');
+          wait(520, () => { wait(1600 + Math.random() * 2600, next); });
+        });
+      });
+    };
+    wait(3400, next);
+  }
+
+  /* ─── 11. voltar ao topo com anel de progresso ─── */
+  if (!reduced) {
+    const LBL = { pt: 'Voltar ao topo', en: 'Back to top', es: 'Volver arriba' };
+    const l = (document.documentElement.lang || 'pt').slice(0, 2).toLowerCase();
+    const btn = document.createElement('button');
+    btn.className = 'toTop';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', LBL[l] || LBL.pt);
+    btn.innerHTML =
+      '<svg class="ring" viewBox="0 0 48 48" aria-hidden="true">' +
+      '<defs><linearGradient id="toTopGrad" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22d3ee"/>' +
+      '</linearGradient></defs>' +
+      '<circle class="bg" cx="24" cy="24" r="22"></circle>' +
+      '<circle class="fg" cx="24" cy="24" r="22"></circle></svg>' +
+      '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+      'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M12 19V5M5 12l7-7 7 7"></path></svg>';
+    document.body.appendChild(btn);
+
+    const CIRC = 138.23;
+    const fg = btn.querySelector('.fg');
+    let ticking = false;
+    const upd = () => {
+      ticking = false;
+      const cur = (document.documentElement.lang || 'pt').slice(0, 2).toLowerCase();
+      btn.setAttribute('aria-label', LBL[cur] || LBL.pt);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+      fg.style.strokeDashoffset = (CIRC * (1 - p)).toFixed(2);
+      btn.classList.toggle('show', window.scrollY > 620);
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(upd); }
+    }, { passive: true });
+    upd();
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ─── 12. assinatura no console ─── */
   try {
     console.log(
       '%c Halla %c github.com/GroupHalla ',

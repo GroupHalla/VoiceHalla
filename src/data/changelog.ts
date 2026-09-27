@@ -58,6 +58,313 @@ export const CHANGELOG: ChangelogRelease[] = [
   /* ------------------------------------------------------------------ */
   {
     channel: "desktop",
+    version: "1.1.37",
+    date: "2026-09-27",
+    repo: "Halla",
+    headline: {
+      en: "Three papercuts, gone",
+      pt: "Três detalhes irritantes, resolvidos",
+      es: "Tres molestias, resueltas",
+    },
+    entries: [
+      e(
+        "fixed",
+        "Dragging a channel description no longer jumps back to the top while you read it.",
+        "Arrastar a descrição de um canal não volta mais sozinho para o topo enquanto você lê.",
+        "Arrastrar la descripción de un canal ya no vuelve solo al principio mientras lees.",
+      ),
+      e(
+        "fixed",
+        "Help > Client log opens instantly: the log rotates at 2 MiB and the dialog reads only the tail of the file instead of parsing weeks of text.",
+        "Ajuda > Registro do cliente abre instantâneo: o log rotaciona em 2 MiB e o diálogo lê só o final do arquivo, em vez de processar semanas de texto.",
+        "Ayuda > Registro del cliente abre al instante: el log rota en 2 MiB y el diálogo lee solo el final del archivo en vez de procesar semanas de texto.",
+      ),
+      e(
+        "fixed",
+        "Channel errors now name the channel and the reason (\"You don't have permission to join X\", \"X is full\", wrong password), missing role icons stop spamming errors, and the spurious \"you are sending requests too fast\" when joining a channel is gone.",
+        "Erros de canal agora dizem o canal e o motivo (\"Você não tem permissão para entrar em X\", \"X está cheio\", senha incorreta), ícones de cargo ausentes param de disparar erros e acabou o falso \"enviando solicitações rápido demais\" ao entrar num canal.",
+        "Los errores de canal ahora dicen el canal y el motivo (\"No tienes permiso para entrar en X\", \"X está lleno\", contraseña incorrecta), los iconos de rol ausentes dejan de disparar errores y se acabó el falso \"enviando solicitudes demasiado rápido\" al entrar en un canal.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.36",
+    date: "2026-09-27",
+    repo: "Halla",
+    headline: {
+      en: "Self-healing encryption keys",
+      pt: "Chaves de criptografia que se curam sozinhas",
+      es: "Claves de cifrado que se curan solas",
+    },
+    entries: [
+      e(
+        "fixed",
+        "Switching channels updates the tree immediately again (a regression introduced by the 1.1.35 optimization).",
+        "Trocar de canal volta a atualizar a árvore na hora (uma regressão introduzida pela otimização da 1.1.35).",
+        "Cambiar de canal vuelve a actualizar el árbol al instante (una regresión introducida por la optimización de la 1.1.35).",
+      ),
+      e(
+        "fixed",
+        "When a channel key rotates and the new one never arrives, the client now detects the stale key within ~300 ms of speech, drops it and re-requests — voice recovers by itself in both directions in a few seconds, without reconnecting.",
+        "Quando a chave de um canal rotaciona e a nova não chega, o cliente detecta a chave velha em ~300 ms de fala, descarta e pede de novo — a voz se recupera sozinha nos dois sentidos em poucos segundos, sem reconectar.",
+        "Cuando la clave de un canal rota y la nueva no llega, el cliente detecta la clave vieja en ~300 ms de habla, la descarta y la pide de nuevo — la voz se recupera sola en ambos sentidos en pocos segundos, sin reconectar.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.35",
+    date: "2026-09-27",
+    repo: "Halla",
+    headline: {
+      en: "Performance for long sessions",
+      pt: "Performance para sessões longas",
+      es: "Rendimiento para sesiones largas",
+    },
+    entries: [
+      e(
+        "performance",
+        "Speaking transitions no longer rebuild the entire channel tree with per-user pixmaps — only the changed rows repaint. This was the main cause of voice choppiness that appeared after a while in full rooms.",
+        "Transições de fala não reconstruem mais a árvore inteira de canais com pixmaps por usuário — só as linhas mudadas são repintadas. Era a principal causa do picotado de voz que aparecia depois de um tempo em salas cheias.",
+        "Las transiciones de habla ya no reconstruyen todo el árbol de canales con pixmaps por usuario — solo se repintan las filas cambiadas. Era la principal causa de la voz entrecortada que aparecía tras un rato en salas llenas.",
+      ),
+      e(
+        "performance",
+        "Chat keeps a maximum of 500 messages per tab and the image cache is bounded — long sessions no longer make the app heavier over time.",
+        "O chat mantém no máximo 500 mensagens por aba e o cache de imagens tem teto — sessões longas não deixam o app mais pesado com o tempo.",
+        "El chat mantiene un máximo de 500 mensajes por pestaña y la caché de imágenes tiene techo — las sesiones largas ya no hacen la app más pesada con el tiempo.",
+      ),
+      e(
+        "performance",
+        "The audio path stopped re-reading settings on every frame and halved its timer wake-ups (5 ms → 10 ms); icons are drawn once and cached.",
+        "O caminho de áudio parou de reler configurações a cada quadro e cortou pela metade os wakeups de timer (5 ms → 10 ms); ícones são desenhados uma vez e ficam em cache.",
+        "La ruta de audio dejó de releer ajustes en cada fotograma y redujo a la mitad sus activaciones de temporizador (5 ms → 10 ms); los iconos se dibujan una vez y quedan en caché.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.34",
+    date: "2026-09-27",
+    repo: "Halla",
+    headline: {
+      en: "A microphone that stops chopping",
+      pt: "Um microfone que para de picotar",
+      es: "Un micrófono que deja de entrecortarse",
+    },
+    entries: [
+      e(
+        "fixed",
+        "The anti-crosstalk guard now needs sustained domination before muting your microphone and releases it one frame at a time with a transmitted ramp — no more clicks or long cuts when someone else talks.",
+        "A guarda contra crosstalk agora exige dominação sustentada antes de mutar seu microfone e libera um quadro por vez com rampa transmitida — chega de cliques e cortes longos quando outra pessoa fala.",
+        "La guarda contra diafonía ahora exige dominación sostenida antes de silenciar tu micrófono y lo libera un fotograma a la vez con una rampa transmitida — se acabaron los clics y los cortes largos cuando otra persona habla.",
+      ),
+      e(
+        "added",
+        "A watchdog reopens a microphone that delivers no samples for 2 seconds, and the capture buffer grew to 800 ms.",
+        "Um watchdog reabre um microfone que não entrega amostras por 2 segundos, e o buffer de captura subiu para 800 ms.",
+        "Un watchdog reabre un micrófono que no entrega muestras durante 2 segundos, y el buffer de captura subió a 800 ms.",
+      ),
+      e(
+        "added",
+        "Tools > Voice Diagnostics shows mutes, releases and reopens live; the network crosstalk protection can be switched off.",
+        "Ferramentas > Diagnóstico de voz mostra mutes, liberações e reaberturas ao vivo; a proteção contra crosstalk de rede pode ser desligada.",
+        "Herramientas > Diagnóstico de voz muestra silencios, liberaciones y reaperturas en vivo; la protección contra diafonía de red se puede desactivar.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.33",
+    date: "2026-09-27",
+    repo: "Halla",
+    headline: {
+      en: "The reconnect mute, fixed at the root",
+      pt: "O mudo pós-reconexão, corrigido na raiz",
+      es: "El silencio tras reconectar, corregido de raíz",
+    },
+    entries: [
+      e(
+        "fixed",
+        "The \"I can speak but can't hear\" state (and the reverse) after reconnecting: an E2EE split-brain caused by clock skew between joining and the key exchange. The key housekeeper no longer gives up, and the affected side now notices it can't decrypt and asks again.",
+        "O estado \"consigo falar mas não ouço\" (e o inverso) depois de reconectar: um split-brain E2EE causado por dessincronização de relógio entre entrar no canal e a troca de chaves. O housekeeper de chaves não desiste mais, e o lado afetado percebe que não consegue decifrar e pede de novo.",
+        "El estado \"puedo hablar pero no oigo\" (y el inverso) tras reconectar: un split-brain E2EE causado por desviación de reloj entre entrar al canal y el intercambio de claves. El housekeeper de claves ya no se rinde, y el lado afectado nota que no puede descifrar y vuelve a pedir.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.32",
+    date: "2026-09-26",
+    repo: "Halla",
+    headline: {
+      en: "Whisper lists no longer break the voice",
+      pt: "Listas de sussurro não quebram mais a voz",
+      es: "Las listas de susurro ya no rompen la voz",
+    },
+    entries: [
+      e(
+        "fixed",
+        "Three ways to lose two-way audio were closed: importing a whisper list, a whisper key stuck in hold, and a microphone that died after reconnecting — now backed by a capture watchdog that reopens a stalled microphone.",
+        "Três caminhos para perder o áudio nos dois sentidos foram fechados: importar uma lista de sussurro, tecla de sussurro presa em hold e microfone que morria após reconectar — agora cobertos por um watchdog de captura que reabre o microfone travado.",
+        "Se caminos para perder el audio en ambos sentidos fueron cerrados: importar una lista de susurro, tecla de susurro atascada y micrófono que moría tras reconectar — ahora cubiertos por un watchdog de captura que reabre el micrófono bloqueado.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.31",
+    date: "2026-09-26",
+    repo: "Halla",
+    headline: {
+      en: "Badges, installer and multi-monitor",
+      pt: "Emblemas, instalador e multi-monitor",
+      es: "Emblemas, instalador y multimonitor",
+    },
+    entries: [
+      e(
+        "added",
+        "The Windows installer now speaks English, Portuguese and Spanish.",
+        "O instalador do Windows agora fala inglês, português e espanhol.",
+        "El instalador de Windows ahora habla inglés, portugués y español.",
+      ),
+      e(
+        "fixed",
+        "Badges render correctly and are enabled by default; the window reopens on the monitor where it was closed.",
+        "Os emblemas renderizam corretamente e ficam ligados por padrão; a janela reabre no monitor em que foi fechada.",
+        "Los emblemas se renderizan correctamente y quedan activados por defecto; la ventana se reabre en el monitor donde se cerró.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.30",
+    date: "2026-09-26",
+    repo: "Halla",
+    headline: {
+      en: "Native WebRTC on Linux",
+      pt: "WebRTC nativo no Linux",
+      es: "WebRTC nativo en Linux",
+    },
+    entries: [
+      e(
+        "added",
+        "Screen sharing on Linux through native WebRTC: X11 capture with XShm/XRandR/XFixes and a PulseAudio loopback that excludes Halla's own audio.",
+        "Compartilhamento de tela no Linux via WebRTC nativo: captura X11 com XShm/XRandR/XFixes e loopback PulseAudio que exclui o próprio áudio do Halla.",
+        "Compartición de pantalla en Linux mediante WebRTC nativo: captura X11 con XShm/XRandR/XFixes y loopback de PulseAudio que excluye el propio audio de Halla.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.29",
+    date: "2026-09-25",
+    repo: "Halla",
+    headline: {
+      en: "Linux builds on the releases page",
+      pt: "Builds Linux na página de releases",
+      es: "Builds de Linux en la página de releases",
+    },
+    entries: [
+      e(
+        "added",
+        "Official Linux AppImage (Ubuntu 22.04+/Debian 12+) with voice, chat, E2EE and plugins.",
+        "AppImage Linux oficial (Ubuntu 22.04+/Debian 12+) com voz, chat, E2EE e plugins.",
+        "AppImage de Linux oficial (Ubuntu 22.04+/Debian 12+) con voz, chat, E2EE y plugins.",
+      ),
+      e(
+        "changed",
+        "Hosting providers may offer Halla Server without prior authorization.",
+        "Provedores de hospedagem podem oferecer o Halla Server sem autorização prévia.",
+        "Los proveedores de hosting pueden ofrecer Halla Server sin autorización previa.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.28",
+    date: "2026-09-25",
+    repo: "Halla",
+    headline: {
+      en: "Spectating that actually starts",
+      pt: "Espectar que começa de verdade",
+      es: "Espectar que de verdad empieza",
+    },
+    entries: [
+      e(
+        "fixed",
+        "The spectator no longer waits on \"Awaiting stream...\" forever — four independent causes of a live stream that never started were fixed.",
+        "O espectador não espera mais em \"Aguardando transmissão...\" para sempre — quatro causas independentes de uma transmissão que nunca começava foram corrigidas.",
+        "El espectador ya no espera en \"Esperando transmisión...\" para siempre — se corrigieron cuatro causas independientes de una transmisión que nunca empezaba.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.27",
+    date: "2026-09-13",
+    repo: "Halla",
+    headline: {
+      en: "Every key can be a hotkey",
+      pt: "Qualquer tecla pode ser um atalho",
+      es: "Cualquier tecla puede ser un atajo",
+    },
+    entries: [
+      e(
+        "fixed",
+        "Punctuation and OEM keys (\"\\\", \";\", \"'\", \"[\", \"]\", \",\", \"/\", \"=\", \"`\", \"ç\") were silently discarded as push-to-talk, whisper and shortcut keys — every key on the active layout now works, including ABNT2 and the numeric pad.",
+        "Teclas de pontuação e OEM (\"\\\", \";\", \"'\", \"[\", \"]\", \",\", \"/\", \"=\", \"`\", \"ç\") eram descartadas em silêncio como teclas de push-to-talk, sussurro e atalho — toda tecla do layout ativo agora funciona, incluindo ABNT2 e o teclado numérico.",
+        "Las teclas de puntuación y OEM (\"\\\", \";\", \"'\", \"[\", \"]\", \",\", \"/\", \"=\", \"`\", \"ç\") se descartaban en silencio como teclas de pulsar-para-hablar, susurro y atajos — ahora funciona cualquier tecla del layout activo, incluida la ABNT2 y el teclado numérico.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.26",
+    date: "2026-09-13",
+    repo: "Halla",
+    headline: {
+      en: "Whisper hotkey in any language",
+      pt: "Tecla de sussurro em qualquer idioma",
+      es: "Tecla de susurro en cualquier idioma",
+    },
+    entries: [
+      e(
+        "fixed",
+        "The whisper hotkey stopped working when the UI language was changed after it was configured — hotkeys no longer depend on translated strings.",
+        "A tecla de sussurro parava de funcionar quando o idioma da interface mudava depois de configurada — atalhos não dependem mais de textos traduzidos.",
+        "La tecla de susurro dejaba de funcionar al cambiar el idioma de la interfaz después de configurarla — los atajos ya no dependen de textos traducidos.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
+    version: "1.1.25",
+    date: "2026-09-08",
+    repo: "Halla",
+    headline: {
+      en: "Playback that survives the interface",
+      pt: "Reprodução que sobrevive à interface",
+      es: "Reproducción que sobrevive a la interfaz",
+    },
+    entries: [
+      e(
+        "fixed",
+        "Voice playback no longer cracks when the interface thread hiccups — a 300 ms re-prime grace, deeper buffer shedding and a 240 ms output buffer.",
+        "A reprodução de voz não estala mais quando a thread da interface engasga — graça de re-prime de 300 ms, descarte de buffer mais profundo e buffer de saída de 240 ms.",
+        "La reproducción de voz ya no chasquea cuando el hilo de la interfaz se atraganta — gracia de reinicio de 300 ms, descarte de buffer más profundo y buffer de salida de 240 ms.",
+      ),
+      e(
+        "changed",
+        "README, SECURITY.md and the plugin documentation are now in English.",
+        "O README, o SECURITY.md e a documentação de plugins agora estão em inglês.",
+        "El README, SECURITY.md y la documentación de plugins ahora están en inglés.",
+      ),
+    ],
+  },
+  {
+    channel: "desktop",
     version: "1.1.24",
     date: "2026-09-07",
     repo: "Halla",
@@ -274,6 +581,25 @@ export const CHANGELOG: ChangelogRelease[] = [
   /* ------------------------------------------------------------------ */
   {
     channel: "mobile",
+    version: "1.0.100",
+    date: "2026-09-08",
+    repo: "Halla-Mobile",
+    headline: {
+      en: "Full-band audio on headphones",
+      pt: "Áudio full-band no fone",
+      es: "Audio full-band en los auriculares",
+    },
+    entries: [
+      e(
+        "fixed",
+        "With headphones connected, playback is now full-band — the narrower echo-cancellation path is only used when the device speaker is active.",
+        "Com fone conectado, a reprodução agora é full-band — o caminho mais estreito de cancelamento de eco só é usado quando o alto-falante do aparelho está ativo.",
+        "Con auriculares conectados, la reproducción ahora es full-band — la ruta más estrecha de cancelación de eco solo se usa cuando el altavoz del dispositivo está activo.",
+      ),
+    ],
+  },
+  {
+    channel: "mobile",
     version: "1.0.99",
     date: "2026-09-07",
     repo: "Halla-Mobile",
@@ -402,6 +728,69 @@ export const CHANGELOG: ChangelogRelease[] = [
   /* ------------------------------------------------------------------ */
   /* Server                                                              */
   /* ------------------------------------------------------------------ */
+  {
+    channel: "server",
+    version: "1.1.71",
+    date: "2026-09-27",
+    repo: "HallaServer",
+    headline: {
+      en: "No more false rate limits",
+      pt: "Fim dos falsos rate limits",
+      es: "Fin de los falsos rate limits",
+    },
+    entries: [
+      e(
+        "fixed",
+        "The rate limiter rejected a request spaced exactly one window after the previous one (1 per 2 s) — clients joining a channel right after connecting got \"you are sending requests too fast\" for no reason. Flood protection is unchanged.",
+        "O limitador rejeitava um pedido espaçado exatamente uma janela após o anterior (1 a cada 2 s) — clientes que entravam num canal logo depois de conectar recebiam \"você está enviando mensagens rápido demais\" sem motivo. A proteção anti-flood continua igual.",
+        "El limitador rechazaba una petición espaciada exactamente una ventana después de la anterior (1 cada 2 s) — los clientes que entraban en un canal justo después de conectar recibían \"estás enviando mensajes demasiado rápido\" sin motivo. La protección anti-flood sigue igual.",
+      ),
+      e(
+        "changed",
+        "The server console and halla-server.ini are now fully in English; the Pterodactyl egg detects startup on both old and new binaries.",
+        "O console do servidor e o halla-server.ini agora estão inteiramente em inglês; o egg do Pterodactyl detecta a inicialização em binários antigos e novos.",
+        "La consola del servidor y halla-server.ini ahora están íntegramente en inglés; el egg de Pterodactyl detecta el arranque en binarios antiguos y nuevos.",
+      ),
+    ],
+  },
+  {
+    channel: "server",
+    version: "1.1.70",
+    date: "2026-09-25",
+    repo: "HallaServer",
+    headline: {
+      en: "Hosting without asking",
+      pt: "Hospedagem sem pedir autorização",
+      es: "Hosting sin pedir autorización",
+    },
+    entries: [
+      e(
+        "changed",
+        "Hosting providers may offer Halla Server to their customers without prior authorization.",
+        "Provedores de hospedagem podem oferecer o Halla Server aos clientes sem autorização prévia.",
+        "Los proveedores de hosting pueden ofrecer Halla Server a sus clientes sin autorización previa.",
+      ),
+    ],
+  },
+  {
+    channel: "server",
+    version: "1.1.69",
+    date: "2026-09-25",
+    repo: "HallaServer",
+    headline: {
+      en: "Spectators know what they're watching",
+      pt: "Espectadores sabem o que estão assistindo",
+      es: "Los espectadores saben qué están viendo",
+    },
+    entries: [
+      e(
+        "added",
+        "Live broadcasts now publish their mode (screen or camera) so spectators know how to watch; the mode is documented in PROTOCOL.md.",
+        "As transmissões ao vivo agora publicam o modo (tela ou câmera) para o espectador saber como assistir; o modo está documentado no PROTOCOL.md.",
+        "Las transmisiones en vivo ahora publican su modo (pantalla o cámara) para que el espectador sepa cómo verlas; el modo está documentado en PROTOCOL.md.",
+      ),
+    ],
+  },
   {
     channel: "server",
     version: "1.1.68",

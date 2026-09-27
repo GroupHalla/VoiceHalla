@@ -210,28 +210,28 @@ const pt: Dict = {
     emptyPrefix: "Nenhuma captura de tela encontrada em",
     emptySuffix: ". Adicione PNGs nessa pasta para vê-los aqui.",
     shots: {
-      "01-janela-principal": {
+      "01-main-window": {
         label: "Janela principal",
         caption:
-          "A janela principal no tema escuro: canais, informações e chat em um só lugar.",
+          "Conectado ao servidor da comunidade: canais, informações e chat em um só lugar.",
         alt: "Captura do Halla: janela principal com árvore de canais, painel de informações e chat em abas",
       },
-      "02-boas-vindas": {
+      "02-welcome": {
         label: "Boas-vindas",
-        caption: "A tela de boas-vindas do primeiro uso, com configuração rápida.",
+        caption: "A tela de boas-vindas do primeiro uso, com ações rápidas.",
         alt: "Captura do Halla: tela de boas-vindas",
       },
-      "03-conectar": {
+      "03-connect": {
         label: "Conectar",
-        caption: "Conectando a um servidor, com o catálogo de endereços.",
+        caption: "Conectando a um servidor: endereço, apelido e senha.",
         alt: "Captura do Halla: diálogo de conexão",
       },
-      "04-opcoes": {
+      "04-options": {
         label: "Opções",
         caption: "Configurações de áudio, identidade, teclas e notificações.",
         alt: "Captura do Halla: diálogo de opções",
       },
-      "05-criar-canal": {
+      "05-create-channel": {
         label: "Criar canal",
         caption: "Criando um canal com permissões e ajustes de codec.",
         alt: "Captura do Halla: diálogo de criação de canal",

@@ -211,28 +211,28 @@ const en = {
     emptyPrefix: "No screenshots found in",
     emptySuffix: ". Add PNGs to that folder to see them here.",
     shots: {
-      "01-janela-principal": {
+      "01-main-window": {
         label: "Main window",
         caption:
-          "The main window in the dark theme: channels, info and chat in one place.",
+          "Connected to the community server: channels, live info and chat in one place.",
         alt: "Halla screenshot: main window with channel tree, info panel and tabbed chat",
       },
-      "02-boas-vindas": {
+      "02-welcome": {
         label: "Welcome",
-        caption: "The first-run welcome screen with quick setup.",
+        caption: "The first-run welcome screen with quick actions.",
         alt: "Halla screenshot: welcome screen",
       },
-      "03-conectar": {
+      "03-connect": {
         label: "Connect",
-        caption: "Connecting to a server, with the address book.",
+        caption: "Connecting to a server: address, nickname and password.",
         alt: "Halla screenshot: connect dialog",
       },
-      "04-opcoes": {
+      "04-options": {
         label: "Options",
         caption: "Audio, identity, hotkeys and notification settings.",
         alt: "Halla screenshot: options dialog",
       },
-      "05-criar-canal": {
+      "05-create-channel": {
         label: "Create channel",
         caption: "Creating a channel with permissions and codec settings.",
         alt: "Halla screenshot: create-channel dialog",

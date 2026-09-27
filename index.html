@@ -86,119 +86,116 @@
       Grátis para uso pessoal, comunitário <b data-i18n="k019:0">e comercial</b> · Windows · Linux · Android
     </p>
 </div>
-<!-- big product visual: réplica fiel da UI do app (v1.1.37, tema escuro) -->
+<!-- big product visual: réplica fiel da UI do app (v1.1.71, tema claro — servidor oficial) -->
 <div class="container hero__stage reveal" style="--d:.22s">
 <div aria-hidden="true" class="stage-glow"></div>
 <div class="app" id="appWindow">
-<div class="app__bar">
-<span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
-<div class="app__title" data-i18n="k021:1"><img alt="" height="13" src="assets/logo.png" width="13"/> Halla — Comunidade Halla</div>
-<div class="app__pill" data-i18n="k022:1"><span class="dot-live dot-live--sm"></span> conectado</div>
-</div>
-<!-- barra de menus + transporte, como no app -->
-<div class="app__menu">
-<nav aria-hidden="true" class="app__nav">
+<!-- ═ barra de menus ═ -->
+<div class="app__menubar">
 <span data-i18n="k023:0">Conexões</span><span data-i18n="k024:0">Marcadores</span><span data-i18n="k025:0">Eu</span><span data-i18n="k026:0">Permissões</span><span data-i18n="k027:0">Ferramentas</span><span data-i18n="k028:0">Complementos</span><span data-i18n="k029:0">Ajuda</span>
-</nav>
-<div aria-hidden="true" class="app__transport">
-<span class="tb tb--on" title="Microfone">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="11" rx="3" width="6" x="9" y="2"></rect><path d="M5 10a7 7 0 0 0 14 0M12 17v4"></path></svg>
-</span>
-<canvas aria-hidden="true" height="26" id="wave" width="220"></canvas>
-<span class="tb" title="Áudio">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M3 14v-4a9 9 0 0 1 18 0v4"></path><rect height="7" rx="1.6" width="4" x="3" y="14"></rect><rect height="7" rx="1.6" width="4" x="17" y="14"></rect></svg>
-</span>
-<span class="tb" title="Gravação">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" fill="currentColor" r="3" stroke="none"></circle></svg>
-</span>
-<span class="tb" title="Configurações">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1h.2a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.5 1z"></path></svg>
-</span>
 </div>
-<span aria-hidden="true" class="app__bell">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg>
+<!-- ═ barra de ferramentas ═ -->
+<div class="app__toolbar">
+<span class="app__toolgroup">
+<span class="tb" title="Mudo"><svg viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="2.6" width="6" height="10.8" rx="3"/><path d="M5.2 10.4a6.8 6.8 0 0 0 13.6 0M12 17.2v3.8"/><path d="M4.6 3.4l14.8 16.8" stroke="#d93025" stroke-width="2.3"/></svg></span>
+<span class="tb" title="Áudio"><svg viewBox="0 0 24 24" fill="none"><rect x="6.1" y="2.8" width="4.1" height="7.8" rx="1.9" fill="#27a35c"/><rect x="13.8" y="2.8" width="4.1" height="7.8" rx="1.9" fill="#27a35c"/><path d="M4.2 13.6a7.8 7.8 0 0 0 15.6 0" stroke="#27a35c" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+<span class="tb" title="Microfone"><svg viewBox="0 0 24 24" fill="none" stroke="#2b6cb8" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="2.6" width="6" height="10.8" rx="3"/><path d="M5.2 10.4a6.8 6.8 0 0 0 13.6 0M12 17.2v3.8"/></svg></span>
+<span class="tb" title="Alto-falantes"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9.3v5.4h3.4l4.8 3.9V5.4L7.4 9.3H4z" fill="#2b6cb8"/><path d="M15.2 10.2l4.6 4.6M19.8 10.2l-4.6 4.6" stroke="#2b6cb8" stroke-width="1.9" stroke-linecap="round"/></svg></span>
+<span class="tb" title="Chat"><svg viewBox="0 0 24 24" fill="#2b6cb8"><path d="M6.2 3.6h11.6a4 4 0 0 1 4 4v6.2a4 4 0 0 1-4 4h-6.9l-4 3.2c-.64.5-1.5.04-1.5-.75V7.6a4 4 0 0 1 4-4z"/></svg></span>
 </span>
+<i class="app__toolsep" aria-hidden="true"></i>
+<span class="app__gear" title="Configurações"><svg viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1h.2a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.5 1z"></path></svg></span>
+<i class="app__spacer" aria-hidden="true"></i>
+<span class="app__bell" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#eba816"><path d="M17.8 8.2a5.8 5.8 0 0 0-11.6 0c0 6.6-2.7 8.3-2.7 8.3h17s-2.7-1.7-2.7-8.3"/><path d="M10.2 20a1.9 1.9 0 0 0 3.6 0z"/></svg></span>
 </div>
+<!-- ═ corpo: árvore de canais + painel de informações ═ -->
 <div class="app__body">
-<aside class="app__side">
+<section class="app__tree">
 <div class="srv">
-<span class="srv__ic">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="6" rx="2" width="18" x="3" y="4"></rect><rect height="6" rx="2" width="18" x="3" y="14"></rect><path d="M7 7h.01M7 17h.01"></path></svg>
-</span>
-<div class="srv__name"><b data-i18n="k030:0">Servidor oficial da Comunidade Halla</b><small data-i18n="k031:0">163.176.35.133:9987</small></div>
-<span aria-hidden="true" class="srv__on"></span>
+<span class="srv__chip"><span class="srv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"><rect x="4" y="4.5" width="16" height="6" rx="1.8"/><rect x="4" y="13.5" width="16" height="6" rx="1.8"/><path d="M7.4 7.5h.01M7.4 16.5h.01"/></svg></span></span>
+<b class="srv__name" data-i18n="k300:0">Servidor Oficial da Comunidade Halla | github.com/grouphalla</b>
+<i class="srv__dot" aria-hidden="true"></i>
+<span class="srv__actions" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#99a3b0" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.8l2.4 5 5.5.65-4.05 3.85 1.05 5.45L12 16.1l-4.9 2.65 1.05-5.45L4.1 9.45l5.5-.65z"/></svg><svg viewBox="0 0 24 24" fill="#99a3b0"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></span>
 </div>
-<div class="tree">
-<div class="cat cat--open" data-i18n="k032:1"><svg class="caret" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>Área de entrada</div>
-<div class="ch" data-i18n="k033:2">
-<span class="ch__ic ch__ic--ok"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24"><polyline points="5 12.5 10 17.5 19 7"></polyline></svg></span>
-              Lobby Geral <span class="cnt" data-i18n="k034:0">3</span>
+<div class="branch">
+<div class="cat"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg><span data-i18n="k301:0">ÁREA ADMIN</span></div>
+<div class="ch"><span class="chic chic--admin"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M6.6 12h10.8"/></svg></span><span data-i18n="k305:0">CANAL ADMIN 1</span></div>
+<div class="ch"><span class="chic chic--admin"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M6.6 12h10.8"/></svg></span><span data-i18n="k306:0">CANAL ADMIN 2</span></div>
 </div>
-<div class="users">
-<div class="user user--talk">
-<span class="av" data-i18n="k035:0">M</span><span data-i18n="k036:0">Marina</span>
-<span class="bars"><i></i><i></i><i></i><i></i></span>
+<div class="branch">
+<div class="cat cat--bold"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg><span data-i18n="k302:0">Área de entrada (MUDO)</span><span class="cat__cnt">(1)</span></div>
+<div class="user"><span class="av"><svg viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="9.2" r="3.3"/><path d="M5.8 19.2a6.2 6.2 0 0 1 12.4 0z"/></svg></span><span>OFFICIAL HALLA ADMIN</span><svg class="op" viewBox="0 0 24 24" fill="#8b5cf6" aria-hidden="true"><path d="M4.5 17h15l-1.3-7.8-4.1 3.2L12 6.2l-2.1 6.2-4.1-3.2z"/><rect x="5" y="18.2" width="14" height="1.7" rx=".8"/></svg></div>
 </div>
-<div class="user"><span class="av" data-i18n="k037:0">R</span><span data-i18n="k038:0">Rafael</span>
-<svg class="ic ic--xs mute" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M3 3l18 18M9 9v3a3 3 0 0 0 5.1 2.1M15 11.5V5a3 3 0 0 0-5.9-.7"></path><path d="M17 17a5 5 0 0 1-7.9-4M12 19v3"></path></svg>
+<div class="branch">
+<div class="cat"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg><span data-i18n="k041:0">Área pública</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Talk 1</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Talk 2</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Talk 3</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Talk 4</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Talk 5</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Talk 6</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Talk 7</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Talk 8</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Talk 9</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Talk 10</span></div>
 </div>
-<div class="user user--me"><span class="av" data-i18n="k039:0">V</span><span data-i18n="k040:0">Você</span></div>
-</div>
-<div class="cat cat--open" data-i18n="k041:1"><svg class="caret" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>Área pública</div>
-<div class="ch" data-i18n="k042:2">
-<span class="ch__ic ch__ic--ok"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24"><polyline points="5 12.5 10 17.5 19 7"></polyline></svg></span>
-              Talk 1
-            </div>
-<div class="ch" data-i18n="k043:2">
-<span class="ch__ic ch__ic--no"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3" viewbox="0 0 24 24"><path d="M6 12h12"></path></svg></span>
-              Sala Privada
-            </div>
-<div class="cat cat--open" data-i18n="k044:1"><svg class="caret" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>Gaming</div>
-<div class="ch" data-i18n="k045:2">
-<span class="ch__ic ch__ic--ok"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24"><polyline points="5 12.5 10 17.5 19 7"></polyline></svg></span>
-              Gameplay — 4K <span class="cnt" data-i18n="k046:0">2</span>
-</div>
-<div class="users">
-<div class="user user--live">
-<span class="av" data-i18n="k047:0">B</span><span data-i18n="k048:0">Bruna</span>
-<span class="live" data-i18n="k049:1"><svg class="ic ic--xs" fill="currentColor" viewbox="0 0 24 24"><polygon points="10 8 16 12 10 16"></polygon></svg>LIVE</span>
-</div>
-<div class="user user--talk">
-<span class="av" data-i18n="k050:0">T</span><span data-i18n="k051:0">Thiago</span>
-<span class="bars"><i></i><i></i><i></i><i></i></span>
-</div>
-</div>
-<div class="cat" data-i18n="k052:1"><svg class="caret caret--shut" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>AFK</div>
-</div>
-</aside>
-<section class="app__main">
-<div class="app__tabs">
-<span data-i18n="k053:0">Chat do servidor</span>
-<span class="on" data-i18n="k054:0">Chat do canal</span>
-<span class="app__chinfo" data-i18n="k055:0">Lobby Geral · Opus 48 kHz</span>
-</div>
-<div class="chat">
-<div class="msg"><b data-i18n="k056:0">Marina</b><time data-i18n="k057:0">21:04</time><p data-i18n="k058:0">fala galera, subindo a stream agora 🎙️</p></div>
-<div class="msg"><b data-i18n="k059:0">Rafael</b><time data-i18n="k060:0">21:04</time><p data-i18n="k061:0">qualidade tá absurda, nenhum corte</p></div>
-<div class="msg msg--sys" data-i18n="k062:2">
-<svg class="ic ic--xs" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-              Sessão E2EE verificada via SAS
-            </div>
-<div class="msg"><b data-i18n="k063:0">Lucas</b><time data-i18n="k064:0">21:05</time><p data-i18n="k065:0">me dá whisper quando o boss spawnar 👀</p></div>
-</div>
-<div class="app__input">
-<span aria-hidden="true" class="fmt"><b data-i18n="k066:0">B</b><i data-i18n="k067:0">I</i><s data-i18n="k068:0">S</s><code>&lt;/&gt;</code></span>
-<span class="field" data-i18n="k069:0">Digite a mensagem...</span>
-<span aria-hidden="true" class="send">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
-</span>
+<div class="branch">
+<div class="cat"><svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg><span data-i18n="k304:0">Área de jogos</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Call of Duty</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Counter-Strike 2</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Dota 2</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Grand Theft Auto V</span></div>
+<div class="ch"><span class="chic chic--talk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.6l4.3 4.4 8.7-9.6"/></svg></span><span>Minecraft</span></div>
 </div>
 </section>
+<aside class="app__info">
+<div class="info__banner">
+<img src="assets/logo.png" alt="" width="56" height="56"/>
+<div class="info__bannertxt"><b>Halla</b><span data-i18n="k307:0">Cliente de comunicação de voz</span></div>
+<i class="info__pill p1" aria-hidden="true"></i><i class="info__pill p2" aria-hidden="true"></i><i class="info__pill p3" aria-hidden="true"></i><i class="info__pill p4" aria-hidden="true"></i><i class="info__pill p5" aria-hidden="true"></i>
 </div>
-<div class="app__status">
-<span class="app__srv" data-i18n="k070:1"><svg class="ic ic--xs" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"></path><path d="M3 12l9 4 9-4M3 17l9 4 9-4"></path></svg> Comunidade Halla</span>
-<span class="app__stats" data-i18n="k071:0" data-i18n-1="k073:4" data-i18n-2="k074:6" data-i18n-3="k075:8">Conectado como <b data-i18n="k072:0">Você</b><i class="sep"></i><svg class="ic ic--xs" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="10" rx="2" width="16" x="4" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg> E2EE<i class="sep"></i>Ping: 128 ms<i class="sep"></i>Perda: 0.00%</span>
+<div class="info__head">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2L20.8 12 12 20.8 3.2 12z" fill="none" stroke="#2b6cb8" stroke-width="1.8"/><path d="M12 8.4L15.6 12 12 15.6 8.4 12z" fill="#2b6cb8"/></svg>
+<b><span data-i18n="k308:0">Servidor:</span> <span data-i18n="k300:0">Servidor Oficial da Comunidade Halla | github.com/grouphalla</span></b>
 </div>
+<dl class="info__grid">
+<dt data-i18n="k309:0">Endereço:</dt><dd>163.176.35.133</dd>
+<dt data-i18n="k310:0">Versão:</dt><dd data-i18n="k311:0">1.1.71 no Linux</dd>
+<dt data-i18n="k312:0">Tempo ativo:</dt><dd>00:00:03</dd>
+<dt data-i18n="k313:0">Clientes conectados:</dt><dd>1 / 1000</dd>
+<dt data-i18n="k314:0">Canais:</dt><dd>25</dd>
+<dt data-i18n="k315:0">Perda de pacotes:</dt><dd>0,00%</dd>
+</dl>
+<img class="info__wm" src="assets/logo.png" alt="" aria-hidden="true"/>
+</aside>
+</div>
+<!-- ═ chat ═ -->
+<section class="app__chat">
+<div class="chat__log">
+<p class="chat__sys"><time>[13:21:49]</time> <span data-i18n="k316:0">* Conectado ao servidor: 163.176.35.133</span></p>
+<p class="chat__sys"><time>[13:21:49]</time> <span data-i18n="k317:0">* Você entrou no canal: 'Área de entrada (MUDO)'</span></p>
+</div>
+<div class="chat__tabs">
+<span class="on" data-i18n="k053:0">Chat do servidor</span>
+<span data-i18n="k054:0">Chat do canal</span>
+</div>
+<div class="chat__fmt" aria-hidden="true">
+<b>B</b><i>I</i><u>U</u><s>S</s><code>&lt;/&gt;</code><em class="fsep"></em>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8.2"/><circle cx="9.2" cy="10.2" r="1" fill="currentColor" stroke="none"/><circle cx="14.8" cy="10.2" r="1" fill="currentColor" stroke="none"/><path d="M8.6 14a4.4 4.4 0 0 0 6.8 0" stroke-linecap="round"/></svg>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="9.4" y="3.5" width="5.2" height="9.5" rx="2.6"/><path d="M6.5 11a5.5 5.5 0 0 0 11 0M12 16.5v3"/></svg>
+<em class="fsep"></em>
+</div>
+<div class="chat__input">
+<span class="field" data-i18n="k303:0">Digite a mensagem...</span>
+<span class="send" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff"><path d="M3.4 20.4v-5.6l13.4-2.8L3.4 9.2V3.6L21.6 12 3.4 20.4z"/></svg></span>
+</div>
+</section>
+<!-- ═ barra de status ═ -->
+<footer class="app__status">
+<span class="app__srv" data-i18n="k300:0">Servidor Oficial da Comunidade Halla | github.com/grouphalla</span>
+<span class="app__mid"><span data-i18n="k318:0">Bem-vindo ao Halla!</span><i>•</i><span data-i18n="k307:0">Cliente de comunicação de voz</span><i>•</i><span>github.com/GroupHalla/Halla</span></span>
+<span class="app__who"><i class="sprout">🌱</i><span data-i18n="k319:0">Conectado como</span>&nbsp;<b>OFFICIAL HALLA ADMIN</b><i class="lock">🔒</i><b>E2EE</b><span>Ping: 59 ms</span><span><span data-i18n="k315:0">Perda de pacotes:</span> 0,00%</span></span>
+</footer>
 </div>
 </div>
 </section>
